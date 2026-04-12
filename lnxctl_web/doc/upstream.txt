@@ -1,0 +1,14 @@
+upstream
+- react v19.2.4 (2026-01-26), https://github.com/facebook/react
+- react-router v7.31.1 (2026-02-24), https://github.com/remix-run/react-router
+- history v5.3.0 (2022-02-23), https://github.com/remix-run/history
+- redux v5.0.1 (2023-12-24), https://github.com/reduxjs/redux
+- react-redux v9.2.0 (2024-12-11), https://github.com/reduxjs/react-redux
+- redux-toolkit v2.11.2 (2025-12-15), https://github.com/reduxjs/redux-toolkit
+- ant-design v6.3.0 (2026-02-24), https://github.com/ant-design/ant-design
+- axios v1.13.6 (2026-02-27), https://github.com/axios/axios
+- xterm.js v6.0.0 (2025-12-22), https://github.com/xtermjs/xterm.js
+- dnd-kit v6.3.1 (2024-12-06), https://github.com/clauderic/dnd-kit
+- react-syntax-highlighter v16.1.1 (2026-02-27), https://github.com/react-syntax-highlighter/react-syntax-highlighter
+- react-copy-to-clipboard v5.1.1 (2026-03-07), https://github.com/nkbt/react-copy-to-clipboard
+- vite v7.3.1 (2026-01-07), https://github.com/vitejs/vite

@@ -1,0 +1,35 @@
+lnxctl - linux/docker/kubernetes web terminal
+
+
+
+-- feature
+- no installation required
+- zero configuration
+
+
+
+-- download
+wget "https://thread43.github.io/pkg/lnxctl_v20260412.tar.gz"
+tar xzvf lnxctl_v20260412.tar.gz
+cd lnxctl
+./lnxctl
+
+
+
+-- usage
+./lnxctl
+./lnxctl --help
+./lnxctl --port=1234
+./lnxctl --host="0.0.0.0"
+./lnxctl --host="127.0.0.1"
+./lnxctl --log="file"
+./lnxctl --log="stdout"
+./lnxctl --sqlite="lnxctl.db"
+./lnxctl --mysql="root:123456@tcp(127.0.0.1:3306)/lnxctl"
+
+
+
+-- login
+http://127.0.0.1:1234/
+admin/admin
+guest/guest

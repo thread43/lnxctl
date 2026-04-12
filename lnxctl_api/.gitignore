@@ -1,0 +1,10 @@
+/go.sum
+
+/lnxctl
+/lnxctl.db
+/lnxctl.db-journal
+/lnxctl.log
+*.db
+*.log
+
+/.idea/
