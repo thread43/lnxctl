@@ -1,7 +1,7 @@
-/sql/lnxterm.db
+/sql/lnxctl.db
 *.db
 
 /build/
 
-lnxterm.tar.gz
+lnxctl.tar.gz
 *.tar.gz

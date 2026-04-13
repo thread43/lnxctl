@@ -54,12 +54,8 @@ function ServiceDetail() {
       >
         <Form layout="horizontal" labelCol={{span: 12}} wrapperCol={{span: 12}} className="MyForm">
           <Form.Item label="ID">{stateService.id}</Form.Item>
-          <Form.Item label="IP">{stateService.ip}</Form.Item>
-          <Form.Item label="SSH Service">{stateService.ssh_service}</Form.Item>
-          <Form.Item label="SSH Port">{stateService.ssh_port}</Form.Item>
-          <Form.Item label="SSH User">{stateService.ssh_user}</Form.Item>
-          <Form.Item label="SSH Password">{stateService.ssh_password}</Form.Item>
-          <Form.Item label="SSH Private Key">{stateService.ssh_private_key}</Form.Item>
+          <Form.Item label="Name">{stateService.name}</Form.Item>
+          <Form.Item label="Terminal Command">{stateService.term_cmd}</Form.Item>
           <Form.Item label="Remark">{stateService.remark}</Form.Item>
           <Form.Item label="Created At">{stateService.create_time}</Form.Item>
           <Form.Item label="Updated At">{stateService.update_time}</Form.Item>

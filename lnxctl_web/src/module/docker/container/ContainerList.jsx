@@ -286,7 +286,7 @@ function ContainerList() {
       title: 'Ports',
       dataIndex: 'ports',
       render: (text) => (
-        <>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '1px'}}>
           {text.map((item, index) => {
             if (item.ip !== '') {
               return (
@@ -304,7 +304,7 @@ function ContainerList() {
               );
             }
           })}
-        </>
+        </div>
       ),
     },
     /*
@@ -328,7 +328,7 @@ function ContainerList() {
       title: 'Mounts (bind)',
       dataIndex: 'mounts',
       render: (text) => (
-        <>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '1px'}}>
           {text.map((item, index) => (
             <div key={index}>
               <Tag variant="outlined">{item.source}</Tag>
@@ -336,7 +336,7 @@ function ContainerList() {
               <Tag variant="outlined">{item.destination}</Tag>
             </div>
           ))}
-        </>
+        </div>
       ),
     },
     {
@@ -373,7 +373,7 @@ function ContainerList() {
                 }],
               }}
             >
-              <Button type="link" className="ButtonLink" icon={<MoreOutlined />} />
+              <a onClick={(event) => {event.preventDefault();}}><MoreOutlined /></a>
             </Dropdown>
           </div>
         </div>

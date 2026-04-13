@@ -48,12 +48,10 @@ function ServiceList() {
     }
   }
 
-  /*
-  function getService(id) {
-    dispatch(store.setService({id}));
+  function getService(service) {
+    dispatch(store.setService(service));
     dispatch(store.setServiceDetailVisible(true));
   }
-  */
 
   async function getServices() {
     try {
@@ -95,6 +93,9 @@ function ServiceList() {
       key: 'name',
       title: 'Name',
       dataIndex: 'name',
+      render: (text, record) => (
+        <Button type="link" className="ButtonLink" onClick={() => getService(record)}>{text}</Button>
+      ),
     },
     {
       key: 'term_cmd',

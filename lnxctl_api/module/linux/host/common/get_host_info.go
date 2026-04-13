@@ -73,7 +73,7 @@ func GetHostInfo(id int64) (map[string]interface{}, error) {
 	remote_file, err = sftp_client.Create("/tmp/.get_host_info.py")
 	if err != nil {
 		log.Println(err)
-		// return nil, err
+		return nil, err
 	}
 	defer func() {
 		_ = remote_file.Close()
@@ -82,7 +82,7 @@ func GetHostInfo(id int64) (map[string]interface{}, error) {
 	_, err = io.Copy(remote_file, local_file)
 	if err != nil {
 		log.Println(err)
-		// return nil, err
+		return nil, err
 	}
 
 	var command string

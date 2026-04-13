@@ -144,13 +144,13 @@ function UserList() {
       title: 'Roles',
       dataIndex: 'role_names',
       render: (text) => (
-        <>
-          {text !== null && text.map((item, index) => (
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '1px'}}>
+          {text.map((item, index) => (
             <div key={index}>
               <Tag variant='outlined'>{item}</Tag>
             </div>
           ))}
-        </>
+        </div>
       ),
     },
     {
@@ -214,7 +214,7 @@ function UserList() {
               onClick: () => resetPassword(record.id),
             }}
           >
-            <Button type="link" className="ButtonLink" icon={<MoreOutlined />} />
+            <a onClick={(event) => {event.preventDefault();}}><MoreOutlined /></a>
           </Dropdown>
         </span>
       ),

@@ -2,9 +2,10 @@ lnxctl - linux/docker/kubernetes web terminal
 
 
 
--- feature
-- no installation required
-- zero configuration
+-- screenshot
+https://thread43.github.io/img/lnxctl_linux_host.png
+https://thread43.github.io/img/lnxctl_docker_container.png
+https://thread43.github.io/img/lnxctl_kubernetes_pod.png
 
 
 

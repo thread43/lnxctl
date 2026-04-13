@@ -419,7 +419,7 @@ function PodList() {
               }],
             }}
           >
-            <Button type="link" className="ButtonLink" icon={<MoreOutlined />} />
+            <a onClick={(event) => {event.preventDefault();}}><MoreOutlined /></a>
           </Dropdown>
         </div>
       ),
