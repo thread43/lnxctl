@@ -10,7 +10,7 @@ import {BlockOutlined} from '@ant-design/icons';
 import {CaretRightOutlined} from '@ant-design/icons';
 import {DockerOutlined} from '@ant-design/icons';
 import {LinuxOutlined} from '@ant-design/icons';
-import {SyncOutlined} from '@ant-design/icons';
+// import {SyncOutlined} from '@ant-design/icons';
 import api from './api.js';
 import styles from './Index.module.css';
 
@@ -21,6 +21,17 @@ function Index() {
 
   useEffect(() => {
     init();
+
+    const intervalId = setInterval(async () => {
+      console.log('setInterval: ' + new Date());
+      await init();
+      message.success('Page auto refreshed', 3);
+    }, 60000);
+
+    return () => {
+      console.log('clearInterval: ' + new Date());
+      clearInterval(intervalId);
+    };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function init() {
@@ -58,26 +69,32 @@ function Index() {
 
         {/* <div style={{marginBottom: '22px'}}></div> */}
 
+        {/*
+        <div className="MyContentHeader">
+          <span className="MyContentHeaderTitle">Statistics</span>
+        </div>
+        */}
+
         <Row gutter={10}>
           {stateStatistics.linux.host_running !== undefined &&
             <Col span={6}>
               <Card
                 title={<><LinuxOutlined />&nbsp;Linux</>}
-                extra={
-                  <Link to="/" style={{paddingLeft: '16px', color: 'rgba(0,0,0,0.88)'}}>
-                    <SyncOutlined />
-                  </Link>
-                }
+                // extra={
+                //   <Link to="/" style={{paddingLeft: '16px', color: 'rgba(0,0,0,0.88)'}}>
+                //     <SyncOutlined />
+                //   </Link>
+                // }
                 hoverable
                 size="small"
                 // onClick={() => window.location.href = '/#/linux/host'}
-                // onClick={() => handleClick('/#/linux/host')}
+                onClick={() => handleClick('/#/linux/host')}
                 className={styles.MyCard}
                 styles={{header: {fontWeight: 'normal'}}}
                 style={{marginBottom: '10px'}}
               >
                 <div
-                  onClick={() => handleClick('/#/linux/host')}
+                  // onClick={() => handleClick('/#/linux/host')}
                   style={{overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis'}}
                 >
                   <p>
@@ -101,21 +118,21 @@ function Index() {
             <Col key={index} span={6}>
               <Card
                 title={<><DockerOutlined />&nbsp;Docker - {item.server_name}</>}
-                extra={
-                  <Link to="/" style={{paddingLeft: '16px', color: 'rgba(0,0,0,0.88)'}}>
-                    <SyncOutlined />
-                  </Link>
-                }
+                // extra={
+                //   <Link to="/" style={{paddingLeft: '16px', color: 'rgba(0,0,0,0.88)'}}>
+                //     <SyncOutlined />
+                //   </Link>
+                // }
                 hoverable
                 size="small"
                 // onClick={() => window.location.href = '/#/docker/container'}
-                // onClick={() => handleClick('/#/docker/container')}
+                onClick={() => handleClick('/#/docker/container')}
                 className={styles.MyCard}
                 styles={{header: {fontWeight: 'normal'}}}
                 style={{marginBottom: '10px'}}
               >
                 <div
-                  onClick={() => handleClick('/#/docker/container')}
+                  // onClick={() => handleClick('/#/docker/container')}
                   style={{overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis'}}
                 >
                   <p>
@@ -139,21 +156,21 @@ function Index() {
             <Col key={index} span={6}>
               <Card
                 title={<><BlockOutlined />&nbsp;Kubernetes - {item.cluster_name}</>}
-                extra={
-                  <Link to="/" style={{paddingLeft: '16px', color: 'rgba(0,0,0,0.88)'}}>
-                    <SyncOutlined />
-                  </Link>
-                }
+                // extra={
+                //   <Link to="/" style={{paddingLeft: '16px', color: 'rgba(0,0,0,0.88)'}}>
+                //     <SyncOutlined />
+                //   </Link>
+                // }
                 hoverable
                 size="small"
                 // onClick={() => window.location.href = '/#/k8s/pod'}
-                // onClick={() => handleClick('/#/k8s/pod')}
+                onClick={() => handleClick('/#/k8s/pod')}
                 className={styles.MyCard}
                 styles={{header: {fontWeight: 'normal'}}}
                 style={{marginBottom: '10px'}}
               >
                 <div
-                  onClick={() => handleClick('/#/k8s/pod')}
+                  // onClick={() => handleClick('/#/k8s/pod')}
                   style={{overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis'}}
                 >
                   <p>

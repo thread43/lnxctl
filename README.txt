@@ -10,8 +10,8 @@ https://thread43.github.io/img/lnxctl_kubernetes_pod.png
 
 
 -- download
-wget "https://thread43.github.io/pkg/lnxctl_v20260412.tar.gz"
-tar xzvf lnxctl_v20260412.tar.gz
+wget "https://thread43.github.io/pkg/lnxctl_v20260415.tar.gz"
+tar xzvf lnxctl_v20260415.tar.gz
 cd lnxctl
 ./lnxctl
 

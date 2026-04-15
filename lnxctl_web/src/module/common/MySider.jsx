@@ -169,14 +169,15 @@ function MySider() {
         onBreakpoint={(broken) => onBreakpoint(broken)}
         onCollapse={(collapsed, type) => onCollapse(collapsed, type)}
       >
-        <Link to="/">
+        {/* <Link to="/"></Link> */}
+        <div onClick={() => {dispatch(store.setOpenKeys([])); navigate('/');}}>
           <div className={styles.SiteInfo}>
             <Space>
               <img src={logo} alt="" className={styles.SiteLogo} />
               {storeSiderCollapsed === false && <span className={styles.SiteTitle}>LNXCTL</span>}
             </Space>
           </div>
-        </Link>
+        </div>
 
         <Menu
           mode="inline"
