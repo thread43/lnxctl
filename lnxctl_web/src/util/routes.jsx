@@ -1,6 +1,7 @@
 import {BlockOutlined} from '@ant-design/icons';
 import {DockerOutlined} from '@ant-design/icons';
 import {LinuxOutlined} from '@ant-design/icons';
+import {MonitorOutlined} from '@ant-design/icons';
 import {SafetyOutlined} from '@ant-design/icons';
 import {SettingOutlined} from '@ant-design/icons';
 import Index from '../module/index/Index.jsx';
@@ -33,6 +34,7 @@ import K8sRole from '../module/k8s/role/Index.jsx';
 import K8sRolebinding from '../module/k8s/rolebinding/Index.jsx';
 import K8sClusterRole from '../module/k8s/clusterrole/Index.jsx';
 import K8sClusterRoleBinding from '../module/k8s/clusterrolebinding/Index.jsx';
+import MonitoringTarget from '../module/monitoring/target/Index.jsx';
 import AuthDept from '../module/auth/dept/Index.jsx';
 import AuthUser from '../module/auth/user/Index.jsx';
 import AuthRole from '../module/auth/role/Index.jsx';
@@ -87,6 +89,9 @@ const routes = [
   {path: '/auth/role', component: AuthRole, alias: 'auth_role'},
   {path: '/auth/perm', component: AuthPerm, alias: 'auth_perm'},
   {path: '/auth/menu', component: AuthMenu, alias: 'auth_menu'},
+
+  {path: '/monitoring', component: MonitoringTarget, alias: 'monitoring', icon: <MonitorOutlined />},
+  {path: '/monitoring/target', component: MonitoringTarget, alias: 'monitoring_target'},
 
   {path: '/system', component: SystemLog, alias: 'system', icon: <SettingOutlined />},
   {path: '/system/terminal', component: SystemTerminal, alias: 'system_terminal'},

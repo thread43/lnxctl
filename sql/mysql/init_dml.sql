@@ -194,21 +194,25 @@ VALUES
 ('/api/k8s/clusterrole/get_clusters',                       'Kubernetes - ClusterRoles - Get Clusters',                       0, 423),
 ('/api/k8s/clusterrolebinding/get_clusterrolebinding_yaml', 'Kubernetes - ClusterRoleBindings - Get ClusterRoleBinding YAML', 0, 424),
 ('/api/k8s/clusterrolebinding/get_clusterrolebindings',     'Kubernetes - ClusterRoleBindings - Get ClusterRoleBindings',     0, 424),
-('/api/k8s/clusterrolebinding/get_clusters',                'Kubernetes - ClusterRoleBindings - Get Clusters',                0, 424);
-
+('/api/k8s/clusterrolebinding/get_clusters',                'Kubernetes - ClusterRoleBindings - Get Clusters',                0, 424),
+('/api/monitoring/target/add_target',                       'Monitoring - Targets - Add Target',                              1, 502),
+('/api/monitoring/target/delete_target',                    'Monitoring - Targets - Delete Target',                           1, 502),
+('/api/monitoring/target/get_target',                       'Monitoring - Targets - Get Target',                              0, 502),
+('/api/monitoring/target/get_targets',                      'Monitoring - Targets - Get Targets',                             0, 502),
+('/api/monitoring/target/update_target',                    'Monitoring - Targets - Update Target',                           1, 502);
 
 INSERT INTO auth_menu
 (id, code, name, sort, is_virtual, parent_menu_id)
 VALUES
-(1,   'auth',                   'Auth',                51, 0, NULL),
-(2,   'auth_dept',              'Departments',         52, 0, 1   ),
-(3,   'auth_user',              'Users',               53, 0, 1   ),
-(4,   'auth_role',              'Roles',               54, 0, 1   ),
-(5,   'auth_perm',              'Permissions',         55, 0, 1   ),
-(6,   'auth_menu',              'Menus',               56, 0, 1   ),
-(101, 'system',                 'System',              61, 0, NULL),
-(102, 'system_terminal',        'Terminal',            62, 1, 101 ),
-(103, 'system_log',             'Logs',                63, 0, 101 ),
+(1,   'auth',                   'Auth',                61, 0, NULL),
+(2,   'auth_dept',              'Departments',         62, 0, 1   ),
+(3,   'auth_user',              'Users',               63, 0, 1   ),
+(4,   'auth_role',              'Roles',               64, 0, 1   ),
+(5,   'auth_perm',              'Permissions',         65, 0, 1   ),
+(6,   'auth_menu',              'Menus',               66, 0, 1   ),
+(101, 'system',                 'System',              71, 0, NULL),
+(102, 'system_terminal',        'Terminal',            72, 1, 101 ),
+(103, 'system_log',             'Logs',                73, 0, 101 ),
 (201, 'linux',                  'Linux',               1,  0, NULL),
 (202, 'linux_host',             'Hosts',               2,  0, 201 ),
 (203, 'linux_service',          'Services',            3,  0, 201 ),
@@ -240,7 +244,9 @@ VALUES
 (421, 'k8s_role',               'Roles',               41, 0, 401 ),
 (422, 'k8s_rolebinding',        'RoleBindings',        42, 0, 401 ),
 (423, 'k8s_clusterrole',        'ClusterRoles',        43, 0, 401 ),
-(424, 'k8s_clusterrolebinding', 'ClusterRoleBindings', 44, 0, 401 );
+(424, 'k8s_clusterrolebinding', 'ClusterRoleBindings', 44, 0, 401 ),
+(501, 'monitoring',             'Monitoring',          51, 0, NULL),
+(502, 'monitoring_target',      'Targets',             52, 0, 501 );
 
 INSERT INTO auth_user_role
 (user_id, role_id)

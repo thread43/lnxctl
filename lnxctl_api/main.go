@@ -45,6 +45,7 @@ import (
 	k8s_storageclass "lnxctl/module/k8s/storageclass"
 	linux_host "lnxctl/module/linux/host"
 	linux_service "lnxctl/module/linux/service"
+	monitoring_target "lnxctl/module/monitoring/target"
 	system_log "lnxctl/module/system/log"
 	system_terminal "lnxctl/module/system/terminal"
 	test "lnxctl/module/test"
@@ -276,6 +277,12 @@ var Routes = []Route{
 	{"/api/k8s/clusterrolebinding/get_clusterrolebinding_yaml", k8s_clusterrolebinding.GetClusterrolebindingYaml},
 	{"/api/k8s/clusterrolebinding/get_clusterrolebindings", k8s_clusterrolebinding.GetClusterrolebindings},
 	{"/api/k8s/clusterrolebinding/get_clusters", k8s_common.GetClusters},
+
+	{"/api/monitoring/target/add_target", monitoring_target.AddTarget},
+	{"/api/monitoring/target/delete_target", monitoring_target.DeleteTarget},
+	{"/api/monitoring/target/get_target", monitoring_target.GetTarget},
+	{"/api/monitoring/target/get_targets", monitoring_target.GetTargets},
+	{"/api/monitoring/target/update_target", monitoring_target.UpdateTarget},
 
 	{"/api/test", test.Test},
 }

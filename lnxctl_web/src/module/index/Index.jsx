@@ -24,8 +24,16 @@ function Index() {
 
     const intervalId = setInterval(async () => {
       console.log('setInterval: ' + new Date());
+
       await init();
-      message.success('Page auto refreshed', 3);
+
+      // message.success('Page auto refreshed', 3);
+      message.success({
+        content: 'Page auto refreshed',
+        duration: 5,
+        onClick: () => message.destroy(),
+        style: {cursor: 'pointer'},
+      });
     }, 60000);
 
     return () => {

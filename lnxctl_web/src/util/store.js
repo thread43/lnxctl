@@ -31,6 +31,7 @@ import k8sRoleStore from '../module/k8s/role/store.js';
 import k8sRolebindingStore from '../module/k8s/rolebinding/store.js';
 import k8sClusterroleStore from '../module/k8s/clusterrole/store.js';
 import k8sClusterrolebindingStore from '../module/k8s/clusterrolebinding/store.js';
+import monitoringTargetStore from '../module/monitoring/target/store.js';
 import authDeptStore from '../module/auth/dept/store.js';
 import authMenuStore from '../module/auth/menu/store.js';
 import authPermStore from '../module/auth/perm/store.js';
@@ -75,6 +76,8 @@ const store = configureStore({
     k8sRolebinding: k8sRolebindingStore.rolebindingSlice.reducer,
     k8sClusterrole: k8sClusterroleStore.clusterroleSlice.reducer,
     k8sClusterrolebinding: k8sClusterrolebindingStore.clusterrolebindingSlice.reducer,
+
+    monitoringTarget: monitoringTargetStore.targetSlice.reducer,
 
     authDept: authDeptStore.deptSlice.reducer,
     authUser: authUserStore.userSlice.reducer,

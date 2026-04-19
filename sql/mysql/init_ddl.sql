@@ -15,6 +15,8 @@
 -- docker_server
 --
 -- k8s_cluster
+--
+-- monitoring_target
 
 CREATE TABLE auth_dept (
   id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -167,6 +169,25 @@ CREATE TABLE k8s_cluster (
   server VARCHAR(256),
   token TEXT,
   version VARCHAR(128),
+  is_active INTEGER,
+  remark VARCHAR(128),
+  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+  update_time DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE monitoring_target (
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(128),
+  crontab VARCHAR(128),
+  type INTEGER,
+  ping_host VARCHAR(128),
+  tcp_host VARCHAR(128),
+  tcp_port VARCHAR(128),
+  http_url VARCHAR(512),
+  http_status_code VARCHAR(128),
+  check_status INTEGER,
+  check_result VARCHAR(1024),
+  check_time DATETIME,
   is_active INTEGER,
   remark VARCHAR(128),
   create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
