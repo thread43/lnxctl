@@ -3,6 +3,7 @@ import {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {useSelector} from 'react-redux';
 import {App} from 'antd';
+import {Divider} from 'antd';
 import {Form} from 'antd';
 import {Input} from 'antd';
 import {Modal} from 'antd';
@@ -129,8 +130,10 @@ function TargetFormUpdate() {
           </Form.Item>
 
           <Form.Item name="crontab" label="Crontab" required>
-            <Input />
+            <Input disabled={true} />
           </Form.Item>
+
+          <Divider />
 
           <Form.Item name="type" label="Type" required>
             <Radio.Group>
@@ -140,9 +143,13 @@ function TargetFormUpdate() {
             </Radio.Group>
           </Form.Item>
 
+          <Divider />
+
           <Form.Item name="ping_host" label="Ping Host">
             <Input />
           </Form.Item>
+
+          <Divider />
 
           <Form.Item name="tcp_host" label="TCP Host">
             <Input />
@@ -152,6 +159,8 @@ function TargetFormUpdate() {
             <Input />
           </Form.Item>
 
+          <Divider />
+
           <Form.Item name="http_url" label="HTTP URL">
             <Input />
           </Form.Item>
@@ -159,6 +168,8 @@ function TargetFormUpdate() {
           <Form.Item name="http_status_code" label="HTTP Status Code">
             <Input />
           </Form.Item>
+
+          <Divider />
 
           <Form.Item name="is_active" label="Is Active" required>
             <Radio.Group>

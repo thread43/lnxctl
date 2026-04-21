@@ -4,6 +4,7 @@ import {useDispatch} from 'react-redux';
 import {useSelector} from 'react-redux';
 import {App} from 'antd';
 import {Button} from 'antd';
+import {Divider} from 'antd';
 import {Form} from 'antd';
 import {Modal} from 'antd';
 import api from './api.js';
@@ -56,6 +57,9 @@ function TargetDetail() {
           <Form.Item label="ID">{stateTarget.id}</Form.Item>
           <Form.Item label="Name">{stateTarget.name}</Form.Item>
           <Form.Item label="Crontab">{stateTarget.crontab}</Form.Item>
+
+          <Divider />
+
           <Form.Item label="Type">
             {(() => {
               if (stateTarget.type === 1) {
@@ -69,15 +73,31 @@ function TargetDetail() {
               }
             })()}
           </Form.Item>
-          <Form.Item label="Ping Host">{stateTarget.ping_host}</Form.Item>
-          <Form.Item label="TCP Host">{stateTarget.tcp_host}</Form.Item>
-          <Form.Item label="TCP Port">{stateTarget.tcp_port}</Form.Item>
-          <Form.Item label="HTTP URL">
-            <div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>
-              {stateTarget.http_url}
-            </div>
-          </Form.Item>
-          <Form.Item label="HTTP Status Code">{stateTarget.http_status_code}</Form.Item>
+
+          {stateTarget.type === 1 && (
+            <Form.Item label="Ping Host">{stateTarget.ping_host}</Form.Item>
+          )}
+
+          {stateTarget.type === 2 && (
+            <Form.Item label="TCP Host">{stateTarget.tcp_host}</Form.Item>
+          )}
+          {stateTarget.type === 2 && (
+            <Form.Item label="TCP Port">{stateTarget.tcp_port}</Form.Item>
+          )}
+
+          {stateTarget.type === 3 && (
+            <Form.Item label="HTTP URL">
+              <div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>
+                {stateTarget.http_url}
+              </div>
+            </Form.Item>
+          )}
+          {stateTarget.type === 3 && (
+            <Form.Item label="HTTP Status Code">{stateTarget.http_status_code}</Form.Item>
+          )}
+
+          <Divider />
+
           <Form.Item label="Check Status">
             {(() => {
               if (stateTarget.check_status === 0) {
@@ -91,8 +111,13 @@ function TargetDetail() {
               }
             })()}
           </Form.Item>
-          <Form.Item label="Check Result">{stateTarget.check_result}</Form.Item>
+          <Form.Item label="Check Result">
+            <div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>
+              {stateTarget.check_result}
+            </div>
+          </Form.Item>
           <Form.Item label="Check Time">{stateTarget.check_time}</Form.Item>
+          <Divider />
           <Form.Item label="Is Active">{stateTarget.is_active === 1 ? 'Yes' : 'No'}</Form.Item>
           <Form.Item label="Remark">{stateTarget.remark}</Form.Item>
           <Form.Item label="Created At">{stateTarget.create_time}</Form.Item>

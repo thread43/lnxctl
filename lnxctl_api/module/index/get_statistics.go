@@ -23,10 +23,9 @@ import (
 // get_linux, {host_total, host_running}
 // get_dockers, [{server_id, server_name, container_total, container_running}]
 // get_k8ses, [{cluster_id, cluster_name, node_total, node_running, pod_total, pod_running}]
+// get_monitoring, {target_total, target_running}
 
 func GetStatistics(response http.ResponseWriter, request *http.Request) {
-	// var err error
-
 	var linux map[string]interface{}
 	linux = GetLinux()
 
@@ -36,11 +35,15 @@ func GetStatistics(response http.ResponseWriter, request *http.Request) {
 	var k8ses []map[string]interface{}
 	k8ses = GetK8ses()
 
+	var monitoring map[string]interface{}
+	monitoring = GetMonitoring()
+
 	var statistics map[string]interface{}
 	statistics = map[string]interface{}{
-		"linux":   linux,
-		"dockers": dockers,
-		"k8ses":   k8ses,
+		"linux":      linux,
+		"dockers":    dockers,
+		"k8ses":      k8ses,
+		"monitoring": monitoring,
 	}
 
 	util.Api(response, 200, statistics)
@@ -369,4 +372,46 @@ func GetK8ses() []map[string]interface{} {
 	}
 
 	return k8ses
+}
+
+func GetMonitoring() map[string]interface{} {
+	var err error
+
+	var target_total int
+	{
+		var query string
+		query = "SELECT COUNT(1) count FROM monitoring_target WHERE is_active=1"
+
+		var row *sql.Row
+		row = util.DB.QueryRow(query)
+
+		err = row.Scan(&target_total)
+		util.Raise(err)
+	}
+
+	var target_running int
+	{
+		var query string
+		query = "SELECT COUNT(1) count FROM monitoring_target WHERE is_active=1 AND check_status=1"
+
+		var row *sql.Row
+		row = util.DB.QueryRow(query)
+
+		err = row.Scan(&target_running)
+		util.Raise(err)
+	}
+
+	var target_healthy bool
+	if target_running == target_total {
+		target_healthy = true
+	}
+
+	var monitoring map[string]interface{}
+	monitoring = map[string]interface{}{
+		"target_total":   target_total,
+		"target_running": target_running,
+		"target_healthy": target_healthy,
+	}
+
+	return monitoring
 }

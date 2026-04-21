@@ -10,6 +10,7 @@ import {BlockOutlined} from '@ant-design/icons';
 import {CaretRightOutlined} from '@ant-design/icons';
 import {DockerOutlined} from '@ant-design/icons';
 import {LinuxOutlined} from '@ant-design/icons';
+import {MonitorOutlined} from '@ant-design/icons';
 // import {SyncOutlined} from '@ant-design/icons';
 import api from './api.js';
 import styles from './Index.module.css';
@@ -17,7 +18,7 @@ import styles from './Index.module.css';
 function Index() {
   const {message} = App.useApp();
 
-  const [stateStatistics, setStateStatistics] = useState({linux: {}, dockers: [], k8ses: []});
+  const [stateStatistics, setStateStatistics] = useState({linux: {}, dockers: [], k8ses: [], monitoring: {}});
 
   useEffect(() => {
     init();
@@ -209,6 +210,44 @@ function Index() {
               </Card>
             </Col>
           ))}
+          {stateStatistics.monitoring.target_running !== undefined &&
+            <Col span={6}>
+              <Card
+                title={<><MonitorOutlined />&nbsp;Monitoring</>}
+                // extra={
+                //   <Link to="/" style={{paddingLeft: '16px', color: 'rgba(0,0,0,0.88)'}}>
+                //     <SyncOutlined />
+                //   </Link>
+                // }
+                hoverable
+                size="small"
+                // onClick={() => window.location.href = '/#/monitoring/target'}
+                onClick={() => handleClick('/#/monitoring/target')}
+                className={styles.MyCard}
+                styles={{header: {fontWeight: 'normal'}}}
+                style={{marginBottom: '10px'}}
+              >
+                <div
+                  // onClick={() => handleClick('/#/monitoring/target')}
+                  style={{overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis'}}
+                >
+                  <p>
+                    <CaretRightOutlined />&nbsp;Targets:&nbsp;
+                    {stateStatistics.monitoring.target_healthy === true ? (
+                      <span style={{color: '#52c41a'}}>
+                        {stateStatistics.monitoring.target_running}/{stateStatistics.monitoring.target_total}
+                      </span>
+                    ) : (
+                      <span style={{color: '#ff4d4f'}}>
+                        {stateStatistics.monitoring.target_running}/{stateStatistics.monitoring.target_total}
+                      </span>
+                    )}
+                  </p>
+                  <p>&nbsp;</p>
+                </div>
+              </Card>
+            </Col>
+          }
         </Row>
       </Layout.Content>
     </>

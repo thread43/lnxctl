@@ -45,6 +45,7 @@ import (
 	k8s_storageclass "lnxctl/module/k8s/storageclass"
 	linux_host "lnxctl/module/linux/host"
 	linux_service "lnxctl/module/linux/service"
+	monitoring_cronjob "lnxctl/module/monitoring/cronjob"
 	monitoring_target "lnxctl/module/monitoring/target"
 	system_log "lnxctl/module/system/log"
 	system_terminal "lnxctl/module/system/terminal"
@@ -353,6 +354,10 @@ func main() {
 	util.Init()
 
 	util.InitProfiler()
+
+	{
+		monitoring_cronjob.StartCronjob()
+	}
 
 	http.HandleFunc("/favicon.ico", util.MakeHandler(util.NotFound))
 

@@ -84,7 +84,7 @@ func GetTarget(response http.ResponseWriter, request *http.Request) {
 			"http_status_code": http_status_code.String,
 			"check_status":     check_status.Int64,
 			"check_result":     check_result.String,
-			"check_time":       check_time.String,
+			"check_time":       util.TimeOf(check_time.String),
 			"is_active":        is_active.Int64,
 			"remark":           remark.String,
 			"create_time":      util.TimeOf(create_time.String),
