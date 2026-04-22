@@ -43,6 +43,7 @@ import (
 	k8s_serviceaccount "lnxctl/module/k8s/serviceaccount"
 	k8s_statefulset "lnxctl/module/k8s/statefulset"
 	k8s_storageclass "lnxctl/module/k8s/storageclass"
+	linux_cronjob "lnxctl/module/linux/cronjob"
 	linux_host "lnxctl/module/linux/host"
 	linux_service "lnxctl/module/linux/service"
 	monitoring_cronjob "lnxctl/module/monitoring/cronjob"
@@ -303,6 +304,7 @@ func main() {
 	var mysql string
 	var log2 string
 	var debug2 bool
+	var cronjob bool
 
 	flag.StringVar(&host, "host", "0.0.0.0", "Host (e.g. 0.0.0.0|127.0.0.1)")
 	flag.IntVar(&port, "port", 1234, "Port")
@@ -310,6 +312,7 @@ func main() {
 	flag.StringVar(&mysql, "mysql", "", "MySQL (e.g. root:123456@tcp(127.0.0.1:3306)/lnxctl)")
 	flag.StringVar(&log2, "log", "stdout", "Log (e.g. stdout|file)")
 	flag.BoolVar(&debug2, "debug", false, "Debug")
+	flag.BoolVar(&cronjob, "cronjob", true, "Cronjob")
 
 	flag.Parse()
 
@@ -334,6 +337,7 @@ func main() {
 	log.Printf("mysql: %v\n", mysql)
 	log.Printf("log: %v\n", log2)
 	log.Printf("debug: %v\n", debug2)
+	log.Printf("cronjob: %v\n", cronjob)
 
 	var address string
 	address = fmt.Sprintf("%s:%d", host, port)
@@ -355,7 +359,9 @@ func main() {
 
 	util.InitProfiler()
 
-	{
+	if cronjob {
+		log.Println("cronjob started......")
+		linux_cronjob.StartCronjob()
 		monitoring_cronjob.StartCronjob()
 	}
 

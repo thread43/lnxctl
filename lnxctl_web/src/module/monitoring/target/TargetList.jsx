@@ -9,6 +9,7 @@ import {Space} from 'antd';
 import {Table} from 'antd';
 import {Tag} from 'antd';
 import {Tooltip} from 'antd';
+import {ExportOutlined} from '@ant-design/icons';
 import {PlusOutlined} from '@ant-design/icons';
 import {QuestionCircleOutlined} from '@ant-design/icons';
 import {SyncOutlined} from '@ant-design/icons';
@@ -127,15 +128,21 @@ function TargetList() {
           placement="topLeft"
           title={(<div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>{text}</div>)}
         >
-          {text.length > 30 ? text.substring(0, 30) + '...' : text}
+          <a href={text} target="_blank">
+            {text.length > 30 ? text.substring(0, 30) + '...' : text}
+            &nbsp;
+            {text.length > 0 ? (<ExportOutlined />) : ''}
+          </a>
         </Tooltip>
       ),
     },
+    /*
     {
       key: 'http_status_code',
       title: 'HTTP Status Code',
       dataIndex: 'http_status_code',
     },
+    */
     {
       key: 'check_status',
       title: 'Check Status',

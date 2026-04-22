@@ -1,6 +1,7 @@
 package cronjob
 
 import (
+	"crypto/tls"
 	"database/sql"
 	"fmt"
 	"io"
@@ -232,9 +233,14 @@ func CheckTcp(tcp_host string, tcp_port string) (int64, string) {
 		check_result = err.Error()
 	}
 
+	log.Println("check_status:", check_status)
+	log.Println("check_result:", check_result)
+
 	return check_status, check_result
 }
 
+// TLSClientConfig: &tls.Config{InsecureSkipVerify: true}
+// tls: failed to verify certificate: x509: cannot validate certificate for 127.0.0.1 because it doesn't contain any IP SANs
 func CheckHttp(http_url string, http_status_code string) (int64, string) {
 	var err error
 
@@ -247,7 +253,10 @@ func CheckHttp(http_url string, http_status_code string) (int64, string) {
 	var check_result string
 
 	var client *http.Client
-	client = &http.Client{Timeout: 3 * time.Second}
+	client = &http.Client{
+		Timeout:   3 * time.Second,
+		Transport: &http.Transport{TLSClientConfig: &tls.Config{InsecureSkipVerify: true}},
+	}
 
 	var response *http.Response
 	response, err = client.Get(http_url)
@@ -267,14 +276,14 @@ func CheckHttp(http_url string, http_status_code string) (int64, string) {
 			// check_status = 1
 
 			log.Println("response status:", response.Status)
-			log.Println("response headers:", response.Header)
+			// log.Println("response headers:", response.Header)
 
 			var status_code int
 			status_code = response.StatusCode
+			log.Println("response status code:", status_code)
 
 			var status_code2 string
 			status_code2 = strconv.Itoa(status_code)
-			log.Println("response status code:", status_code2)
 
 			var body []byte
 			body, err = io.ReadAll(response.Body)
@@ -282,12 +291,13 @@ func CheckHttp(http_url string, http_status_code string) (int64, string) {
 
 			var body2 string
 			body2 = string(body)
-			if len(body2) > 1024 {
-				body2 = body2[:1024]
+			if len(body2) > 512 {
+				body2 = body2[:512]
 			}
-			log.Println("response body:", body2)
+			// log.Println("response body:", body2)
 
-			if status_code2 == http_status_code {
+			// if status_code2 == http_status_code {
+			if status_code2 == "200" {
 				check_status = 1
 			} else {
 				check_status = -1
@@ -301,6 +311,9 @@ func CheckHttp(http_url string, http_status_code string) (int64, string) {
 		check_status = -1
 		check_result = err.Error()
 	}
+
+	log.Println("check_status:", check_status)
+	// log.Println("check_result:", check_result)
 
 	return check_status, check_result
 }

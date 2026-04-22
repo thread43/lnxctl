@@ -64,6 +64,7 @@ func AddTarget(response http.ResponseWriter, request *http.Request) {
 			}
 		}
 		if type3 == 3 {
+			http_status_code = "200"
 			if util.IsNotSet(http_url, http_status_code) {
 				util.Api(response, 400)
 				return

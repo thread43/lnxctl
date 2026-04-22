@@ -92,9 +92,11 @@ function TargetDetail() {
               </div>
             </Form.Item>
           )}
+          {/*
           {stateTarget.type === 3 && (
             <Form.Item label="HTTP Status Code">{stateTarget.http_status_code}</Form.Item>
           )}
+          */}
 
           <Divider />
 

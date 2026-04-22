@@ -50,15 +50,18 @@ function TargetFormAdd() {
       }
     }
     if (type === 3) {
-      const {http_url, http_status_code} = target;
+      const {http_url} = target;
       if (http_url === undefined || http_url.trim() === '') {
         message.info('HTTP URL is required');
         return;
       }
+      /*
+      const {http_status_code} = target;
       if (http_status_code === undefined || http_status_code.trim() === '') {
         message.info('HTTP Status Code is required');
         return;
       }
+      */
     }
 
     try {
@@ -140,9 +143,11 @@ function TargetFormAdd() {
             <Input />
           </Form.Item>
 
+          {/*
           <Form.Item name="http_status_code" label="HTTP Status Code">
             <Input />
           </Form.Item>
+          */}
 
           <Divider />
 

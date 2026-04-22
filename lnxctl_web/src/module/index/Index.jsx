@@ -69,7 +69,7 @@ function Index() {
 
   return (
     <>
-      <Layout.Content className="MyContent">
+      <Layout.Content className="MyContent2" style={{padding: '5px'}}>
         {/*
         <div style={{textAlign: 'center'}}>
           Welcome
