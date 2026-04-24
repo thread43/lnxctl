@@ -197,6 +197,8 @@ VALUES
 ('/api/k8s/clusterrolebinding/get_clusters',                'Kubernetes - ClusterRoleBindings - Get Clusters',                0, 424),
 ('/api/monitoring/target/add_target',                       'Monitoring - Targets - Add Target',                              1, 502),
 ('/api/monitoring/target/delete_target',                    'Monitoring - Targets - Delete Target',                           1, 502),
+('/api/monitoring/target/disable_target',                   'Monitoring - Targets - Disable Target',                          1, 502),
+('/api/monitoring/target/enable_target',                    'Monitoring - Targets - Enable Target',                           1, 502),
 ('/api/monitoring/target/get_target',                       'Monitoring - Targets - Get Target',                              0, 502),
 ('/api/monitoring/target/get_targets',                      'Monitoring - Targets - Get Targets',                             0, 502),
 ('/api/monitoring/target/update_target',                    'Monitoring - Targets - Update Target',                           1, 502);

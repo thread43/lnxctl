@@ -157,7 +157,6 @@ function UserList() {
       key: 'is_active',
       title: 'Is Active',
       dataIndex: 'is_active',
-      sortDirections: ['ascend', 'descend'],
       render: (text, record) => (
         <Popconfirm
           title="Are you sure?"

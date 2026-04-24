@@ -184,7 +184,6 @@ CREATE TABLE monitoring_target (
   tcp_host VARCHAR(128),
   tcp_port VARCHAR(128),
   http_url VARCHAR(512),
-  http_status_code VARCHAR(128),
   check_status INTEGER,
   check_result VARCHAR(1024),
   check_time DATETIME,

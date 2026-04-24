@@ -2,8 +2,8 @@ import http from '../../../util/http.js';
 
 function add_target(target) {
   const {name, crontab, type} = target;
-  const {ping_host, tcp_host, tcp_port, http_url, http_status_code} = target;
-  const {is_active, remark} = target;
+  const {ping_host, tcp_host, tcp_port, http_url} = target;
+  const {remark} = target;
 
   const formData = new FormData();
   formData.append('name', name);
@@ -21,10 +21,6 @@ function add_target(target) {
   if (http_url !== undefined) {
     formData.append('http_url', http_url);
   }
-  if (http_status_code !== undefined) {
-    formData.append('http_status_code', http_status_code);
-  }
-  formData.append('is_active', is_active);
   if (remark !== undefined) {
     formData.append('remark', remark);
   }
@@ -39,6 +35,19 @@ function delete_target(id) {
   return http.post('/api/monitoring/target/delete_target', formData);
 }
 
+function disable_target(id) {
+  const formData = new FormData();
+  formData.append('id', id);
+
+  return http.post('/api/monitoring/target/disable_target', formData);
+}
+
+function enable_target(id) {
+  const formData = new FormData();
+  formData.append('id', id);
+  return http.post('/api/monitoring/target/enable_target', formData);
+}
+
 function get_target(id) {
   return http.get('/api/monitoring/target/get_target?id=' + id);
 }
@@ -50,8 +59,8 @@ function get_targets() {
 function update_target(target) {
   const {id} = target;
   const {name, crontab, type} = target;
-  const {ping_host, tcp_host, tcp_port, http_url, http_status_code} = target;
-  const {is_active, remark} = target;
+  const {ping_host, tcp_host, tcp_port, http_url} = target;
+  const {remark} = target;
 
   const formData = new FormData();
   formData.append('id', id);
@@ -70,10 +79,6 @@ function update_target(target) {
   if (http_url !== undefined) {
     formData.append('http_url', http_url);
   }
-  if (http_status_code !== undefined) {
-    formData.append('http_status_code', http_status_code);
-  }
-  formData.append('is_active', is_active);
   if (remark !== undefined) {
     formData.append('remark', remark);
   }
@@ -84,6 +89,8 @@ function update_target(target) {
 const api = {
   add_target,
   delete_target,
+  disable_target,
+  enable_target,
   get_target,
   get_targets,
   update_target,

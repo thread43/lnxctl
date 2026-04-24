@@ -6,9 +6,12 @@ import {Button} from 'antd';
 import {Divider} from 'antd';
 import {Popconfirm} from 'antd';
 import {Space} from 'antd';
+import {Switch} from 'antd';
 import {Table} from 'antd';
 import {Tag} from 'antd';
 import {Tooltip} from 'antd';
+import {CheckOutlined} from '@ant-design/icons';
+import {CloseOutlined} from '@ant-design/icons';
 import {ExportOutlined} from '@ant-design/icons';
 import {PlusOutlined} from '@ant-design/icons';
 import {QuestionCircleOutlined} from '@ant-design/icons';
@@ -20,6 +23,7 @@ function TargetList() {
   const {message} = App.useApp();
 
   const dispatch = useDispatch();
+  const storeTarget = useSelector(store.getTarget);
   const storeTargets = useSelector(store.getTargets);
   const storeTargetTableLoading = useSelector(store.getTargetTableLoading);
 
@@ -46,6 +50,26 @@ function TargetList() {
       dispatch(store.setTargetTableLoading(false));
     }
   }
+
+  async function enableOrDisableTarget(id) {
+    try {
+      if (storeTarget.is_active === 0) {
+        await api.enable_target(id);
+      } else {
+        await api.disable_target(id);
+      }
+
+      dispatch(store.setTargetTableLoading(true));
+      const response = await api.get_targets();
+      dispatch(store.setTargets(response.data.data));
+    } catch (error) {
+      console.error(error);
+      message.error(error.message);
+    } finally {
+      dispatch(store.setTargetTableLoading(false));
+    }
+  }
+
 
   function getTarget(id) {
     dispatch(store.setTarget({id}));
@@ -83,8 +107,8 @@ function TargetList() {
       key: 'crontab',
       title: 'Crontab',
       dataIndex: 'crontab',
-      sorter: (x, y) => x.crontab.localeCompare(y.crontab),
-      sortDirections: ['ascend', 'descend'],
+      // sorter: (x, y) => x.crontab.localeCompare(y.crontab),
+      // sortDirections: ['ascend', 'descend'],
     },
     {
       key: 'type',
@@ -136,24 +160,25 @@ function TargetList() {
         </Tooltip>
       ),
     },
-    /*
-    {
-      key: 'http_status_code',
-      title: 'HTTP Status Code',
-      dataIndex: 'http_status_code',
-    },
-    */
     {
       key: 'check_status',
       title: 'Check Status',
       dataIndex: 'check_status',
-      render: (text) => {
+      render: (text, record) => {
         if (text === 0) {
           return (<span><Tag>Unknown</Tag></span>);
         } else if (text === 1) {
-          return (<span><Tag color="success">Succeeded</Tag></span>);
+          if (record.is_active === 1) {
+            return (<span><Tag color="success">Succeeded</Tag></span>);
+          } else {
+            return (<span><Tag>Succeeded</Tag></span>);
+          }
         } else if (text === -1) {
-          return (<span><Tag color="error">Failed</Tag></span>);
+          if (record.is_active === 1) {
+            return (<span><Tag color="error">Failed</Tag></span>);
+          } else {
+            return (<span><Tag>Failed</Tag></span>);
+          }
         } else {
           return (<span><Tag>Unknown</Tag></span>);
         }
@@ -164,6 +189,7 @@ function TargetList() {
       title: 'Checked At',
       dataIndex: 'check_time',
     },
+    /*
     {
       key: 'is_active',
       title: 'Is Active',
@@ -171,6 +197,33 @@ function TargetList() {
       sorter: (x, y) => x.is_active - y.is_active,
       sortDirections: ['ascend', 'descend'],
       render: (text) => (text === 1 ? 'Yes' : 'No'),
+    },
+    */
+    {
+      key: 'is_active',
+      title: 'Is Active',
+      dataIndex: 'is_active',
+      // sorter: (x, y) => x.is_active - y.is_active,
+      // sortDirections: ['ascend', 'descend'],
+      render: (text, record) => (
+        <Popconfirm
+          title="Are you sure?"
+          onConfirm={() => enableOrDisableTarget(record.id)}
+          okText="Yes"
+          cancelText="No"
+          icon={<QuestionCircleOutlined style={{color: 'red'}} />}
+        >
+          <span>
+            <Switch
+              size="small"
+              checked={(text === 1)}
+              checkedChildren={<CheckOutlined />}
+              unCheckedChildren={<CloseOutlined />}
+              onClick={() => dispatch(store.setTarget(record))}
+           />
+         </span>
+        </Popconfirm>
+      ),
     },
     {
       key: 'actions',

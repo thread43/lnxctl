@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"os"
 
+	_ "net/http/pprof"
+
 	auth_dept "lnxctl/module/auth/dept"
 	auth_menu "lnxctl/module/auth/menu"
 	auth_perm "lnxctl/module/auth/perm"
@@ -282,6 +284,8 @@ var Routes = []Route{
 
 	{"/api/monitoring/target/add_target", monitoring_target.AddTarget},
 	{"/api/monitoring/target/delete_target", monitoring_target.DeleteTarget},
+	{"/api/monitoring/target/disable_target", monitoring_target.DisableTarget},
+	{"/api/monitoring/target/enable_target", monitoring_target.EnableTarget},
 	{"/api/monitoring/target/get_target", monitoring_target.GetTarget},
 	{"/api/monitoring/target/get_targets", monitoring_target.GetTargets},
 	{"/api/monitoring/target/update_target", monitoring_target.UpdateTarget},
@@ -353,6 +357,13 @@ func main() {
 
 	if debug2 {
 		util.DEBUG = true
+
+		go func() {
+			defer util.Catch()
+			log.Println("net/http/pprof started, http://127.0.0.1:6060/debug/pprof/")
+			err = http.ListenAndServe("127.0.0.1:6060", nil)
+			util.Raise(err)
+		}()
 	}
 
 	util.Init()

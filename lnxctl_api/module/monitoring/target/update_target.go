@@ -19,8 +19,6 @@ func UpdateTarget(response http.ResponseWriter, request *http.Request) {
 	var tcp_host string
 	var tcp_port string
 	var http_url string
-	var http_status_code string
-	var is_active string
 	var remark string
 
 	id = strings.TrimSpace(request.FormValue("id"))
@@ -31,15 +29,13 @@ func UpdateTarget(response http.ResponseWriter, request *http.Request) {
 	tcp_host = strings.TrimSpace(request.FormValue("tcp_host"))
 	tcp_port = strings.TrimSpace(request.FormValue("tcp_port"))
 	http_url = strings.TrimSpace(request.FormValue("http_url"))
-	http_status_code = strings.TrimSpace(request.FormValue("http_status_code"))
-	is_active = strings.TrimSpace(request.FormValue("is_active"))
 	remark = strings.TrimSpace(request.FormValue("remark"))
 
-	if util.IsNotSet(id, name, crontab, type2, is_active) {
+	if util.IsNotSet(id, name, crontab, type2) {
 		util.Api(response, 400)
 		return
 	}
-	if util.IsNotInt(id, type2, is_active) {
+	if util.IsNotInt(id, type2) {
 		util.Api(response, 400)
 		return
 	}
@@ -66,21 +62,12 @@ func UpdateTarget(response http.ResponseWriter, request *http.Request) {
 			}
 		}
 		if type3 == 3 {
-			http_status_code = "200"
-			if util.IsNotSet(http_url, http_status_code) {
-				util.Api(response, 400)
-				return
-			}
-			if util.IsNotInt(http_status_code) {
+			if util.IsNotSet(http_url) {
 				util.Api(response, 400)
 				return
 			}
 		}
 	}
-
-	var is_active2 int64
-	is_active2, err = strconv.ParseInt(is_active, 10, 64)
-	util.Raise(err)
 
 	var update_time string
 	update_time = util.TimeNow()
@@ -93,8 +80,8 @@ func UpdateTarget(response http.ResponseWriter, request *http.Request) {
 				name=?, crontab=?, type=?,
 				ping_host=?,
 				tcp_host=?, tcp_port=?,
-				http_url=?, http_status_code=?,
-				is_active=?, remark=?, update_time=?
+				http_url=?,
+				remark=?, update_time=?
 			WHERE id=?
 		`
 		_, err = util.DB.Exec(
@@ -102,8 +89,8 @@ func UpdateTarget(response http.ResponseWriter, request *http.Request) {
 			name, crontab, type3,
 			ping_host,
 			tcp_host, tcp_port,
-			http_url, http_status_code,
-			is_active2, remark, update_time,
+			http_url,
+			remark, update_time,
 			id,
 		)
 		util.Raise(err)

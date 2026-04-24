@@ -55,13 +55,6 @@ function TargetFormAdd() {
         message.info('HTTP URL is required');
         return;
       }
-      /*
-      const {http_status_code} = target;
-      if (http_status_code === undefined || http_status_code.trim() === '') {
-        message.info('HTTP Status Code is required');
-        return;
-      }
-      */
     }
 
     try {
@@ -100,7 +93,6 @@ function TargetFormAdd() {
           initialValues={{
             crontab: '* * * * *',
             type: 1,
-            is_active: 1,
           }}
         >
           <Form.Item name="name" label="Name" required>
@@ -143,20 +135,7 @@ function TargetFormAdd() {
             <Input />
           </Form.Item>
 
-          {/*
-          <Form.Item name="http_status_code" label="HTTP Status Code">
-            <Input />
-          </Form.Item>
-          */}
-
           <Divider />
-
-          <Form.Item name="is_active" label="Is Active" required>
-            <Radio.Group>
-              <Radio value={1}>Yes</Radio>
-              <Radio value={0}>No</Radio>
-            </Radio.Group>
-          </Form.Item>
 
           <Form.Item name="remark" label="Remark">
             <Input.TextArea />

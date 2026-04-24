@@ -8,7 +8,6 @@ import (
 	"log"
 	"net"
 	"net/http"
-	"strconv"
 	"time"
 
 	probing "github.com/prometheus-community/pro-bing"
@@ -31,7 +30,7 @@ func GetTargets() []map[string]interface{} {
 			name, crontab, type,
 			ping_host,
 			tcp_host, tcp_port,
-			http_url, http_status_code,
+			http_url,
 			is_active
 			FROM monitoring_target
 			WHERE is_active=1
@@ -54,7 +53,6 @@ func GetTargets() []map[string]interface{} {
 			var tcp_host sql.NullString
 			var tcp_port sql.NullString
 			var http_url sql.NullString
-			var http_status_code sql.NullString
 			var is_active sql.NullInt64
 
 			err = rows.Scan(
@@ -62,7 +60,7 @@ func GetTargets() []map[string]interface{} {
 				&name, &crontab, &type2,
 				&ping_host,
 				&tcp_host, &tcp_port,
-				&http_url, &http_status_code,
+				&http_url,
 				&is_active,
 			)
 			util.Raise(err)
@@ -70,16 +68,15 @@ func GetTargets() []map[string]interface{} {
 			targets = append(
 				targets,
 				map[string]interface{}{
-					"id":               id.Int64,
-					"name":             name.String,
-					"crontab":          crontab.String,
-					"type":             type2.Int64,
-					"ping_host":        ping_host.String,
-					"tcp_host":         tcp_host.String,
-					"tcp_port":         tcp_port.String,
-					"http_url":         http_url.String,
-					"http_status_code": http_status_code.String,
-					"is_active":        is_active.Int64,
+					"id":        id.Int64,
+					"name":      name.String,
+					"crontab":   crontab.String,
+					"type":      type2.Int64,
+					"ping_host": ping_host.String,
+					"tcp_host":  tcp_host.String,
+					"tcp_port":  tcp_port.String,
+					"http_url":  http_url.String,
+					"is_active": is_active.Int64,
 				},
 			)
 		}
@@ -241,13 +238,12 @@ func CheckTcp(tcp_host string, tcp_port string) (int64, string) {
 
 // TLSClientConfig: &tls.Config{InsecureSkipVerify: true}
 // tls: failed to verify certificate: x509: cannot validate certificate for 127.0.0.1 because it doesn't contain any IP SANs
-func CheckHttp(http_url string, http_status_code string) (int64, string) {
+func CheckHttp(http_url string) (int64, string) {
 	var err error
 
 	log.Println("CheckHttp......")
 
 	log.Println("http_url:", http_url)
-	log.Println("http_status_code:", http_status_code)
 
 	var check_status int64
 	var check_result string
@@ -282,9 +278,6 @@ func CheckHttp(http_url string, http_status_code string) (int64, string) {
 			status_code = response.StatusCode
 			log.Println("response status code:", status_code)
 
-			var status_code2 string
-			status_code2 = strconv.Itoa(status_code)
-
 			var body []byte
 			body, err = io.ReadAll(response.Body)
 			util.Skip(err)
@@ -296,14 +289,13 @@ func CheckHttp(http_url string, http_status_code string) (int64, string) {
 			}
 			// log.Println("response body:", body2)
 
-			// if status_code2 == http_status_code {
-			if status_code2 == "200" {
+			if status_code == 200 {
 				check_status = 1
 			} else {
 				check_status = -1
 			}
 
-			check_result = status_code2 + " " + body2
+			check_result = fmt.Sprintf("%d %s", status_code, body2)
 		} else {
 			check_status = -1
 		}
@@ -378,10 +370,7 @@ func StartCheck() {
 
 		if type2 == 3 {
 			var http_url string
-			var http_status_code string
-
 			http_url = target["http_url"].(string)
-			http_status_code = target["http_status_code"].(string)
 
 			go func() {
 				defer util.Catch()
@@ -393,7 +382,7 @@ func StartCheck() {
 				var check_status int64
 				var check_result string
 
-				check_status, check_result = CheckHttp(http_url, http_status_code)
+				check_status, check_result = CheckHttp(http_url)
 				UpdateTarget(target_id, check_status, check_result)
 			}()
 		}
