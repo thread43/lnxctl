@@ -71,6 +71,11 @@ function ServiceList() {
     dispatch(store.setServiceFormUpdateVisible(true));
   }
 
+  function openServiceCmdExec(service, action) {
+    dispatch(store.setService({...service, action}));
+    dispatch(store.setServiceCmdExecVisible(true));
+  }
+
   function openServiceTerminal(service) {
     dispatch(store.setService(service));
     dispatch(store.setServiceTerminalVisible(true));
@@ -97,9 +102,51 @@ function ServiceList() {
         <Button type="link" className="ButtonLink" onClick={() => getService(record)}>{text}</Button>
       ),
     },
+    /*
     {
       key: 'term_cmd',
-      title: 'Terminal Command',
+      title: 'Host',
+      dataIndex: 'term_cmd',
+    },
+    {
+      key: 'term_cmd',
+      title: 'User',
+      dataIndex: 'term_cmd',
+    },
+    {
+      key: 'term_cmd',
+      title: 'Path',
+      dataIndex: 'term_cmd',
+    },
+    */
+    {
+      key: 'start_cmd',
+      title: 'Start CMD',
+      dataIndex: 'start_cmd',
+    },
+    {
+      key: 'stop_cmd',
+      title: 'Stop CMD',
+      dataIndex: 'stop_cmd',
+    },
+    {
+      key: 'restart_cmd',
+      title: 'Restart CMD',
+      dataIndex: 'restart_cmd',
+    },
+    {
+      key: 'reload_cmd',
+      title: 'Reload CMD',
+      dataIndex: 'reload_cmd',
+    },
+    {
+      key: 'status_cmd',
+      title: 'Status CMD',
+      dataIndex: 'status_cmd',
+    },
+    {
+      key: 'term_cmd',
+      title: 'Terminal CMD',
       dataIndex: 'term_cmd',
     },
     {
@@ -119,6 +166,16 @@ function ServiceList() {
           >
             <Button type="link" className="ButtonLink">Delete</Button>
           </Popconfirm>
+          <Divider orientation="vertical" />
+          <Button type="link" className="ButtonLink" onClick={() => openServiceCmdExec(record, 'start')}>Start</Button>
+          <Divider orientation="vertical" />
+          <Button type="link" className="ButtonLink" onClick={() => openServiceCmdExec(record, 'stop')}>Stop</Button>
+          <Divider orientation="vertical" />
+          <Button type="link" className="ButtonLink" onClick={() => openServiceCmdExec(record, 'restart')}>Restart</Button>
+          <Divider orientation="vertical" />
+          <Button type="link" className="ButtonLink" onClick={() => openServiceCmdExec(record, 'reload')}>Reload</Button>
+          <Divider orientation="vertical" />
+          <Button type="link" className="ButtonLink" onClick={() => openServiceCmdExec(record, 'status')}>Status</Button>
           <Divider orientation="vertical" />
           {record.term_cmd !== '' ? (
             <Typography.Link onClick={(event) => {event.preventDefault(); openServiceTerminal(record);}}>

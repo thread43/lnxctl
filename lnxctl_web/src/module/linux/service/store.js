@@ -7,6 +7,7 @@ const initialState = {
   serviceDetailVisible: false,
   serviceFormAddVisible: false,
   serviceFormUpdateVisible: false,
+  serviceCmdExecVisible: false,
   serviceTerminalVisible: false,
   serviceTableLoading: false,
 };
@@ -21,6 +22,7 @@ const serviceSlice = createSlice({
     setServiceDetailVisible: (state, action) => {state.serviceDetailVisible = action.payload;},
     setServiceFormAddVisible: (state, action) => {state.serviceFormAddVisible = action.payload;},
     setServiceFormUpdateVisible: (state, action) => {state.serviceFormUpdateVisible = action.payload;},
+    setServiceCmdExecVisible: (state, action) => {state.serviceCmdExecVisible = action.payload;},
     setServiceTerminalVisible: (state, action) => {state.serviceTerminalVisible = action.payload;},
     setServiceTableLoading: (state, action) => {state.serviceTableLoading = action.payload;},
   },
@@ -32,6 +34,7 @@ const getServices = (state) => state.linuxService.services;
 const getServiceDetailVisible = (state) => state.linuxService.serviceDetailVisible;
 const getServiceFormAddVisible = (state) => state.linuxService.serviceFormAddVisible;
 const getServiceFormUpdateVisible = (state) => state.linuxService.serviceFormUpdateVisible;
+const getServiceCmdExecVisible = (state) => state.linuxService.serviceCmdExecVisible;
 const getServiceTerminalVisible = (state) => state.linuxService.serviceTerminalVisible;
 const getServiceTableLoading = (state) => state.linuxService.serviceTableLoading;
 
@@ -41,6 +44,7 @@ const {setServices} = serviceSlice.actions;
 const {setServiceDetailVisible} = serviceSlice.actions;
 const {setServiceFormAddVisible} = serviceSlice.actions;
 const {setServiceFormUpdateVisible} = serviceSlice.actions;
+const {setServiceCmdExecVisible} = serviceSlice.actions;
 const {setServiceTerminalVisible} = serviceSlice.actions;
 const {setServiceTableLoading} = serviceSlice.actions;
 
@@ -52,6 +56,7 @@ const store = {
   getServiceDetailVisible,
   getServiceFormAddVisible,
   getServiceFormUpdateVisible,
+  getServiceCmdExecVisible,
   getServiceTerminalVisible,
   getServiceTableLoading,
   setContext,
@@ -60,6 +65,7 @@ const store = {
   setServiceDetailVisible,
   setServiceFormAddVisible,
   setServiceFormUpdateVisible,
+  setServiceCmdExecVisible,
   setServiceTerminalVisible,
   setServiceTableLoading,
 };

@@ -2,6 +2,7 @@ import {Link} from 'react-router';
 import {useSelector} from 'react-redux';
 import {Breadcrumb} from 'antd';
 import {Layout} from 'antd';
+import ServiceCmdExec from './ServiceCmdExec.jsx';
 import ServiceDetail from './ServiceDetail.jsx';
 import ServiceFormAdd from './ServiceFormAdd.jsx';
 import ServiceFormUpdate from './ServiceFormUpdate.jsx';
@@ -13,6 +14,7 @@ function Service() {
   const storeServiceDetailVisible = useSelector(store.getServiceDetailVisible);
   const storeServiceFormAddVisible = useSelector(store.getServiceFormAddVisible);
   const storeServiceFormUpdateVisible = useSelector(store.getServiceFormUpdateVisible);
+  const storeServiceCmdExecVisible = useSelector(store.getServiceCmdExecVisible);
   const storeServiceTerminalVisible = useSelector(store.getServiceTerminalVisible);
 
   return (
@@ -33,6 +35,7 @@ function Service() {
       {storeServiceDetailVisible === true && <ServiceDetail />}
       {storeServiceFormAddVisible === true && <ServiceFormAdd />}
       {storeServiceFormUpdateVisible === true && <ServiceFormUpdate />}
+      {storeServiceCmdExecVisible === true && <ServiceCmdExec/>}
       {storeServiceTerminalVisible === true && <ServiceTerminal />}
     </>
   );

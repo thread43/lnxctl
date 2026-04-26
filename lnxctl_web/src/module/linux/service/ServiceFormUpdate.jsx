@@ -91,7 +91,27 @@ function ServiceFormUpdate() {
             <Input />
           </Form.Item>
 
-          <Form.Item name="term_cmd" label="Terminal Command">
+          <Form.Item name="start_cmd" label="Start CMD">
+            <Input.TextArea />
+          </Form.Item>
+
+          <Form.Item name="stop_cmd" label="Stop CMD">
+            <Input.TextArea />
+          </Form.Item>
+
+          <Form.Item name="restart_cmd" label="Restart CMD">
+            <Input.TextArea />
+          </Form.Item>
+
+          <Form.Item name="reload_cmd" label="Reload CMD">
+            <Input.TextArea />
+          </Form.Item>
+
+          <Form.Item name="status_cmd" label="Status CMD">
+            <Input.TextArea />
+          </Form.Item>
+
+          <Form.Item name="term_cmd" label="Terminal CMD">
             <Input.TextArea />
           </Form.Item>
 

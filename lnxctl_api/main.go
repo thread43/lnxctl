@@ -135,6 +135,11 @@ var Routes = []Route{
 	{"/api/linux/service/delete_service", linux_service.DeleteService},
 	{"/api/linux/service/get_service", linux_service.GetService},
 	{"/api/linux/service/get_services", linux_service.GetServices},
+	{"/api/linux/service/reload_service", linux_service.ReloadService},
+	{"/api/linux/service/restart_service", linux_service.RestartService},
+	{"/api/linux/service/start_service", linux_service.StartService},
+	{"/api/linux/service/status_service", linux_service.StatusService},
+	{"/api/linux/service/stop_service", linux_service.StopService},
 	{"/api/linux/service/update_service", linux_service.UpdateService},
 	{"/api/linux/service/ws_open_service_terminal", linux_service.WsOpenServiceTerminal},
 

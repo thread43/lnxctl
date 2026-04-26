@@ -55,7 +55,12 @@ function ServiceDetail() {
         <Form layout="horizontal" labelCol={{span: 12}} wrapperCol={{span: 12}} className="MyForm">
           <Form.Item label="ID">{stateService.id}</Form.Item>
           <Form.Item label="Name">{stateService.name}</Form.Item>
-          <Form.Item label="Terminal Command">{stateService.term_cmd}</Form.Item>
+          <Form.Item label="Start CMD">{stateService.start_cmd}</Form.Item>
+          <Form.Item label="Stop CMD">{stateService.stop_cmd}</Form.Item>
+          <Form.Item label="Restart CMD">{stateService.restart_cmd}</Form.Item>
+          <Form.Item label="Reload CMD">{stateService.reload_cmd}</Form.Item>
+          <Form.Item label="Status CMD">{stateService.status_cmd}</Form.Item>
+          <Form.Item label="Terminal CMD">{stateService.term_cmd}</Form.Item>
           <Form.Item label="Remark">{stateService.remark}</Form.Item>
           <Form.Item label="Created At">{stateService.create_time}</Form.Item>
           <Form.Item label="Updated At">{stateService.update_time}</Form.Item>
