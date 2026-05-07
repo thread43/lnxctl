@@ -1,4 +1,4 @@
-lnxctl - linux/docker/kubernetes web terminal
+lnxctl - linux/docker/kubernetes dashboard
 
 
 
@@ -19,14 +19,18 @@ cd lnxctl
 
 -- usage
 ./lnxctl
+./lnxctl --cronjob
+./lnxctl --cronjob=false
+./lnxctl --debug
+./lnxctl --debug=false
 ./lnxctl --help
-./lnxctl --port=1234
 ./lnxctl --host="0.0.0.0"
 ./lnxctl --host="127.0.0.1"
 ./lnxctl --log="file"
 ./lnxctl --log="stdout"
-./lnxctl --sqlite="lnxctl.db"
 ./lnxctl --mysql="root:123456@tcp(127.0.0.1:3306)/lnxctl"
+./lnxctl --port=1234
+./lnxctl --sqlite="lnxctl.db"
 
 
 

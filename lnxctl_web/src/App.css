@@ -323,3 +323,7 @@ https://github.com/ant-design/ant-design/blob/4.x-stable/components/spin/style/i
 .ant-spin-dot-spin {
   animation-duration: 1.2s !important;
 }
+
+.anticon-spin {
+  animation-duration: 1s !important;
+}

@@ -108,17 +108,12 @@ function Index() {
                 >
                   <p>
                     <CaretRightOutlined />&nbsp;Hosts:&nbsp;
-                    {stateStatistics.linux.host_healthy === true ? (
-                      <span style={{color: '#52c41a'}}>
-                        {stateStatistics.linux.host_running}/{stateStatistics.linux.host_total}
-                      </span>
-                    ) : (
-                      <span style={{color: '#ff4d4f'}}>
-                        {stateStatistics.linux.host_running}/{stateStatistics.linux.host_total}
-                      </span>
-                    )}
+                    <span>{stateStatistics.linux.host_total}</span>
                   </p>
-                  <p>&nbsp;</p>
+                  <p>
+                    <CaretRightOutlined />&nbsp;Services:&nbsp;
+                    <span>{stateStatistics.linux.service_total}</span>
+                  </p>
                 </div>
               </Card>
             </Col>

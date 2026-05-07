@@ -81,11 +81,24 @@ func GetLinux() map[string]interface{} {
 		host_healthy = true
 	}
 
+	var service_total int
+	{
+		var query string
+		query = "SELECT COUNT(1) count FROM linux_service"
+
+		var row *sql.Row
+		row = util.DB.QueryRow(query)
+
+		err = row.Scan(&service_total)
+		util.Raise(err)
+	}
+
 	var linux map[string]interface{}
 	linux = map[string]interface{}{
-		"host_total":   host_total,
-		"host_running": host_running,
-		"host_healthy": host_healthy,
+		"host_total":    host_total,
+		"host_running":  host_running,
+		"host_healthy":  host_healthy,
+		"service_total": service_total,
 	}
 
 	return linux

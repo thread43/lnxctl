@@ -41,22 +41,21 @@ func ReloadService(response http.ResponseWriter, request *http.Request) {
 	}
 
 	var cmd_exit_code int64
+	var cmd_error_msg string
 	var cmd_output string
 
 	cmd_output, err = util.ExecCmdWithTimeout(cmd, 60)
 
 	if err != nil {
 		cmd_exit_code = 1
+		cmd_error_msg = err.Error()
 	}
 
 	log.Println(err)
 	log.Println(cmd_output)
 
-	if err != nil {
-		cmd_output = err.Error()
-	}
-
 	service["cmd_exit_code"] = cmd_exit_code
+	service["cmd_error_msg"] = cmd_error_msg
 	service["cmd_output"] = cmd_output
 
 	util.Api(response, 200, service)

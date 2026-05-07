@@ -3,13 +3,39 @@ package util
 import (
 	"bufio"
 	"bytes"
-	"errors"
+	"context"
 	"fmt"
 	"io"
 	"os/exec"
 	"time"
 )
 
+func ExecCmd_(command string) (string, error) {
+	var err error
+
+	var cmd *exec.Cmd
+	var stdout bytes.Buffer
+	var stderr bytes.Buffer
+
+	cmd = exec.Command("sh", "-c", command)
+	cmd.Stdout = &stdout
+	cmd.Stderr = &stderr
+
+	cmd.Start()
+
+	err = cmd.Wait()
+
+	var output string
+	if err == nil {
+		output = stdout.String()
+	} else {
+		output = stderr.String()
+	}
+
+	return output, err
+}
+
+// use this one
 func ExecCmd(command string) (string, error) {
 	var err error
 
@@ -33,31 +59,6 @@ func ExecCmd_Run(command string) error {
 	err = cmd.Run()
 
 	return err
-}
-
-func ExecCmd_Start(command string) (string, error) {
-	var err error
-
-	var cmd *exec.Cmd
-	var stdout bytes.Buffer
-	var stderr bytes.Buffer
-
-	cmd = exec.Command("sh", "-c", command)
-	cmd.Stdout = &stdout
-	cmd.Stderr = &stderr
-
-	cmd.Start()
-
-	err = cmd.Wait()
-
-	var output string
-	if err == nil {
-		output = stdout.String()
-	} else {
-		output = stderr.String()
-	}
-
-	return output, err
 }
 
 func ExecCmd_Pipe(command string) (string, error) {
@@ -93,7 +94,7 @@ func ExecCmd_Pipe(command string) (string, error) {
 	return output, err
 }
 
-func ExecCmdWithTimeout(command string, args ...time.Duration) (string, error) {
+func ExecCmdWithTimeout_(command string, args ...time.Duration) (string, error) {
 	var err error
 
 	var duration time.Duration
@@ -122,7 +123,7 @@ func ExecCmdWithTimeout(command string, args ...time.Duration) (string, error) {
 	select {
 	case <-timeout:
 		cmd.Process.Kill()
-		return "", errors.New(fmt.Sprintf("command timed out after %d secs", duration))
+		return "", fmt.Errorf("command timed out after %d secs", duration)
 	case err = <-done:
 		var output string
 		if err == nil {
@@ -132,4 +133,41 @@ func ExecCmdWithTimeout(command string, args ...time.Duration) (string, error) {
 		}
 		return output, err
 	}
+}
+
+// use this one
+func ExecCmdWithTimeout(command string, args ...time.Duration) (string, error) {
+	var err error
+
+	var duration time.Duration
+	duration = 10
+	if len(args) == 1 {
+		duration = args[0]
+	}
+
+	var ctx context.Context
+	var cancel context.CancelFunc
+
+	ctx, cancel = context.WithTimeout(context.Background(), duration*time.Second)
+	defer cancel()
+
+	var cmd *exec.Cmd
+	cmd = exec.CommandContext(ctx, "sh", "-c", command)
+
+	var output []byte
+	output, err = cmd.CombinedOutput()
+
+	var output2 string
+	output2 = string(output)
+
+	// fmt.Println(ctx.Err()) // context deadline exceeded
+	if ctx.Err() == context.DeadlineExceeded {
+		// fmt.Println(err) // signal: killed
+		// %!w(<nil>) (command timed out after 60 secs)
+		// err = fmt.Errorf("command timed out after %d secs", duration)
+		err = fmt.Errorf("%w (command timed out after %d secs)", err, duration)
+		return output2, err
+	}
+
+	return output2, err
 }

@@ -7,6 +7,7 @@ import {Button} from 'antd';
 import {Form} from 'antd';
 import {Modal} from 'antd';
 import {Space} from 'antd';
+import {Tag} from 'antd';
 import {CaretRightOutlined} from '@ant-design/icons';
 import {SyncOutlined} from '@ant-design/icons';
 import api from './api.js';
@@ -20,7 +21,7 @@ function ServiceCmdExec() {
   const storeServiceCmdExecVisible = useSelector(store.getServiceCmdExecVisible);
 
   const [stateService, setStateService] = useState({
-    cmd_exit_code: 'Executing...',
+    cmd_exit_code: null,
     cmd_output: 'Executing...',
   });
 
@@ -107,8 +108,12 @@ function ServiceCmdExec() {
               {storeService.status_cmd}
             </Form.Item>
           )}
-          <Form.Item label={<span className="Underline"><CaretRightOutlined />&nbsp;Exit Code</span>}>
-            {stateService.cmd_exit_code}
+          <Form.Item label={<span className="Underline"><CaretRightOutlined />&nbsp;Exit Status</span>}>
+            {stateService.cmd_exit_code === null && (<span><Tag>Executing...</Tag>&nbsp;<SyncOutlined spin /></span>)}
+            {stateService.cmd_exit_code === 0 && (<span><Tag color="success">Succeeded</Tag></span>)}
+            {stateService.cmd_exit_code === 1 && (<span><Tag color="error">Failed</Tag></span>)}
+            &nbsp;
+            {stateService.cmd_error_msg}
           </Form.Item>
           <Form.Item label={<span className="Underline"><CaretRightOutlined />&nbsp;Output</span>}>
             <pre style={{background: '#000', color: '#fff', padding: '5px'}}>

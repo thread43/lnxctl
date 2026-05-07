@@ -7,6 +7,8 @@ import {Divider} from 'antd';
 import {Popconfirm} from 'antd';
 import {Space} from 'antd';
 import {Table} from 'antd';
+import {Tag} from 'antd';
+import {Tooltip} from 'antd';
 import {Typography} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
 import {QuestionCircleOutlined} from '@ant-design/icons';
@@ -104,50 +106,170 @@ function ServiceList() {
     },
     /*
     {
-      key: 'term_cmd',
+      key: 'host',
       title: 'Host',
-      dataIndex: 'term_cmd',
+      dataIndex: 'host',
     },
     {
-      key: 'term_cmd',
+      key: 'user',
       title: 'User',
-      dataIndex: 'term_cmd',
+      dataIndex: 'user',
     },
     {
-      key: 'term_cmd',
+      key: 'path',
       title: 'Path',
-      dataIndex: 'term_cmd',
+      dataIndex: 'path',
     },
     */
     {
       key: 'start_cmd',
-      title: 'Start CMD',
+      title: 'Service CMD',
       dataIndex: 'start_cmd',
+      render: (text, record) => (
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '1px'}}>
+          {record.start_cmd !== '' && (
+            <div>
+              Start:
+              &nbsp;
+              <Tooltip
+                placement="topLeft"
+                title={(<div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>{text}</div>)}
+              >
+                <Tag variant="outlined">
+                  {text.length > 50 ? text.substring(0, 50) + '...' : text}
+                </Tag>
+              </Tooltip>
+            </div>
+          )}
+
+          {record.stop_cmd !== '' && (
+            <div>
+              Stop:
+              &nbsp;
+              <Tooltip
+                placement="topLeft"
+                title={(<div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>{record.stop_cmd}</div>)}
+              >
+                <Tag variant="outlined">
+                  {record.stop_cmd.length > 50 ? record.stop_cmd.substring(0, 50) + '...' : record.stop_cmd}
+                </Tag>
+              </Tooltip>
+            </div>
+          )}
+
+          {record.restart_cmd !== '' && (
+            <div>
+              Restart:
+              &nbsp;
+              <Tooltip
+                placement="topLeft"
+                title={(<div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>{record.restart_cmd}</div>)}
+              >
+                <Tag variant="outlined">
+                  {record.restart_cmd.length > 50 ? record.restart_cmd.substring(0, 50) + '...' : record.restart_cmd}
+                </Tag>
+              </Tooltip>
+            </div>
+          )}
+
+          {record.reload_cmd !== '' && (
+            <div>
+              Reload:
+              &nbsp;
+              <Tooltip
+                placement="topLeft"
+                title={(<div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>{record.reload_cmd}</div>)}
+              >
+                <Tag variant="outlined">
+                  {record.reload_cmd.length > 50 ? record.reload_cmd.substring(0, 50) + '...' : record.reload_cmd}
+                </Tag>
+              </Tooltip>
+            </div>
+          )}
+
+          {record.status_cmd !== '' && (
+            <div>
+              Status:
+              &nbsp;
+              <Tooltip
+                placement="topLeft"
+                title={(<div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>{record.status_cmd}</div>)}
+              >
+                <Tag variant="outlined">
+                  {record.status_cmd.length > 50 ? record.status_cmd.substring(0, 50) + '...' : record.status_cmd}
+                </Tag>
+              </Tooltip>
+            </div>
+          )}
+        </div>
+      ),
     },
+    /*
     {
       key: 'stop_cmd',
       title: 'Stop CMD',
       dataIndex: 'stop_cmd',
+      render: (text) => (
+        <Tooltip
+          placement="topLeft"
+          title={(<div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>{text}</div>)}
+        >
+          {text.length > 30 ? text.substring(0, 30) + '...' : text}
+        </Tooltip>
+      ),
     },
     {
       key: 'restart_cmd',
       title: 'Restart CMD',
       dataIndex: 'restart_cmd',
+      render: (text) => (
+        <Tooltip
+          placement="topLeft"
+          title={(<div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>{text}</div>)}
+        >
+          {text.length > 30 ? text.substring(0, 30) + '...' : text}
+        </Tooltip>
+      ),
     },
     {
       key: 'reload_cmd',
       title: 'Reload CMD',
       dataIndex: 'reload_cmd',
+      render: (text) => (
+        <Tooltip
+          placement="topLeft"
+          title={(<div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>{text}</div>)}
+        >
+          {text.length > 30 ? text.substring(0, 30) + '...' : text}
+        </Tooltip>
+      ),
     },
     {
       key: 'status_cmd',
       title: 'Status CMD',
       dataIndex: 'status_cmd',
+      render: (text) => (
+        <Tooltip
+          placement="topLeft"
+          title={(<div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>{text}</div>)}
+        >
+          {text.length > 30 ? text.substring(0, 30) + '...' : text}
+        </Tooltip>
+      ),
     },
+    */
     {
       key: 'term_cmd',
       title: 'Terminal CMD',
       dataIndex: 'term_cmd',
+      render: (text) => (
+        <Tooltip
+          placement="topLeft"
+          title={(<div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>{text}</div>)}
+        >
+          {text.length > 30 ? text.substring(0, 30) + '...' : text}
+        </Tooltip>
+      ),
     },
     {
       key: 'actions',
@@ -167,15 +289,67 @@ function ServiceList() {
             <Button type="link" className="ButtonLink">Delete</Button>
           </Popconfirm>
           <Divider orientation="vertical" />
-          <Button type="link" className="ButtonLink" onClick={() => openServiceCmdExec(record, 'start')}>Start</Button>
+          {record.start_cmd !== '' ? (
+            <Popconfirm
+              title="Are you sure?"
+              onConfirm={() => openServiceCmdExec(record, 'start')}
+              okText="Yes"
+              cancelText="No"
+              icon={<QuestionCircleOutlined style={{color: 'red'}} />}
+            >
+              <Button type="link" className="ButtonLink">Start</Button>
+            </Popconfirm>
+          ) : (
+            <Button type="link" className="ButtonLink" disabled>Start</Button>
+          )}
           <Divider orientation="vertical" />
-          <Button type="link" className="ButtonLink" onClick={() => openServiceCmdExec(record, 'stop')}>Stop</Button>
+          {record.stop_cmd !== '' ? (
+            <Popconfirm
+              title="Are you sure?"
+              onConfirm={() => openServiceCmdExec(record, 'stop')}
+              okText="Yes"
+              cancelText="No"
+              icon={<QuestionCircleOutlined style={{color: 'red'}} />}
+            >
+              <Button type="link" className="ButtonLink">Stop</Button>
+            </Popconfirm>
+          ) : (
+            <Button type="link" className="ButtonLink" disabled>Stop</Button>
+          )}
           <Divider orientation="vertical" />
-          <Button type="link" className="ButtonLink" onClick={() => openServiceCmdExec(record, 'restart')}>Restart</Button>
+          {record.restart_cmd !== '' ? (
+            <Popconfirm
+              title="Are you sure?"
+              onConfirm={() => openServiceCmdExec(record, 'restart')}
+              okText="Yes"
+              cancelText="No"
+              icon={<QuestionCircleOutlined style={{color: 'red'}} />}
+            >
+              <Button type="link" className="ButtonLink">Restart</Button>
+            </Popconfirm>
+          ) : (
+            <Button type="link" className="ButtonLink" disabled>Restart</Button>
+          )}
           <Divider orientation="vertical" />
-          <Button type="link" className="ButtonLink" onClick={() => openServiceCmdExec(record, 'reload')}>Reload</Button>
+          {record.reload_cmd !== '' ? (
+            <Popconfirm
+              title="Are you sure?"
+              onConfirm={() => openServiceCmdExec(record, 'reload')}
+              okText="Yes"
+              cancelText="No"
+              icon={<QuestionCircleOutlined style={{color: 'red'}} />}
+            >
+              <Button type="link" className="ButtonLink">Reload</Button>
+            </Popconfirm>
+          ) : (
+            <Button type="link" className="ButtonLink" disabled>Reload</Button>
+          )}
           <Divider orientation="vertical" />
-          <Button type="link" className="ButtonLink" onClick={() => openServiceCmdExec(record, 'status')}>Status</Button>
+          {record.status_cmd !== '' ? (
+            <Button type="link" className="ButtonLink" onClick={() => openServiceCmdExec(record, 'status')}>Status</Button>
+          ) : (
+            <Button type="link" className="ButtonLink" disabled>Status</Button>
+          )}
           <Divider orientation="vertical" />
           {record.term_cmd !== '' ? (
             <Typography.Link onClick={(event) => {event.preventDefault(); openServiceTerminal(record);}}>
