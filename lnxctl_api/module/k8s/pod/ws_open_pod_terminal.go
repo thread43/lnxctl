@@ -156,7 +156,7 @@ func (terminal_session TerminalSession) Read(buffer []byte) (int, error) {
 
 func (terminal_session TerminalSession) Write(buffer []byte) (int, error) {
 	var err error
-	err = terminal_session.ws.WriteMessage(websocket.TextMessage, buffer)
+	err = terminal_session.ws.WriteMessage(websocket.BinaryMessage, buffer)
 	return len(buffer), err
 }
 

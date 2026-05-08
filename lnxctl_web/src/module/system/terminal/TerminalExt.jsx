@@ -84,6 +84,7 @@ function TerminalExt() {
       term.write('Connecting...\n');
 
       const ws = new WebSocket(url);
+      ws.binaryType = 'arraybuffer';
       wsInstance.current = ws;
 
       ws.onopen = (event) => {
@@ -112,7 +113,9 @@ function TerminalExt() {
 
       ws.onmessage = (event) => {
         // console.log(event.type);
-        term.write(event.data);
+        // term.write(event.data);
+        const data = new Uint8Array(event.data);
+        term.write(data);
       };
 
       term.onData((data) => {

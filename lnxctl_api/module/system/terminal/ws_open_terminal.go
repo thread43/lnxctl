@@ -84,7 +84,7 @@ func WsOpenTerminal(response http.ResponseWriter, request *http.Request) {
 			// fmt.Print(string(buf[:length]))
 			// log.Printf("stdout/stderr, %d bytes\n", length)
 
-			err = ws.WriteMessage(websocket.TextMessage, buf[:length])
+			err = ws.WriteMessage(websocket.BinaryMessage, buf[:length])
 			util.Raise(err)
 		}
 	}()

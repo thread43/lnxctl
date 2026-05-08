@@ -109,6 +109,7 @@ function HostTerminal() {
     }
 
     const ws = new WebSocket(url);
+    ws.binaryType = 'arraybuffer';
     wsInstance.current = ws;
 
     ws.onopen = (event) => {
@@ -137,7 +138,9 @@ function HostTerminal() {
 
     ws.onmessage = (event) => {
       // console.log(event.type);
-      term.write(event.data);
+      // term.write(event.data);
+      const data = new Uint8Array(event.data);
+      term.write(data);
     };
 
     term.onData((data) => {

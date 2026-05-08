@@ -124,7 +124,7 @@ func StartProcess(ws *websocket.Conn, service map[string]interface{}) {
 			// fmt.Print(string(buf[:length]))
 			// log.Printf("stdout/stderr, %d bytes\n", length)
 
-			err = ws.WriteMessage(websocket.TextMessage, buf[:length])
+			err = ws.WriteMessage(websocket.BinaryMessage, buf[:length])
 			util.Raise(err)
 		}
 	}()

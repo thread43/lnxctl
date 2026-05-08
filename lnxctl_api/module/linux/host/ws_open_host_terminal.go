@@ -87,7 +87,7 @@ func StartProcess(ws *websocket.Conn, host map[string]interface{}) {
 	var ssh_client *ssh.Client
 	ssh_client, err = ssh.Dial("tcp", addr, config)
 	if err != nil {
-		_ = ws.WriteMessage(websocket.TextMessage, []byte(err.Error()))
+		_ = ws.WriteMessage(websocket.BinaryMessage, []byte(err.Error()))
 		util.Raise(err)
 	}
 	defer func() {
@@ -101,7 +101,7 @@ func StartProcess(ws *websocket.Conn, host map[string]interface{}) {
 	var ssh_session *ssh.Session
 	ssh_session, err = ssh_client.NewSession()
 	if err != nil {
-		_ = ws.WriteMessage(websocket.TextMessage, []byte(err.Error()))
+		_ = ws.WriteMessage(websocket.BinaryMessage, []byte(err.Error()))
 		util.Raise(err)
 	}
 	defer func() {
@@ -165,7 +165,7 @@ func StartProcess(ws *websocket.Conn, host map[string]interface{}) {
 			// fmt.Print(string(buf[:length]))
 			// log.Printf("stdout, %d bytes\n", length)
 
-			err = ws.WriteMessage(websocket.TextMessage, buf[:length])
+			err = ws.WriteMessage(websocket.BinaryMessage, buf[:length])
 			util.Raise(err)
 		}
 	}()
@@ -191,7 +191,7 @@ func StartProcess(ws *websocket.Conn, host map[string]interface{}) {
 			// fmt.Print(string(buf[:length]))
 			// log.Printf("stderr, %d bytes\n", length)
 
-			err = ws.WriteMessage(websocket.TextMessage, buf[:length])
+			err = ws.WriteMessage(websocket.BinaryMessage, buf[:length])
 			util.Raise(err)
 		}
 	}()
