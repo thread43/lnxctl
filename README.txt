@@ -3,15 +3,18 @@ lnxctl - linux/docker/kubernetes dashboard
 
 
 -- screenshot
+https://thread43.github.io/img/lnxctl_index_statistics.png
 https://thread43.github.io/img/lnxctl_linux_host.png
+https://thread43.github.io/img/lnxctl_linux_service.png
 https://thread43.github.io/img/lnxctl_docker_container.png
 https://thread43.github.io/img/lnxctl_kubernetes_pod.png
+https://thread43.github.io/img/lnxctl_monitoring_target.png
 
 
 
 -- download
-wget "https://thread43.github.io/pkg/lnxctl_v20260508.tar.gz"
-tar xzvf lnxctl_v20260508.tar.gz
+wget "https://thread43.github.io/pkg/lnxctl_v20260510.tar.gz"
+tar xzvf lnxctl_v20260510.tar.gz
 cd lnxctl
 ./lnxctl
 
