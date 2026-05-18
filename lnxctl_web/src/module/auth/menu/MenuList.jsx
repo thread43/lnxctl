@@ -251,7 +251,7 @@ function MenuList() {
     <>
       <div className="MyContentHeader">
         <span className="MyContentHeaderTitle">Menu List</span>
-        <Space>
+        <Space wrap>
           <Button type="primary" icon={<PlusOutlined />} onClick={() => addMenu()}>New Menu</Button>
           <Button type="primary" icon={<SyncOutlined />} onClick={() => getMenus()}>Refresh</Button>
         </Space>

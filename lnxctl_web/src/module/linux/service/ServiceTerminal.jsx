@@ -190,7 +190,7 @@ function ServiceTerminal() {
           <span className="MyContentHeaderTitle">
             {storeService.name} ({storeService.term_cmd})
           </span>
-          <Space>
+          <Space wrap>
             <Button type="primary" icon={<SyncOutlined />} onClick={() => reconnect()}>Reconnect</Button>
           </Space>
         </div>

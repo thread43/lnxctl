@@ -224,7 +224,7 @@ function UserList() {
     <>
       <div className="MyContentHeader">
         <span className="MyContentHeaderTitle">User List</span>
-        <Space>
+        <Space wrap>
           <Button type="primary" icon={<PlusOutlined />} onClick={() => addUser()}>New User</Button>
           <Button type="primary" icon={<SyncOutlined />} onClick={() => getUsers()}>Refresh</Button>
         </Space>

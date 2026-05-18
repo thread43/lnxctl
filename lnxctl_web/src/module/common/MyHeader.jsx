@@ -139,7 +139,7 @@ function MyHeader() {
             // className={styles.MyAction}
           >
             <div className={styles.MyAction}>
-              <Space>
+              <Space wrap>
                 <UserOutlined />
                 {storeCurrentUser.nickname}
               </Space>

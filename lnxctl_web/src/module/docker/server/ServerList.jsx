@@ -112,7 +112,7 @@ function ServerList() {
     <>
       <div className="MyContentHeader">
         <span className="MyContentHeaderTitle">Server List</span>
-        <Space>
+        <Space wrap>
           <Button type="primary" icon={<PlusOutlined />} onClick={() => addServer()}>New Server</Button>
           <Button type="primary" icon={<SyncOutlined />} onClick={() => getServers()}>Refresh</Button>
         </Space>

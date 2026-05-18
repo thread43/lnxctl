@@ -73,7 +73,7 @@ function DaemonsetYaml() {
           <span className="MyContentHeaderTitle">
             {storeDaemonset.namespace} / {storeDaemonset.name}
           </span>
-          <Space>
+          <Space wrap>
             <CopyToClipboard text={stateYaml} onCopy={() => onCopy()}>
               <Button type="primary" icon={<CopyOutlined />}>{stateCopy}</Button>
             </CopyToClipboard>

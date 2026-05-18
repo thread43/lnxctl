@@ -71,7 +71,7 @@ function ServiceCmdExec() {
         centered={true}
         destroyOnHidden="true"
         styles={{mask: {opacity: '0.1', animation: 'none'}}}
-        width={600}
+        width={1000}
         // maskClosable={false}
         open={storeServiceCmdExecVisible}
         onCancel={() => dispatch(store.setServiceCmdExecVisible(false))}

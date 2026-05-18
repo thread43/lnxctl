@@ -73,7 +73,7 @@ function RolebindingYaml() {
           <span className="MyContentHeaderTitle">
             {storeRolebinding.namespace} / {storeRolebinding.name}
           </span>
-          <Space>
+          <Space wrap>
             <CopyToClipboard text={stateYaml} onCopy={() => onCopy()}>
               <Button type="primary" icon={<CopyOutlined />}>{stateCopy}</Button>
             </CopyToClipboard>

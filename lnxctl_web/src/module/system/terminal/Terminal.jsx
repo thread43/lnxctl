@@ -203,7 +203,7 @@ function Terminal_() {
       >
         <div className="MyContentHeader">
           <span className="MyContentHeaderTitle">Terminal</span>
-          <Space>
+          <Space wrap>
             <Button type="primary" icon={<SyncOutlined />} onClick={() => reconnect()}>Reconnect</Button>
             <Button type="primary" icon={<ExportOutlined />} onClick={() => openTerminalExt()}>Fullscreen</Button>
           </Space>

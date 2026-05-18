@@ -194,7 +194,7 @@ function HostTerminal() {
           <span className="MyContentHeaderTitle">
             ssh://{storeHost.ssh_user}@{storeHost.ssh_host}:{storeHost.ssh_port}
           </span>
-          <Space>
+          <Space wrap>
             <Button type="primary" icon={<SyncOutlined />} onClick={() => reconnect()}>Reconnect</Button>
           </Space>
         </div>

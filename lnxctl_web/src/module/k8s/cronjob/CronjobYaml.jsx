@@ -73,7 +73,7 @@ function CronjobYaml() {
           <span className="MyContentHeaderTitle">
             {storeCronjob.namespace} / {storeCronjob.name}
           </span>
-          <Space>
+          <Space wrap>
             <CopyToClipboard text={stateYaml} onCopy={() => onCopy()}>
               <Button type="primary" icon={<CopyOutlined />}>{stateCopy}</Button>
             </CopyToClipboard>

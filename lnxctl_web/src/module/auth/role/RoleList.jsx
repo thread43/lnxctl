@@ -118,7 +118,7 @@ function RoleList() {
     <>
       <div className="MyContentHeader">
         <span className="MyContentHeaderTitle">Role List</span>
-        <Space>
+        <Space wrap>
           <Button type="primary" icon={<PlusOutlined />} onClick={() => addRole()}>New Role</Button>
           <Button type="primary" icon={<SyncOutlined />} onClick={() => getRoles()}>Refresh</Button>
         </Space>

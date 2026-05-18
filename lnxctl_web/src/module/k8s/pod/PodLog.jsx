@@ -198,7 +198,7 @@ function PodLog() {
           <span className="MyContentHeaderTitle">
             {storePod.namespace} / {storePod.name} / {storeContext.container_name}
           </span>
-          <Space>
+          <Space wrap>
             <Button type="primary" icon={<DownloadOutlined />} onClick={() => download()}>Download</Button>
             <Button type="primary" icon={<FileTextOutlined />} onClick={() => tailf()}>Tailf</Button>
             <Button type="primary" icon={<SyncOutlined />} onClick={() => refresh()}>Refresh</Button>

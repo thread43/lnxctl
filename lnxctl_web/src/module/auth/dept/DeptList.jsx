@@ -104,7 +104,7 @@ function DeptList() {
     <>
       <div className="MyContentHeader">
         <span className="MyContentHeaderTitle">Department List</span>
-        <Space>
+        <Space wrap>
           <Button type="primary" icon={<PlusOutlined />} onClick={() => addDept()}>New Department</Button>
           <Button type="primary" icon={<SyncOutlined />} onClick={() => getDepts()}>Refresh</Button>
         </Space>

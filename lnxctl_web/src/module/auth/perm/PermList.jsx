@@ -208,7 +208,7 @@ function PermList() {
       <div className="MyContentBlock">
         <Form form={form} name="horizontal_login" layout="inline">
           <Form.Item name="menu_id" label="Menu" style={{marginTop: '2px'}}>
-            <Select allowClear={true} style={{width: 200}} onChange={(value) => changeMenu(value)}>
+            <Select allowClear={true} style={{width: 160}} onChange={(value) => changeMenu(value)}>
               {storeMenus.map((item, index) => (
                 <Select.Option key={index} value={item.id} disabled={item.is_parent}>
                   {item.alias}
@@ -217,7 +217,7 @@ function PermList() {
             </Select>
           </Form.Item>
           <Form.Item style={{marginTop: '2px'}}>
-            <Space>
+            <Space wrap>
               <Button type="primary" icon={<SearchOutlined />} onClick={() => search()}>Search</Button>
               <Button type="primary" icon={<UndoOutlined />} onClick={() => reset()}>Reset</Button>
             </Space>
@@ -230,7 +230,7 @@ function PermList() {
       <div className="MyContentBlock">
         <div className="MyContentHeader">
           <span className="MyContentHeaderTitle">Permission List</span>
-          <Space>
+          <Space wrap>
             <Button type="primary" icon={<PlusOutlined />} onClick={() => addPerm()}>New Permission</Button>
             <Button type="primary" icon={<SyncOutlined />} onClick={() => getPerms()}>Refresh</Button>
           </Space>

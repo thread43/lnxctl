@@ -10,12 +10,15 @@ import {Switch} from 'antd';
 import {Table} from 'antd';
 import {Tag} from 'antd';
 import {Tooltip} from 'antd';
+import {Upload} from 'antd';
 import {CheckOutlined} from '@ant-design/icons';
 import {CloseOutlined} from '@ant-design/icons';
+import {DownloadOutlined} from '@ant-design/icons';
 import {ExportOutlined} from '@ant-design/icons';
 import {PlusOutlined} from '@ant-design/icons';
 import {QuestionCircleOutlined} from '@ant-design/icons';
 import {SyncOutlined} from '@ant-design/icons';
+import {UploadOutlined} from '@ant-design/icons';
 import api from './api.js';
 import store from './store.js';
 
@@ -51,6 +54,15 @@ function TargetList() {
     }
   }
 
+  async function downloadTarget() {
+    try {
+      await api.download_target();
+    } catch (error) {
+      console.error(error);
+      message.error(error.message);
+    }
+  }
+
   async function enableOrDisableTarget(id) {
     try {
       if (storeTarget.is_active === 0) {
@@ -69,7 +81,6 @@ function TargetList() {
       dispatch(store.setTargetTableLoading(false));
     }
   }
-
 
   function getTarget(id) {
     dispatch(store.setTarget({id}));
@@ -92,6 +103,23 @@ function TargetList() {
   function updateTarget(id) {
     dispatch(store.setTarget({id}));
     dispatch(store.setTargetFormUpdateVisible(true));
+  }
+
+  function uploadTarget(info) {
+    if (info.file.status === 'uploading') {
+      dispatch(store.setTargetTableLoading(true));
+      return;
+    }
+    if (info.file.status === 'done') {
+      message.success('Upload succeeded');
+      // dispatch(store.setTargetTableLoading(false));
+      getTargets();
+    }
+    if (info.file.status === 'error') {
+      dispatch(store.setTargetTableLoading(false));
+      console.error(info.file.response);
+      message.error('Upload failed');
+    }
   }
 
   const columns = [
@@ -251,8 +279,17 @@ function TargetList() {
     <>
       <div className="MyContentHeader">
         <span className="MyContentHeaderTitle">Target List</span>
-        <Space>
+        <Space wrap>
           <Button type="primary" icon={<PlusOutlined />} onClick={() => addTarget()}>New Target</Button>
+          <Upload
+            name="file"
+            showUploadList={false}
+            action={"/api/monitoring/target/upload_target"}
+            onChange={(info) => uploadTarget(info)}
+          >
+            <Button type="primary" icon={<UploadOutlined />}>Upload</Button>
+          </Upload>
+          <Button type="primary" icon={<DownloadOutlined />} onClick={() => downloadTarget()}>Download</Button>
           <Button type="primary" icon={<SyncOutlined />} onClick={() => getTargets()}>Refresh</Button>
         </Space>
       </div>

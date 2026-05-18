@@ -153,7 +153,7 @@ function PodFileBrowser() {
         onClose={() => dispatch(store.setPodFileBrowserVisible(false))}
         open={storePodFileBrowserVisible}
         extra={
-          <Space>
+          <Space wrap>
             <Button onClick={() => dispatch(store.setPodFileBrowserVisible(false))}>Close</Button>
           </Space>
         }
@@ -162,7 +162,7 @@ function PodFileBrowser() {
           <span className="MyContentHeaderTitle">
             {storeContext.container_name}:{stateDir}
           </span>
-          <Space>
+          <Space wrap>
             <Button type="primary" icon={<RollbackOutlined />} onClick={() => cdParentDir()}>Go Back</Button>
             <Upload
               name="file"

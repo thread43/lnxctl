@@ -138,7 +138,7 @@ function ClusterList() {
     <>
       <div className="MyContentHeader">
         <span className="MyContentHeaderTitle">Cluster List</span>
-        <Space>
+        <Space wrap>
           <Button type="primary" icon={<PlusOutlined />} onClick={() => addCluster()}>New Cluster</Button>
           <Button type="primary" icon={<SyncOutlined />} onClick={() => getClusters()}>Refresh</Button>
         </Space>

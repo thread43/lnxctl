@@ -73,7 +73,7 @@ function RoleYaml() {
           <span className="MyContentHeaderTitle">
             {storeRole.namespace} / {storeRole.name}
           </span>
-          <Space>
+          <Space wrap>
             <CopyToClipboard text={stateYaml} onCopy={() => onCopy()}>
               <Button type="primary" icon={<CopyOutlined />}>{stateCopy}</Button>
             </CopyToClipboard>

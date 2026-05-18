@@ -97,7 +97,7 @@ function EventList() {
           <span className="MyContentHeaderTitle">
             {storeCluster.name} ({storeCluster.server})
           </span>
-          <Space>
+          <Space wrap>
             <Button type="primary" icon={<SyncOutlined />} onClick={() => refresh()}>Refresh</Button>
           </Space>
         </div>

@@ -73,7 +73,7 @@ function NodeYaml() {
           <span className="MyContentHeaderTitle">
             {storeNode.name}
           </span>
-          <Space>
+          <Space wrap>
             <CopyToClipboard text={stateYaml} onCopy={() => onCopy()}>
               <Button type="primary" icon={<CopyOutlined />}>{stateCopy}</Button>
             </CopyToClipboard>

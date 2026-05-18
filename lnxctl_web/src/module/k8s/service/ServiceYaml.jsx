@@ -73,7 +73,7 @@ function ServiceYaml() {
           <span className="MyContentHeaderTitle">
             {storeService.namespace} / {storeService.name}
           </span>
-          <Space>
+          <Space wrap>
             <CopyToClipboard text={stateYaml} onCopy={() => onCopy()}>
               <Button type="primary" icon={<CopyOutlined />}>{stateCopy}</Button>
             </CopyToClipboard>

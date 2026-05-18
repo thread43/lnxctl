@@ -73,7 +73,7 @@ function StorageclassYaml() {
           <span className="MyContentHeaderTitle">
             {storeStorageclass.name}
           </span>
-          <Space>
+          <Space wrap>
             <CopyToClipboard text={stateYaml} onCopy={() => onCopy()}>
               <Button type="primary" icon={<CopyOutlined />}>{stateCopy}</Button>
             </CopyToClipboard>

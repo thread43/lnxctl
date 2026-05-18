@@ -75,7 +75,7 @@ function ImageJson() {
           <span className="MyContentHeaderTitle">
             {storeImage.name}
           </span>
-          <Space>
+          <Space wrap>
             <CopyToClipboard text={stateJson} onCopy={() => onCopy()}>
               <Button type="primary" icon={<CopyOutlined />}>{stateCopy}</Button>
             </CopyToClipboard>

@@ -117,7 +117,7 @@ function ContainerLog() {
           <span className="MyContentHeaderTitle">
             {storeContainer.name}
           </span>
-          <Space>
+          <Space wrap>
             <Button type="primary" icon={<DownloadOutlined />} onClick={() => download()}>Download</Button>
             <Button type="primary" icon={<SyncOutlined />} onClick={() => refresh()}>Refresh</Button>
           </Space>

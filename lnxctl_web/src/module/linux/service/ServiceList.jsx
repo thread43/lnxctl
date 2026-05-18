@@ -10,9 +10,12 @@ import {Table} from 'antd';
 import {Tag} from 'antd';
 import {Tooltip} from 'antd';
 import {Typography} from 'antd';
+import {Upload} from 'antd';
+import {DownloadOutlined} from '@ant-design/icons';
 import {PlusOutlined} from '@ant-design/icons';
 import {QuestionCircleOutlined} from '@ant-design/icons';
 import {SyncOutlined} from '@ant-design/icons';
+import {UploadOutlined} from '@ant-design/icons';
 import api from './api.js';
 import store from './store.js';
 import externalLinkIcon from '/src/static/external-link.svg';
@@ -47,6 +50,15 @@ function ServiceList() {
       message.error(error.message);
     } finally {
       dispatch(store.setServiceTableLoading(false));
+    }
+  }
+
+  async function downloadService() {
+    try {
+      await api.download_service();
+    } catch (error) {
+      console.error(error);
+      message.error(error.message);
     }
   }
 
@@ -93,6 +105,23 @@ function ServiceList() {
     console.log(url);
 
     window.open(url, '_blank');
+  }
+
+  function uploadService(info) {
+    if (info.file.status === 'uploading') {
+      dispatch(store.setServiceTableLoading(true));
+      return;
+    }
+    if (info.file.status === 'done') {
+      message.success('Upload succeeded');
+      // dispatch(store.setServiceTableLoading(false));
+      getServices();
+    }
+    if (info.file.status === 'error') {
+      dispatch(store.setServiceTableLoading(false));
+      console.error(info.file.response);
+      message.error('Upload failed');
+    }
   }
 
   const columns = [
@@ -379,8 +408,17 @@ function ServiceList() {
     <>
       <div className="MyContentHeader">
         <span className="MyContentHeaderTitle">Service List</span>
-        <Space>
+        <Space wrap>
           <Button type="primary" icon={<PlusOutlined />} onClick={() => addService()}>New Service</Button>
+          <Upload
+            name="file"
+            showUploadList={false}
+            action={"/api/linux/service/upload_service"}
+            onChange={(info) => uploadService(info)}
+          >
+            <Button type="primary" icon={<UploadOutlined />}>Upload</Button>
+          </Upload>
+          <Button type="primary" icon={<DownloadOutlined />} onClick={() => downloadService()}>Download</Button>
           <Button type="primary" icon={<SyncOutlined />} onClick={() => getServices()}>Refresh</Button>
         </Space>
       </div>

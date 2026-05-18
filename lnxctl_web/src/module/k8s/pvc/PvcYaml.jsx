@@ -73,7 +73,7 @@ function PvcYaml() {
           <span className="MyContentHeaderTitle">
             {storePvc.namespace} / {storePvc.name}
           </span>
-          <Space>
+          <Space wrap>
             <CopyToClipboard text={stateYaml} onCopy={() => onCopy()}>
               <Button type="primary" icon={<CopyOutlined />}>{stateCopy}</Button>
             </CopyToClipboard>

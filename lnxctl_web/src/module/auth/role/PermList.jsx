@@ -184,7 +184,7 @@ function PermList() {
         onOk={() => grantPerm()}
       >
         <div className="MyContentHeader">
-          <Space>
+          <Space wrap>
             <Button type="primary" icon={<ColumnHeightOutlined />} onClick={() => expand()}>Expand</Button>
             <Button type="primary" icon={<VerticalAlignMiddleOutlined />} onClick={() => collapse()}>Collapse</Button>
             <Button type="primary" icon={<ReadOutlined />} onClick={() => readonly()}>Read-only</Button>

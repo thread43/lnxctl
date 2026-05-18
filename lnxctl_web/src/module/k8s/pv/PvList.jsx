@@ -213,7 +213,7 @@ function PvList() {
           <Form.Item name="cluster_id" label="Cluster" style={{marginTop: '2px'}}>
             <Select
               allowClear={false}
-              style={{width: 200}}
+              style={{width: 120}}
               onChange={(value) => changeCluster(value)}
               options={commonStoreClusters.map((item) => (
                 {value: item.id, label: item.name}
@@ -221,7 +221,7 @@ function PvList() {
             />
           </Form.Item>
           <Form.Item style={{marginTop: '2px'}}>
-            <Space>
+            <Space wrap>
               <Button type="primary" icon={<SearchOutlined />} onClick={() => search()}>Search</Button>
               <Button type="primary" icon={<UndoOutlined />} onClick={() => reset()}>Reset</Button>
             </Space>
@@ -234,7 +234,7 @@ function PvList() {
       <div className="MyContentBlock">
         <div className="MyContentHeader">
           <span className="MyContentHeaderTitle">PV List</span>
-          <Space>
+          <Space wrap>
             <Button type="primary" icon={<SyncOutlined />} onClick={() => refresh()}>Refresh</Button>
           </Space>
         </div>

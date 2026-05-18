@@ -42,6 +42,13 @@ function disable_target(id) {
   return http.post('/api/monitoring/target/disable_target', formData);
 }
 
+function download_target() {
+  let url = '/api/monitoring/target/download_target';
+
+  // return http.get(url);
+  window.open(url, '_blank');
+}
+
 function enable_target(id) {
   const formData = new FormData();
   formData.append('id', id);
@@ -90,6 +97,7 @@ const api = {
   add_target,
   delete_target,
   disable_target,
+  download_target,
   enable_target,
   get_target,
   get_targets,

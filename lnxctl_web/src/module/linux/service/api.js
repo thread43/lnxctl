@@ -40,6 +40,13 @@ function delete_service(id) {
   return http.post('/api/linux/service/delete_service', formData);
 }
 
+function download_service() {
+  let url = '/api/linux/service/download_service';
+
+  // return http.get(url);
+  window.open(url, '_blank');
+}
+
 function get_service(id) {
   return http.get('/api/linux/service/get_service?id=' + id);
 }
@@ -117,6 +124,7 @@ function update_service(service) {
 const api = {
   add_service,
   delete_service,
+  download_service,
   get_service,
   get_services,
   reload_service,

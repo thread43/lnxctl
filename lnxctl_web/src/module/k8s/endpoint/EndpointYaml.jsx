@@ -73,7 +73,7 @@ function EndpointYaml() {
           <span className="MyContentHeaderTitle">
             {storeEndpoint.namespace} / {storeEndpoint.name}
           </span>
-          <Space>
+          <Space wrap>
             <CopyToClipboard text={stateYaml} onCopy={() => onCopy()}>
               <Button type="primary" icon={<CopyOutlined />}>{stateCopy}</Button>
             </CopyToClipboard>

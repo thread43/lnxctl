@@ -159,7 +159,7 @@ function HostFileBrowser() {
         onClose={() => dispatch(store.setHostFileBrowserVisible(false))}
         open={storeHostFileBrowserVisible}
         extra={
-          <Space>
+          <Space wrap>
             <Button onClick={() => dispatch(store.setHostFileBrowserVisible(false))}>Close</Button>
           </Space>
         }
@@ -168,7 +168,7 @@ function HostFileBrowser() {
           <span className="MyContentHeaderTitle">
             {storeHost.ssh_host}:{stateDir}
           </span>
-          <Space>
+          <Space wrap>
             <Button type="primary" icon={<RollbackOutlined />} onClick={() => cdParentDir()}>Go Back</Button>
             <Upload
               name="file"

@@ -234,7 +234,7 @@ function HostList() {
     <>
       <div className="MyContentHeader">
         <span className="MyContentHeaderTitle">Host List</span>
-        <Space>
+        <Space wrap>
           <Button type="primary" icon={<PlusOutlined />} onClick={() => addHost()}>New Host</Button>
           <Button type="primary" icon={<SyncOutlined />} onClick={() => getHosts()}>Refresh</Button>
         </Space>

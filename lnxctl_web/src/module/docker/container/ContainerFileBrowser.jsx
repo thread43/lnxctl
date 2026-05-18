@@ -152,7 +152,7 @@ function ContainerFileBrowser() {
         onClose={() => dispatch(store.setContainerFileBrowserVisible(false))}
         open={storeContainerFileBrowserVisible}
         extra={
-          <Space>
+          <Space wrap>
             <Button onClick={() => dispatch(store.setContainerFileBrowserVisible(false))}>Close</Button>
           </Space>
         }
@@ -161,7 +161,7 @@ function ContainerFileBrowser() {
           <span className="MyContentHeaderTitle">
             {storeContainer.name}:{stateDir}
           </span>
-          <Space>
+          <Space wrap>
             <Button type="primary" icon={<RollbackOutlined />} onClick={() => cdParentDir()}>Go Back</Button>
             <Upload
               name="file"

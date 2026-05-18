@@ -172,7 +172,7 @@ function MySider() {
         {/* <Link to="/"></Link> */}
         <div onClick={() => {dispatch(store.setOpenKeys([])); navigate('/');}}>
           <div className={styles.SiteInfo}>
-            <Space>
+            <Space wrap>
               <img src={logo} alt="" className={styles.SiteLogo} />
               {storeSiderCollapsed === false && <span className={styles.SiteTitle}>LNXCTL</span>}
             </Space>

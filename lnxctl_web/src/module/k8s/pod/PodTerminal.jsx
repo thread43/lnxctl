@@ -229,7 +229,7 @@ function PodTerminal() {
           <span className="MyContentHeaderTitle">
             {storePod.namespace} / {storePod.name} / {storeContext.container_name}
           </span>
-          <Space>
+          <Space wrap>
             <Button type="primary" icon={<SyncOutlined />} onClick={() => reconnect()}>Reconnect</Button>
           </Space>
         </div>

@@ -73,7 +73,7 @@ function IngressYaml() {
           <span className="MyContentHeaderTitle">
             {storeIngress.namespace} / {storeIngress.name}
           </span>
-          <Space>
+          <Space wrap>
             <CopyToClipboard text={stateYaml} onCopy={() => onCopy()}>
               <Button type="primary" icon={<CopyOutlined />}>{stateCopy}</Button>
             </CopyToClipboard>

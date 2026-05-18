@@ -133,6 +133,7 @@ var Routes = []Route{
 
 	{"/api/linux/service/add_service", linux_service.AddService},
 	{"/api/linux/service/delete_service", linux_service.DeleteService},
+	{"/api/linux/service/download_service", linux_service.DownloadService},
 	{"/api/linux/service/get_service", linux_service.GetService},
 	{"/api/linux/service/get_services", linux_service.GetServices},
 	{"/api/linux/service/reload_service", linux_service.ReloadService},
@@ -141,6 +142,7 @@ var Routes = []Route{
 	{"/api/linux/service/status_service", linux_service.StatusService},
 	{"/api/linux/service/stop_service", linux_service.StopService},
 	{"/api/linux/service/update_service", linux_service.UpdateService},
+	{"/api/linux/service/upload_service", linux_service.UploadService},
 	{"/api/linux/service/ws_open_service_terminal", linux_service.WsOpenServiceTerminal},
 
 	{"/api/docker/server/add_server", docker_server.AddServer},
@@ -290,10 +292,12 @@ var Routes = []Route{
 	{"/api/monitoring/target/add_target", monitoring_target.AddTarget},
 	{"/api/monitoring/target/delete_target", monitoring_target.DeleteTarget},
 	{"/api/monitoring/target/disable_target", monitoring_target.DisableTarget},
+	{"/api/monitoring/target/download_target", monitoring_target.DownloadTarget},
 	{"/api/monitoring/target/enable_target", monitoring_target.EnableTarget},
 	{"/api/monitoring/target/get_target", monitoring_target.GetTarget},
 	{"/api/monitoring/target/get_targets", monitoring_target.GetTargets},
 	{"/api/monitoring/target/update_target", monitoring_target.UpdateTarget},
+	{"/api/monitoring/target/upload_target", monitoring_target.UploadTarget},
 
 	{"/api/test", test.Test},
 }

@@ -119,7 +119,7 @@ function LogList() {
     <>
       <div className="MyContentHeader">
         <span className="MyContentHeaderTitle">Log List</span>
-        <Space>
+        <Space wrap>
           <Button type="primary" icon={<SyncOutlined />} onClick={() => refreshLog()}>Refresh</Button>
         </Space>
       </div>

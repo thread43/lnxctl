@@ -193,7 +193,7 @@ function ContainerTerminal() {
           <span className="MyContentHeaderTitle">
             {storeContainer.name}
           </span>
-          <Space>
+          <Space wrap>
             <Button type="primary" icon={<SyncOutlined />} onClick={() => reconnect()}>Reconnect</Button>
           </Space>
         </div>
