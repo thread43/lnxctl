@@ -25,12 +25,10 @@ function PodTerminal() {
   const beforeunloadHandler = useRef(null);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/immutability
     init();
 
     const handleBeforeunload = (event) => {
       console.log(event);
-      // eslint-disable-next-line react-hooks/immutability
       sendCtrlC();
       event.preventDefault();
       event.returnValue = 'Are you sure?';

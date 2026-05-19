@@ -21,6 +21,7 @@ function Index() {
   const [stateStatistics, setStateStatistics] = useState({linux: {}, dockers: [], k8ses: [], monitoring: {}});
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/immutability
     init();
 
     const intervalId = setInterval(async () => {

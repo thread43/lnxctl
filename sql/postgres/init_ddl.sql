@@ -1,0 +1,199 @@
+-- auth_dept
+-- auth_user
+-- auth_role
+-- auth_perm
+-- auth_menu
+-- auth_user_role
+-- auth_role_perm
+-- auth_user_perm
+--
+-- system_log
+--
+-- linux_host
+-- linux_service
+--
+-- docker_server
+--
+-- k8s_cluster
+--
+-- monitoring_target
+
+CREATE TABLE auth_dept (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(128),
+  remark VARCHAR(128),
+  create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE auth_user (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(128),
+  password VARCHAR(128),
+  nickname VARCHAR(128),
+  email VARCHAR(128),
+  phone VARCHAR(128),
+  is_admin INTEGER,
+  is_staff INTEGER,
+  is_active INTEGER,
+  login_time TIMESTAMP,
+  salt VARCHAR(128),
+  is_deleted INTEGER,
+  remark VARCHAR(128),
+  create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  dept_id INTEGER,
+  UNIQUE(username)
+);
+
+CREATE TABLE auth_role (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(128),
+  remark VARCHAR(128),
+  create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE auth_perm (
+  id SERIAL PRIMARY KEY,
+  code VARCHAR(128),
+  name VARCHAR(128),
+  type INTEGER,
+  remark VARCHAR(128),
+  create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  menu_id INTEGER,
+  UNIQUE(code)
+);
+
+CREATE TABLE auth_menu (
+  id SERIAL PRIMARY KEY,
+  code VARCHAR(128),
+  name VARCHAR(128),
+  icon VARCHAR(128),
+  sort INTEGER,
+  is_virtual INTEGER,
+  remark VARCHAR(128),
+  create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  parent_menu_id INTEGER,
+  UNIQUE(code)
+);
+
+CREATE TABLE auth_user_role (
+  id SERIAL PRIMARY KEY,
+  create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  user_id INTEGER,
+  role_id INTEGER,
+  UNIQUE(user_id, role_id)
+);
+
+CREATE TABLE auth_role_perm (
+  id SERIAL PRIMARY KEY,
+  create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  role_id INTEGER,
+  perm_id INTEGER,
+  UNIQUE(role_id, perm_id)
+);
+
+CREATE TABLE auth_user_perm (
+  id SERIAL PRIMARY KEY,
+  create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  user_id INTEGER,
+  perm_id INTEGER,
+  UNIQUE(user_id, perm_id)
+);
+
+CREATE TABLE system_log (
+  id SERIAL PRIMARY KEY,
+  path VARCHAR(128),
+  ip VARCHAR(32),
+  user_agent VARCHAR(256),
+  referer VARCHAR(256),
+  access_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  user_id INTEGER
+);
+
+CREATE TABLE linux_host (
+  id SERIAL PRIMARY KEY,
+  ip VARCHAR(128),
+  ssh_host VARCHAR(128),
+  ssh_port INTEGER,
+  ssh_user VARCHAR(128),
+  ssh_password VARCHAR(128),
+  ssh_private_key TEXT,
+  hostname VARCHAR(128),
+  ips VARCHAR(256),
+  os VARCHAR(128),
+  arch VARCHAR(128),
+  kernel VARCHAR(128),
+  cpu INTEGER,
+  memory INTEGER,
+  swap INTEGER,
+  disk INTEGER,
+  remark VARCHAR(128),
+  create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE(ip)
+);
+
+CREATE TABLE linux_service (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(128),
+  start_cmd VARCHAR(256),
+  stop_cmd VARCHAR(256),
+  restart_cmd VARCHAR(256),
+  reload_cmd VARCHAR(256),
+  status_cmd VARCHAR(256),
+  term_cmd VARCHAR(256),
+  remark VARCHAR(128),
+  create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE docker_server (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(128),
+  host VARCHAR(256),
+  version VARCHAR(128),
+  is_active INTEGER,
+  remark VARCHAR(128),
+  create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE k8s_cluster (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(128),
+  kubeconfig TEXT,
+  server VARCHAR(256),
+  token TEXT,
+  version VARCHAR(128),
+  is_active INTEGER,
+  remark VARCHAR(128),
+  create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE monitoring_target (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(128),
+  crontab VARCHAR(128),
+  type INTEGER,
+  ping_host VARCHAR(128),
+  tcp_host VARCHAR(128),
+  tcp_port VARCHAR(128),
+  http_url VARCHAR(512),
+  check_status INTEGER,
+  check_result VARCHAR(1024),
+  check_time TIMESTAMP,
+  is_active INTEGER,
+  remark VARCHAR(128),
+  create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

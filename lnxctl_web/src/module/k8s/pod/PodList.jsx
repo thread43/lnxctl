@@ -42,6 +42,8 @@ function PodList() {
 
   async function init(context) {
     let {cluster_id, namespace} = context;
+    console.log(cluster_id);
+    console.log(namespace);
 
     cluster_id = localStorage.getItem('k8s_cluster_id');
     namespace = localStorage.getItem('k8s_namespace');

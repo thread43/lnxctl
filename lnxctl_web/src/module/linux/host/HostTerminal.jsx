@@ -24,7 +24,6 @@ function HostTerminal() {
   const beforeunloadHandler = useRef(null);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/immutability
     init();
 
     const handleBeforeunload = (event) => {

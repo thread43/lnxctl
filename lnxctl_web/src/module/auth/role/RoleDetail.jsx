@@ -20,6 +20,7 @@ function RoleDetail() {
   const [stateLoading, setStateLoading] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/immutability
     init();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 

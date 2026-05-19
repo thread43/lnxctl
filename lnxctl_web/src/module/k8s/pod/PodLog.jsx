@@ -30,7 +30,6 @@ function PodLog() {
   const resizeHandler = useRef(null);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/immutability
     init();
 
     return () => {

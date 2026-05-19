@@ -32,6 +32,7 @@ function NodeList() {
 
   async function init(context) {
     let {cluster_id} = context;
+    console.log(cluster_id);
 
     cluster_id = localStorage.getItem('k8s_cluster_id');
     if (cluster_id !== null) {

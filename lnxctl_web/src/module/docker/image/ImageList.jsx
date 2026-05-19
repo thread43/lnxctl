@@ -31,6 +31,7 @@ function ImageList() {
 
   async function init(context) {
     let {server_id} = context;
+    console.log(server_id);
 
     server_id = localStorage.getItem('docker_server_id');
     if (server_id !== null) {

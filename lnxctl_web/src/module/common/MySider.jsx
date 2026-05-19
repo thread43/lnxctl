@@ -38,6 +38,11 @@ function MySider() {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/immutability
+    init();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  async function init() {
     const path = reactRouterLocation.pathname;
     const fields = path.split('/');
     const fields2 = fields.filter(item => item !== '');
@@ -52,9 +57,8 @@ function MySider() {
       }
     }
 
-    // eslint-disable-next-line react-hooks/immutability
     getMenus();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }
 
   async function getMenus() {
     try {

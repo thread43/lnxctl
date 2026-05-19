@@ -26,6 +26,7 @@ function ServiceCmdExec() {
   });
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/immutability
     init();
 
     return () => {
@@ -85,27 +86,37 @@ function ServiceCmdExec() {
           </Form.Item>
           {storeService.action === 'start' && (
             <Form.Item label={<span className="Underline"><CaretRightOutlined />&nbsp;Start CMD</span>}>
-              {storeService.start_cmd}
+              <pre style={{margin: 0, padding: 0}}>
+                {storeService.start_cmd}
+              </pre>
             </Form.Item>
           )}
           {storeService.action === 'stop' && (
             <Form.Item label={<span className="Underline"><CaretRightOutlined />&nbsp;Stop CMD</span>}>
-              {storeService.stop_cmd}
+              <pre style={{margin: 0, padding: 0}}>
+                {storeService.stop_cmd}
+              </pre>
             </Form.Item>
           )}
           {storeService.action === 'restart' && (
             <Form.Item label={<span className="Underline"><CaretRightOutlined />&nbsp;Restart CMD</span>}>
-              {storeService.restart_cmd}
+              <pre style={{margin: 0, padding: 0}}>
+                {storeService.restart_cmd}
+              </pre>
             </Form.Item>
           )}
           {storeService.action === 'reload' && (
             <Form.Item label={<span className="Underline"><CaretRightOutlined />&nbsp;Reload CMD</span>}>
-              {storeService.reload_cmd}
+              <pre style={{margin: 0, padding: 0}}>
+                {storeService.reload_cmd}
+              </pre>
             </Form.Item>
           )}
           {storeService.action === 'status' && (
             <Form.Item label={<span className="Underline"><CaretRightOutlined />&nbsp;Status CMD</span>}>
-              {storeService.status_cmd}
+              <pre style={{margin: 0, padding: 0}}>
+                {storeService.status_cmd}
+              </pre>
             </Form.Item>
           )}
           <Form.Item label={<span className="Underline"><CaretRightOutlined />&nbsp;Exit Status</span>}>

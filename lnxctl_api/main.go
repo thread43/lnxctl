@@ -315,6 +315,7 @@ func main() {
 	var port int
 	var sqlite string
 	var mysql string
+	var postgres string
 	var log2 string
 	var debug2 bool
 	var cronjob bool
@@ -348,6 +349,7 @@ func main() {
 	log.Printf("port: %v\n", port)
 	log.Printf("sqlite: %v\n", sqlite)
 	log.Printf("mysql: %v\n", mysql)
+	log.Printf("postgres: %v\n", postgres)
 	log.Printf("log: %v\n", log2)
 	log.Printf("debug: %v\n", debug2)
 	log.Printf("cronjob: %v\n", cronjob)
@@ -359,6 +361,9 @@ func main() {
 	if mysql != "" {
 		log.Println(mysql)
 		util.InitDbWithMysql(mysql)
+	} else if postgres != "" {
+		log.Println(postgres)
+		util.InitDbWithPostgres(postgres)
 	} else {
 		log.Println(sqlite)
 		util.InitDbWithSqlite(sqlite)

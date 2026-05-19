@@ -7,6 +7,7 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/sessions"
+	_ "github.com/lib/pq"
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -49,6 +50,21 @@ func InitDbWithMysql(mysql string) {
 		DB.SetConnMaxLifetime(time.Minute * 3)
 		DB.SetMaxOpenConns(10)
 		DB.SetMaxIdleConns(10)
+	}
+}
+
+// postgres = "postgres://root:123456@127.0.0.1:5432/lnxctl?sslmode=disable"
+// https://github.com/lib/pq#connecting
+func InitDbWithPostgres(postgres string) {
+	var err error
+
+	if DB == nil {
+		DB, err = sql.Open("postgres", postgres)
+		Raise(err)
+		// defer DB.Close()
+
+		err = DB.Ping()
+		Raise(err)
 	}
 }
 
