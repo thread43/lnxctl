@@ -6,7 +6,6 @@ import {App} from 'antd';
 import {Button} from 'antd';
 import {Form} from 'antd';
 import {Modal} from 'antd';
-import {Space} from 'antd';
 import {Tag} from 'antd';
 import {CaretRightOutlined} from '@ant-design/icons';
 import {SyncOutlined} from '@ant-design/icons';

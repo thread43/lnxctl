@@ -1,6 +1,5 @@
 import {useEffect} from 'react';
 import {useState} from 'react';
-import {Link} from 'react-router';
 import {App} from 'antd';
 import {Card} from 'antd';
 import {Col} from 'antd';

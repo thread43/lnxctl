@@ -168,6 +168,16 @@ function ServiceList() {
                   {text.length > 50 ? text.substring(0, 50) + '...' : text}
                 </Tag>
               </Tooltip>
+              &nbsp;
+              <Popconfirm
+                title="Are you sure?"
+                onConfirm={() => openServiceCmdExec(record, 'start')}
+                okText="Yes"
+                cancelText="No"
+                icon={<QuestionCircleOutlined style={{color: 'red'}} />}
+              >
+                <Button type="primary" size="small" style={{height: 22}}>Start</Button>
+              </Popconfirm>
             </div>
           )}
 
@@ -183,6 +193,16 @@ function ServiceList() {
                   {record.stop_cmd.length > 50 ? record.stop_cmd.substring(0, 50) + '...' : record.stop_cmd}
                 </Tag>
               </Tooltip>
+              &nbsp;
+              <Popconfirm
+                title="Are you sure?"
+                onConfirm={() => openServiceCmdExec(record, 'stop')}
+                okText="Yes"
+                cancelText="No"
+                icon={<QuestionCircleOutlined style={{color: 'red'}} />}
+              >
+                <Button type="primary" size="small" style={{height: 22}}>Stop</Button>
+              </Popconfirm>
             </div>
           )}
 
@@ -198,6 +218,16 @@ function ServiceList() {
                   {record.restart_cmd.length > 50 ? record.restart_cmd.substring(0, 50) + '...' : record.restart_cmd}
                 </Tag>
               </Tooltip>
+              &nbsp;
+              <Popconfirm
+                title="Are you sure?"
+                onConfirm={() => openServiceCmdExec(record, 'restart')}
+                okText="Yes"
+                cancelText="No"
+                icon={<QuestionCircleOutlined style={{color: 'red'}} />}
+              >
+                <Button type="primary" size="small" style={{height: 22}}>Restart</Button>
+              </Popconfirm>
             </div>
           )}
 
@@ -213,6 +243,16 @@ function ServiceList() {
                   {record.reload_cmd.length > 50 ? record.reload_cmd.substring(0, 50) + '...' : record.reload_cmd}
                 </Tag>
               </Tooltip>
+              &nbsp;
+              <Popconfirm
+                title="Are you sure?"
+                onConfirm={() => openServiceCmdExec(record, 'reload')}
+                okText="Yes"
+                cancelText="No"
+                icon={<QuestionCircleOutlined style={{color: 'red'}} />}
+              >
+                <Button type="primary" size="small" style={{height: 22}}>Reload</Button>
+              </Popconfirm>
             </div>
           )}
 
@@ -228,6 +268,15 @@ function ServiceList() {
                   {record.status_cmd.length > 50 ? record.status_cmd.substring(0, 50) + '...' : record.status_cmd}
                 </Tag>
               </Tooltip>
+              &nbsp;
+              <Button
+                type="primary"
+                size="small"
+                style={{height: 22}}
+                onClick={() => openServiceCmdExec(record, 'status')}
+              >
+                Status
+              </Button>
             </div>
           )}
         </div>
@@ -318,6 +367,7 @@ function ServiceList() {
             <Button type="link" className="ButtonLink">Delete</Button>
           </Popconfirm>
           <Divider orientation="vertical" />
+          {/*
           {record.start_cmd !== '' ? (
             <Popconfirm
               title="Are you sure?"
@@ -380,6 +430,7 @@ function ServiceList() {
             <Button type="link" className="ButtonLink" disabled>Status</Button>
           )}
           <Divider orientation="vertical" />
+          */}
           {record.term_cmd !== '' ? (
             <Typography.Link onClick={(event) => {event.preventDefault(); openServiceTerminal(record);}}>
               <img src={terminalIcon} alt="" style={{height: '22px', verticalAlign: 'top'}} />
