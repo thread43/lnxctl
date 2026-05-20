@@ -40,7 +40,7 @@ func WsOpenServiceTerminal(response http.ResponseWriter, request *http.Request) 
 	service_id2, err = strconv.ParseInt(service_id, 10, 64)
 	util.Raise(err)
 
-	var service map[string]interface{}
+	var service map[string]any
 	service, err = linux_service_common.GetService(service_id2)
 	util.Raise(err)
 
@@ -69,7 +69,7 @@ func WsOpenServiceTerminal(response http.ResponseWriter, request *http.Request) 
 	StartProcess(ws, service)
 }
 
-func StartProcess(ws *websocket.Conn, service map[string]interface{}) {
+func StartProcess(ws *websocket.Conn, service map[string]any) {
 	var err error
 
 	var term_cmd string
@@ -143,7 +143,7 @@ func StartProcess(ws *websocket.Conn, service map[string]interface{}) {
 			util.Raise(err)
 		}
 
-		var message2 map[string]interface{}
+		var message2 map[string]any
 		err = json.Unmarshal(message, &message2)
 		if err != nil {
 			_ = ws.Close()

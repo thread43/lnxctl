@@ -23,8 +23,8 @@ func GetRole(response http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	var role map[string]interface{}
-	role = make(map[string]interface{})
+	var role map[string]any
+	role = make(map[string]any)
 
 	{
 		var query string
@@ -42,7 +42,7 @@ func GetRole(response http.ResponseWriter, request *http.Request) {
 		err = row.Scan(&id2, &name, &remark, &create_time, &update_time)
 		util.Raise(err)
 
-		role = map[string]interface{}{
+		role = map[string]any{
 			"id":          id2.Int64,
 			"name":        name.String,
 			"remark":      remark.String,

@@ -3,7 +3,7 @@ package common
 func GetServerHost(id int64) (string, error) {
 	var err error
 
-	var server map[string]interface{}
+	var server map[string]any
 	server, err = GetServer(id)
 	if err != nil {
 		return "", err

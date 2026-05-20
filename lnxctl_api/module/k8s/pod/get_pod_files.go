@@ -103,8 +103,8 @@ func GetPodFiles(response http.ResponseWriter, request *http.Request) {
 	var stdout_str string
 	stdout_str = stdout.String()
 
-	var files []map[string]interface{}
-	files = make([]map[string]interface{}, 0)
+	var files []map[string]any
+	files = make([]map[string]any, 0)
 
 	var lines []string
 	stdout_str = strings.TrimSpace(stdout_str)
@@ -169,7 +169,7 @@ func GetPodFiles(response http.ResponseWriter, request *http.Request) {
 
 			files = append(
 				files,
-				map[string]interface{}{
+				map[string]any{
 					"id":       index,
 					"mode":     mode,
 					"size":     size,

@@ -21,8 +21,8 @@ func GetHosts(response http.ResponseWriter, request *http.Request) {
 		ORDER BY ip
 	`
 
-	var hosts []map[string]interface{}
-	hosts = make([]map[string]interface{}, 0)
+	var hosts []map[string]any
+	hosts = make([]map[string]any, 0)
 
 	{
 		var rows *sql.Rows
@@ -69,7 +69,7 @@ func GetHosts(response http.ResponseWriter, request *http.Request) {
 
 			hosts = append(
 				hosts,
-				map[string]interface{}{
+				map[string]any{
 					"id":              id.Int64,
 					"ip":              ip.String,
 					"ssh_host":        ssh_host.String,

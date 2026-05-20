@@ -23,8 +23,8 @@ func GetDept(response http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	var dept map[string]interface{}
-	dept = make(map[string]interface{})
+	var dept map[string]any
+	dept = make(map[string]any)
 
 	{
 		var query string
@@ -42,7 +42,7 @@ func GetDept(response http.ResponseWriter, request *http.Request) {
 		err = row.Scan(&id2, &name, &remark, &create_time, &update_time)
 		util.Raise(err)
 
-		dept = map[string]interface{}{
+		dept = map[string]any{
 			"id":          id2.Int64,
 			"name":        name.String,
 			"remark":      remark.String,

@@ -10,8 +10,8 @@ import (
 func GetRoles(response http.ResponseWriter, request *http.Request) {
 	var err error
 
-	var roles []map[string]interface{}
-	roles = make([]map[string]interface{}, 0)
+	var roles []map[string]any
+	roles = make([]map[string]any, 0)
 
 	{
 		var query string
@@ -34,7 +34,7 @@ func GetRoles(response http.ResponseWriter, request *http.Request) {
 
 			roles = append(
 				roles,
-				map[string]interface{}{
+				map[string]any{
 					"id":     id.Int64,
 					"name":   name.String,
 					"remark": remark.String,

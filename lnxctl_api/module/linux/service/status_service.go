@@ -29,7 +29,7 @@ func StatusService(response http.ResponseWriter, request *http.Request) {
 	id2, err = strconv.ParseInt(id, 10, 64)
 	util.Raise(err)
 
-	var service map[string]interface{}
+	var service map[string]any
 	service, err = linux_service_common.GetService(id2)
 	util.Raise(err)
 

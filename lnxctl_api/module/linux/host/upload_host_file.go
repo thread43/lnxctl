@@ -63,7 +63,7 @@ func UploadHostFile(response http.ResponseWriter, request *http.Request) {
 	host_id2, err = strconv.ParseInt(host_id, 10, 64)
 	util.Raise(err)
 
-	var host map[string]interface{}
+	var host map[string]any
 	host, err = linux_host_common.GetHost(host_id2)
 	util.Raise(err)
 

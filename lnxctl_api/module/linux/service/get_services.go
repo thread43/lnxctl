@@ -21,8 +21,8 @@ func GetServices(response http.ResponseWriter, request *http.Request) {
 		ORDER BY name
 	`
 
-	var services []map[string]interface{}
-	services = make([]map[string]interface{}, 0)
+	var services []map[string]any
+	services = make([]map[string]any, 0)
 
 	{
 		var rows *sql.Rows
@@ -55,7 +55,7 @@ func GetServices(response http.ResponseWriter, request *http.Request) {
 
 			services = append(
 				services,
-				map[string]interface{}{
+				map[string]any{
 					"id":          id.Int64,
 					"name":        name.String,
 					"start_cmd":   start_cmd.String,

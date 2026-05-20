@@ -5,7 +5,7 @@ import (
 	"log"
 )
 
-func JsonMarshal(value interface{}) string {
+func JsonMarshal(value any) string {
 	var err error
 
 	var value2 []byte
@@ -19,7 +19,7 @@ func JsonMarshal(value interface{}) string {
 	return string(value2)
 }
 
-func JsonMarshalIndent(value interface{}) string {
+func JsonMarshalIndent(value any) string {
 	var err error
 
 	var value2 []byte
@@ -33,18 +33,18 @@ func JsonMarshalIndent(value interface{}) string {
 	return string(value2)
 }
 
-func JsonDump(value interface{}) string {
+func JsonDump(value any) string {
 	return JsonMarshalIndent(value)
 }
 
-func JsonDump2(value interface{}) string {
+func JsonDump2(value any) string {
 	return JsonMarshal(value)
 }
 
-func Dump(value interface{}) string {
+func Dump(value any) string {
 	return JsonMarshalIndent(value)
 }
 
-func Dump2(value interface{}) string {
+func Dump2(value any) string {
 	return JsonMarshal(value)
 }

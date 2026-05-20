@@ -45,8 +45,8 @@ func GetNamespaces(response http.ResponseWriter, request *http.Request) {
 	namespace_list, err = clientset.CoreV1().Namespaces().List(context.Background(), meta_v1.ListOptions{})
 	util.Raise(err)
 
-	var namespaces []map[string]interface{}
-	namespaces = make([]map[string]interface{}, 0)
+	var namespaces []map[string]any
+	namespaces = make([]map[string]any, 0)
 
 	var item core_v1.Namespace
 	for _, item = range namespace_list.Items {
@@ -55,7 +55,7 @@ func GetNamespaces(response http.ResponseWriter, request *http.Request) {
 
 		namespaces = append(
 			namespaces,
-			map[string]interface{}{
+			map[string]any{
 				"cluster_id": cluster_id2,
 				"name":       name,
 			},

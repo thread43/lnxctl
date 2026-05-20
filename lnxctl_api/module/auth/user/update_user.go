@@ -43,7 +43,7 @@ func UpdateUser(response http.ResponseWriter, request *http.Request) {
 		}
 	}
 
-	var dept_id2 interface{}
+	var dept_id2 any
 	if dept_id != "" {
 		dept_id2 = dept_id
 	}

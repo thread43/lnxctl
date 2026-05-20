@@ -23,8 +23,8 @@ func GetHost(response http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	var host map[string]interface{}
-	host = make(map[string]interface{})
+	var host map[string]any
+	host = make(map[string]any)
 
 	{
 		var query string
@@ -58,7 +58,7 @@ func GetHost(response http.ResponseWriter, request *http.Request) {
 		)
 		util.Raise(err)
 
-		host = map[string]interface{}{
+		host = map[string]any{
 			"id":              id.Int64,
 			"ip":              ip.String,
 			"ssh_host":        ssh_host.String,

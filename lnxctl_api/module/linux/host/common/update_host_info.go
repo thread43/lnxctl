@@ -7,7 +7,7 @@ import (
 func UpdateHostInfo(id int64) error {
 	var err error
 
-	var host_info map[string]interface{}
+	var host_info map[string]any
 	host_info, err = GetHostInfo(id)
 	if err != nil {
 		return err

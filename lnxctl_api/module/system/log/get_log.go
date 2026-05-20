@@ -23,8 +23,8 @@ func GetLog(response http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	var log map[string]interface{}
-	log = make(map[string]interface{})
+	var log map[string]any
+	log = make(map[string]any)
 
 	{
 		var query string
@@ -59,7 +59,7 @@ func GetLog(response http.ResponseWriter, request *http.Request) {
 		)
 		util.Raise(err)
 
-		log = map[string]interface{}{
+		log = map[string]any{
 			"id":          id2.Int64,
 			"path":        path.String,
 			"ip":          ip.String,

@@ -54,8 +54,8 @@ func GetEndpointslices(response http.ResponseWriter, request *http.Request) {
 	endpoint_list, err = clientset.DiscoveryV1().EndpointSlices(namespace).List(context.Background(), meta_v1.ListOptions{})
 	util.Raise(err)
 
-	var endpoints []map[string]interface{}
-	endpoints = make([]map[string]interface{}, 0)
+	var endpoints []map[string]any
+	endpoints = make([]map[string]any, 0)
 
 	var item discovery_v1.EndpointSlice
 	for _, item = range endpoint_list.Items {
@@ -122,7 +122,7 @@ func GetEndpointslices(response http.ResponseWriter, request *http.Request) {
 
 		endpoints = append(
 			endpoints,
-			map[string]interface{}{
+			map[string]any{
 				"cluster_id":    cluster_id2,
 				"namespace":     namespace,
 				"name":          name,

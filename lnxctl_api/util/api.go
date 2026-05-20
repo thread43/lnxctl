@@ -6,11 +6,11 @@ import (
 	"net/http"
 )
 
-func Api(response http.ResponseWriter, code int, args ...interface{}) {
+func Api(response http.ResponseWriter, code int, args ...any) {
 	var err error
 
-	var data map[string]interface{}
-	data = map[string]interface{}{
+	var data map[string]any
+	data = map[string]any{
 		"code": code,
 		"msg":  http.StatusText(code),
 	}
@@ -22,9 +22,9 @@ func Api(response http.ResponseWriter, code int, args ...interface{}) {
 		data["data"] = args[0]
 
 		var key string
-		var value interface{}
+		var value any
 
-		for key, value = range args[1].(map[string]interface{}) {
+		for key, value = range args[1].(map[string]any) {
 			data[key] = value
 		}
 	} else {

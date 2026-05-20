@@ -47,8 +47,8 @@ func GetRoles(response http.ResponseWriter, request *http.Request) {
 		}
 	}
 
-	var roles []map[string]interface{}
-	roles = make([]map[string]interface{}, 0)
+	var roles []map[string]any
+	roles = make([]map[string]any, 0)
 
 	{
 		var query string
@@ -70,7 +70,7 @@ func GetRoles(response http.ResponseWriter, request *http.Request) {
 
 			roles = append(
 				roles,
-				map[string]interface{}{
+				map[string]any{
 					"id":   id.Int64,
 					"name": name.String,
 				},
@@ -78,8 +78,8 @@ func GetRoles(response http.ResponseWriter, request *http.Request) {
 		}
 	}
 
-	var extras map[string]interface{}
-	extras = map[string]interface{}{
+	var extras map[string]any
+	extras = map[string]any{
 		"role_ids":     role_ids,
 		"checked_keys": role_ids,
 	}

@@ -19,7 +19,7 @@ func GetMenus(response http.ResponseWriter, request *http.Request) {
 	session, err = util.STORE.Get(request, "whatever")
 	util.Skip(err)
 
-	var user_id interface{}
+	var user_id any
 	user_id = session.Values["id"]
 	if user_id == nil {
 		log.Println("invalid session or token")
@@ -27,7 +27,7 @@ func GetMenus(response http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	var is_admin interface{}
+	var is_admin any
 	is_admin = session.Values["is_admin"]
 	if is_admin == nil {
 		log.Println("invalid session or token")
@@ -35,17 +35,17 @@ func GetMenus(response http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	var menus []map[string]interface{}
-	menus = make([]map[string]interface{}, 0)
+	var menus []map[string]any
+	menus = make([]map[string]any, 0)
 
-	var parent_menu_ids []interface{}
-	parent_menu_ids = make([]interface{}, 0)
+	var parent_menu_ids []any
+	parent_menu_ids = make([]any, 0)
 
 	{
 		var query string
 
-		var args []interface{}
-		args = make([]interface{}, 0)
+		var args []any
+		args = make([]any, 0)
 
 		if is_admin == int64(1) {
 			query = `
@@ -68,7 +68,7 @@ func GetMenus(response http.ResponseWriter, request *http.Request) {
 				)
 				ORDER BY sort, code
 			`
-			args = []interface{}{user_id, user_id}
+			args = []any{user_id, user_id}
 		}
 
 		var rows *sql.Rows
@@ -89,7 +89,7 @@ func GetMenus(response http.ResponseWriter, request *http.Request) {
 
 			menus = append(
 				menus,
-				map[string]interface{}{
+				map[string]any{
 					"id":             id,
 					"code":           code,
 					"name":           name,
@@ -101,8 +101,8 @@ func GetMenus(response http.ResponseWriter, request *http.Request) {
 		}
 	}
 
-	var menus2 []map[string]interface{}
-	menus2 = make([]map[string]interface{}, 0)
+	var menus2 []map[string]any
+	menus2 = make([]map[string]any, 0)
 
 	if len(menus) > 0 {
 		var question_marks string
@@ -138,7 +138,7 @@ func GetMenus(response http.ResponseWriter, request *http.Request) {
 
 			menus2 = append(
 				menus2,
-				map[string]interface{}{
+				map[string]any{
 					"id":             id,
 					"code":           code,
 					"name":           name,
@@ -148,11 +148,11 @@ func GetMenus(response http.ResponseWriter, request *http.Request) {
 		}
 	}
 
-	var menus3 map[int64][]map[string]interface{}
-	menus3 = make(map[int64][]map[string]interface{})
+	var menus3 map[int64][]map[string]any
+	menus3 = make(map[int64][]map[string]any)
 
 	{
-		var menu map[string]interface{}
+		var menu map[string]any
 		for _, menu = range menus {
 			var parent_menu_id int64
 			parent_menu_id, _ = menu["parent_menu_id"].(int64)
@@ -160,11 +160,11 @@ func GetMenus(response http.ResponseWriter, request *http.Request) {
 		}
 	}
 
-	var menus4 []map[string]interface{}
-	menus4 = make([]map[string]interface{}, 0)
+	var menus4 []map[string]any
+	menus4 = make([]map[string]any, 0)
 
 	{
-		var menu map[string]interface{}
+		var menu map[string]any
 		for _, menu = range menus2 {
 			var id int64
 			id, _ = menu["id"].(int64)

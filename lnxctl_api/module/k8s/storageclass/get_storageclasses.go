@@ -50,8 +50,8 @@ func GetStorageclasses(response http.ResponseWriter, request *http.Request) {
 	storageclass_list, err = clientset.StorageV1().StorageClasses().List(context.Background(), meta_v1.ListOptions{})
 	util.Raise(err)
 
-	var storageclasses []map[string]interface{}
-	storageclasses = make([]map[string]interface{}, 0)
+	var storageclasses []map[string]any
+	storageclasses = make([]map[string]any, 0)
 
 	var item storage_v1.StorageClass
 	for _, item = range storageclass_list.Items {
@@ -95,7 +95,7 @@ func GetStorageclasses(response http.ResponseWriter, request *http.Request) {
 
 		storageclasses = append(
 			storageclasses,
-			map[string]interface{}{
+			map[string]any{
 				"cluster_id":             cluster_id2,
 				"namespace":              namespace,
 				"name":                   name,

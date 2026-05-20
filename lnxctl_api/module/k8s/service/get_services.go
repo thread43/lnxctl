@@ -51,8 +51,8 @@ func GetServices(response http.ResponseWriter, request *http.Request) {
 	service_list, err = clientset.CoreV1().Services(namespace).List(context.Background(), meta_v1.ListOptions{})
 	util.Raise(err)
 
-	var services []map[string]interface{}
-	services = make([]map[string]interface{}, 0)
+	var services []map[string]any
+	services = make([]map[string]any, 0)
 
 	var item core_v1.Service
 	for _, item = range service_list.Items {
@@ -68,14 +68,14 @@ func GetServices(response http.ResponseWriter, request *http.Request) {
 		var cluster_ip string
 		cluster_ip = item.Spec.ClusterIP
 
-		var ports []map[string]interface{}
-		ports = make([]map[string]interface{}, 0)
+		var ports []map[string]any
+		ports = make([]map[string]any, 0)
 
 		var service_port core_v1.ServicePort
 		for _, service_port = range item.Spec.Ports {
 			ports = append(
 				ports,
-				map[string]interface{}{
+				map[string]any{
 					"name":        service_port.Name,
 					"port":        service_port.Port,
 					"protocol":    string(service_port.Protocol),
@@ -97,7 +97,7 @@ func GetServices(response http.ResponseWriter, request *http.Request) {
 
 		services = append(
 			services,
-			map[string]interface{}{
+			map[string]any{
 				"cluster_id": cluster_id2,
 				"namespace":  namespace,
 				"name":       name,

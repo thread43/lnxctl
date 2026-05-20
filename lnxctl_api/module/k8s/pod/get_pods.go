@@ -57,8 +57,8 @@ func GetPods(response http.ResponseWriter, request *http.Request) {
 	)
 	util.Raise(err)
 
-	var pods []map[string]interface{}
-	pods = make([]map[string]interface{}, 0)
+	var pods []map[string]any
+	pods = make([]map[string]any, 0)
 
 	var item core_v1.Pod
 	for _, item = range pod_list.Items {
@@ -68,8 +68,8 @@ func GetPods(response http.ResponseWriter, request *http.Request) {
 		var name string
 		name = item.Name
 
-		var containers []map[string]interface{}
-		containers = make([]map[string]interface{}, 0)
+		var containers []map[string]any
+		containers = make([]map[string]any, 0)
 
 		var ready string
 		var restarts int32
@@ -111,7 +111,7 @@ func GetPods(response http.ResponseWriter, request *http.Request) {
 
 				containers = append(
 					containers,
-					map[string]interface{}{
+					map[string]any{
 						"name":             container_status.Name,
 						"image":            container_status.Image,
 						"status":           status,
@@ -159,7 +159,7 @@ func GetPods(response http.ResponseWriter, request *http.Request) {
 
 		pods = append(
 			pods,
-			map[string]interface{}{
+			map[string]any{
 				"cluster_id": cluster_id2,
 				"namespace":  namespace,
 				"name":       name,

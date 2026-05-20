@@ -51,8 +51,8 @@ func GetServiceaccounts(response http.ResponseWriter, request *http.Request) {
 	serviceaccount_list, err = clientset.CoreV1().ServiceAccounts(namespace).List(context.Background(), meta_v1.ListOptions{})
 	util.Raise(err)
 
-	var serviceaccounts []map[string]interface{}
-	serviceaccounts = make([]map[string]interface{}, 0)
+	var serviceaccounts []map[string]any
+	serviceaccounts = make([]map[string]any, 0)
 
 	var item core_v1.ServiceAccount
 	for _, item = range serviceaccount_list.Items {
@@ -77,7 +77,7 @@ func GetServiceaccounts(response http.ResponseWriter, request *http.Request) {
 
 		serviceaccounts = append(
 			serviceaccounts,
-			map[string]interface{}{
+			map[string]any{
 				"cluster_id": cluster_id2,
 				"namespace":  namespace,
 				"name":       name,

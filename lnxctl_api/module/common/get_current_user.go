@@ -17,7 +17,7 @@ func GetCurrentUser(response http.ResponseWriter, request *http.Request) {
 	session, err = util.STORE.Get(request, "whatever")
 	util.Skip(err)
 
-	var username interface{}
+	var username any
 	username = session.Values["username"]
 	if username == nil {
 		log.Println("invalid session or token")
@@ -25,8 +25,8 @@ func GetCurrentUser(response http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	var user map[string]interface{}
-	user = make(map[string]interface{})
+	var user map[string]any
+	user = make(map[string]any)
 
 	{
 		var query string
@@ -57,7 +57,7 @@ func GetCurrentUser(response http.ResponseWriter, request *http.Request) {
 		)
 		util.Raise(err)
 
-		user = map[string]interface{}{
+		user = map[string]any{
 			"id":          id.Int64,
 			"username":    username2.String,
 			"nickname":    nickname.String,

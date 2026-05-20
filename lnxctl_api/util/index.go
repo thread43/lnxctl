@@ -24,7 +24,7 @@ func Raise(err error) {
 }
 
 func Catch() {
-	var err interface{}
+	var err any
 	err = recover()
 	if err != nil {
 		log.Println(err)
@@ -33,7 +33,7 @@ func Catch() {
 }
 
 func Catch500(response http.ResponseWriter) {
-	var err interface{}
+	var err any
 	err = recover()
 	if err != nil {
 		log.Println(err)

@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func RecordRequest(request *http.Request, user_id interface{}) {
+func RecordRequest(request *http.Request, user_id any) {
 	defer Catch()
 
 	var err error

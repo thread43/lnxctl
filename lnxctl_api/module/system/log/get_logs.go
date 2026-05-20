@@ -68,8 +68,8 @@ func GetLogs(response http.ResponseWriter, request *http.Request) {
 		util.Raise(err)
 	}
 
-	var logs []map[string]interface{}
-	logs = make([]map[string]interface{}, 0)
+	var logs []map[string]any
+	logs = make([]map[string]any, 0)
 
 	{
 		var query string
@@ -108,7 +108,7 @@ func GetLogs(response http.ResponseWriter, request *http.Request) {
 
 			logs = append(
 				logs,
-				map[string]interface{}{
+				map[string]any{
 					"id":          id,
 					"path":        path,
 					"ip":          ip,
@@ -122,11 +122,11 @@ func GetLogs(response http.ResponseWriter, request *http.Request) {
 		}
 	}
 
-	var pagination map[string]interface{}
+	var pagination map[string]any
 	pagination = util.GetPagination(page2, size2, total)
 
-	var extras map[string]interface{}
-	extras = map[string]interface{}{
+	var extras map[string]any
+	extras = map[string]any{
 		"pagination": pagination,
 	}
 

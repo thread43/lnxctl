@@ -23,8 +23,8 @@ func GetServer(response http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	var cluster map[string]interface{}
-	cluster = make(map[string]interface{})
+	var cluster map[string]any
+	cluster = make(map[string]any)
 
 	{
 		var query string
@@ -53,7 +53,7 @@ func GetServer(response http.ResponseWriter, request *http.Request) {
 		)
 		util.Raise(err)
 
-		cluster = map[string]interface{}{
+		cluster = map[string]any{
 			"id":          id.Int64,
 			"name":        name.String,
 			"host":        host.String,

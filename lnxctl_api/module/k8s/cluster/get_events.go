@@ -55,8 +55,8 @@ func GetEvents(response http.ResponseWriter, request *http.Request) {
 		},
 	)
 
-	var events []map[string]interface{}
-	events = make([]map[string]interface{}, 0)
+	var events []map[string]any
+	events = make([]map[string]any, 0)
 
 	var item core_v1.Event
 	for _, item = range event_list.Items {
@@ -78,7 +78,7 @@ func GetEvents(response http.ResponseWriter, request *http.Request) {
 
 		events = append(
 			events,
-			map[string]interface{}{
+			map[string]any{
 				"name":      name,
 				"namespace": namespace,
 				"time":      time2,

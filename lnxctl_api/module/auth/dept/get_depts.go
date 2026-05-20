@@ -13,8 +13,8 @@ func GetDepts(response http.ResponseWriter, request *http.Request) {
 	var query string
 	query = "SELECT id, name, remark FROM auth_dept ORDER BY name"
 
-	var depts []map[string]interface{}
-	depts = make([]map[string]interface{}, 0)
+	var depts []map[string]any
+	depts = make([]map[string]any, 0)
 
 	{
 		var rows *sql.Rows
@@ -34,7 +34,7 @@ func GetDepts(response http.ResponseWriter, request *http.Request) {
 
 			depts = append(
 				depts,
-				map[string]interface{}{
+				map[string]any{
 					"id":     id.Int64,
 					"name":   name.String,
 					"remark": remark.String,

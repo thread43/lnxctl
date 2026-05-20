@@ -22,8 +22,8 @@ func GetPerms(response http.ResponseWriter, request *http.Request) {
 		}
 	}
 
-	var perms []map[string]interface{}
-	perms = make([]map[string]interface{}, 0)
+	var perms []map[string]any
+	perms = make([]map[string]any, 0)
 
 	{
 		var query string
@@ -37,7 +37,7 @@ func GetPerms(response http.ResponseWriter, request *http.Request) {
 			ORDER BY perm.code
 		`
 
-		var args []interface{}
+		var args []any
 		if menu_id == "" {
 			query = fmt.Sprintf(query, "")
 		} else {
@@ -65,7 +65,7 @@ func GetPerms(response http.ResponseWriter, request *http.Request) {
 
 			perms = append(
 				perms,
-				map[string]interface{}{
+				map[string]any{
 					"id":        id.Int64,
 					"code":      code.String,
 					"name":      name.String,

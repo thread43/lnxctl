@@ -53,8 +53,8 @@ func GetJobs(response http.ResponseWriter, request *http.Request) {
 	job_list, err = clientset.BatchV1().Jobs(namespace).List(context.Background(), meta_v1.ListOptions{})
 	util.Raise(err)
 
-	var jobs []map[string]interface{}
-	jobs = make([]map[string]interface{}, 0)
+	var jobs []map[string]any
+	jobs = make([]map[string]any, 0)
 
 	var item batch_v1.Job
 	for _, item = range job_list.Items {
@@ -149,7 +149,7 @@ func GetJobs(response http.ResponseWriter, request *http.Request) {
 
 		jobs = append(
 			jobs,
-			map[string]interface{}{
+			map[string]any{
 				"cluster_id":  cluster_id2,
 				"namespace":   namespace,
 				"name":        name,

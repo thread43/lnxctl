@@ -45,7 +45,7 @@ func GetHostFiles(response http.ResponseWriter, request *http.Request) {
 	host_id2, err = strconv.ParseInt(host_id, 10, 64)
 	util.Raise(err)
 
-	var host map[string]interface{}
+	var host map[string]any
 	host, err = linux_host_common.GetHost(host_id2)
 	util.Raise(err)
 
@@ -83,8 +83,8 @@ func GetHostFiles(response http.ResponseWriter, request *http.Request) {
 	file_list, err = sftp_client.ReadDir(dir)
 	util.Raise(err)
 
-	var files []map[string]interface{}
-	files = make([]map[string]interface{}, 0)
+	var files []map[string]any
+	files = make([]map[string]any, 0)
 
 	// type FileInfo interface {
 	// 	Name() string       // base name of the file
@@ -127,7 +127,7 @@ func GetHostFiles(response http.ResponseWriter, request *http.Request) {
 
 		files = append(
 			files,
-			map[string]interface{}{
+			map[string]any{
 				"name":     name,
 				"size":     size,
 				"mode":     mode,

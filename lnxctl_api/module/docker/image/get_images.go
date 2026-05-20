@@ -72,8 +72,8 @@ func GetImages(response http.ResponseWriter, request *http.Request) {
 	// busybox:latest   b3255e7dfbcd       6.77MB         2.22MB
 	// nginx:latest     341bf0f3ce6c        240MB         65.8MB
 
-	var images []map[string]interface{}
-	images = make([]map[string]interface{}, 0)
+	var images []map[string]any
+	images = make([]map[string]any, 0)
 
 	var image types_image.Summary
 	for _, image = range image_list {
@@ -108,7 +108,7 @@ func GetImages(response http.ResponseWriter, request *http.Request) {
 
 			images = append(
 				images,
-				map[string]interface{}{
+				map[string]any{
 					"server_id":    server_id2,
 					"id":           id,
 					"image_id_raw": image_id_raw,
@@ -136,7 +136,7 @@ func GetImages(response http.ResponseWriter, request *http.Request) {
 
 				images = append(
 					images,
-					map[string]interface{}{
+					map[string]any{
 						"server_id":    server_id2,
 						"id":           id,
 						"image_id_raw": image_id_raw,

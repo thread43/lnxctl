@@ -52,8 +52,8 @@ func GetReplicasets(response http.ResponseWriter, request *http.Request) {
 	replicaset_list, err = clientset.AppsV1().ReplicaSets(namespace).List(context.Background(), meta_v1.ListOptions{})
 	util.Raise(err)
 
-	var replicasets []map[string]interface{}
-	replicasets = make([]map[string]interface{}, 0)
+	var replicasets []map[string]any
+	replicasets = make([]map[string]any, 0)
 
 	var item apps_v1.ReplicaSet
 	for _, item = range replicaset_list.Items {
@@ -96,7 +96,7 @@ func GetReplicasets(response http.ResponseWriter, request *http.Request) {
 
 		replicasets = append(
 			replicasets,
-			map[string]interface{}{
+			map[string]any{
 				"cluster_id":      cluster_id2,
 				"namespace":       namespace,
 				"name":            name,

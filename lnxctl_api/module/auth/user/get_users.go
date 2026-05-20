@@ -74,8 +74,8 @@ func GetUsers(response http.ResponseWriter, request *http.Request) {
 		}
 	}
 
-	var users []map[string]interface{}
-	users = make([]map[string]interface{}, 0)
+	var users []map[string]any
+	users = make([]map[string]any, 0)
 
 	{
 		var query string
@@ -118,7 +118,7 @@ func GetUsers(response http.ResponseWriter, request *http.Request) {
 
 			users = append(
 				users,
-				map[string]interface{}{
+				map[string]any{
 					"id":         id.Int64,
 					"username":   username.String,
 					"nickname":   nickname.String,

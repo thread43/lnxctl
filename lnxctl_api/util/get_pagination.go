@@ -1,6 +1,6 @@
 package util
 
-func GetPagination(page int, size int, total int) map[string]interface{} {
+func GetPagination(page int, size int, total int) map[string]any {
 	var first int
 	var prev int
 	var next int
@@ -39,8 +39,8 @@ func GetPagination(page int, size int, total int) map[string]interface{} {
 		}
 	}
 
-	var pagination map[string]interface{}
-	pagination = map[string]interface{}{
+	var pagination map[string]any
+	pagination = map[string]any{
 		"page":  page,
 		"size":  size,
 		"total": total,

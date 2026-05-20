@@ -23,8 +23,8 @@ func GetService(response http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	var service map[string]interface{}
-	service = make(map[string]interface{})
+	var service map[string]any
+	service = make(map[string]any)
 
 	{
 		var query string
@@ -61,7 +61,7 @@ func GetService(response http.ResponseWriter, request *http.Request) {
 		)
 		util.Raise(err)
 
-		service = map[string]interface{}{
+		service = map[string]any{
 			"id":          id.Int64,
 			"name":        name.String,
 			"start_cmd":   start_cmd.String,

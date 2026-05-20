@@ -7,11 +7,11 @@ import (
 	"lnxctl/util"
 )
 
-func GetPermTree() map[string]interface{} {
+func GetPermTree() map[string]any {
 	var err error
 
-	var perms []map[string]interface{}
-	perms = make([]map[string]interface{}, 0)
+	var perms []map[string]any
+	perms = make([]map[string]any, 0)
 
 	{
 		var query string
@@ -36,7 +36,7 @@ func GetPermTree() map[string]interface{} {
 
 			perms = append(
 				perms,
-				map[string]interface{}{
+				map[string]any{
 					"id":      id.Int64,
 					"code":    code.String,
 					"name":    name.String,
@@ -50,11 +50,11 @@ func GetPermTree() map[string]interface{} {
 		}
 	}
 
-	var menu_id_perms map[int64][]interface{}
-	menu_id_perms = make(map[int64][]interface{})
+	var menu_id_perms map[int64][]any
+	menu_id_perms = make(map[int64][]any)
 
 	{
-		var perm map[string]interface{}
+		var perm map[string]any
 		for _, perm = range perms {
 			var menu_id int64
 			menu_id, _ = perm["menu_id"].(int64)
@@ -65,8 +65,8 @@ func GetPermTree() map[string]interface{} {
 		}
 	}
 
-	var menus []map[string]interface{}
-	menus = make([]map[string]interface{}, 0)
+	var menus []map[string]any
+	menus = make([]map[string]any, 0)
 
 	{
 		var query string
@@ -90,7 +90,7 @@ func GetPermTree() map[string]interface{} {
 
 			menus = append(
 				menus,
-				map[string]interface{}{
+				map[string]any{
 					"id":             id,
 					"code":           code,
 					"name":           name,
@@ -102,11 +102,11 @@ func GetPermTree() map[string]interface{} {
 		}
 	}
 
-	var menus2 map[int64][]map[string]interface{}
-	menus2 = make(map[int64][]map[string]interface{})
+	var menus2 map[int64][]map[string]any
+	menus2 = make(map[int64][]map[string]any)
 
 	{
-		var menu map[string]interface{}
+		var menu map[string]any
 		for _, menu = range menus {
 			var id int64
 			var parent_menu_id int64
@@ -116,7 +116,7 @@ func GetPermTree() map[string]interface{} {
 
 			if parent_menu_id != 0 {
 				if menu_id_perms[id] == nil {
-					menu_id_perms[id] = make([]interface{}, 0)
+					menu_id_perms[id] = make([]any, 0)
 				}
 				menu["children"] = menu_id_perms[id]
 				menus2[parent_menu_id] = append(menus2[parent_menu_id], menu)
@@ -124,14 +124,14 @@ func GetPermTree() map[string]interface{} {
 		}
 	}
 
-	var menus3 []map[string]interface{}
-	menus3 = make([]map[string]interface{}, 0)
+	var menus3 []map[string]any
+	menus3 = make([]map[string]any, 0)
 
 	var expanded_keys []string
 	expanded_keys = make([]string, 0)
 
 	{
-		var menu map[string]interface{}
+		var menu map[string]any
 		for _, menu = range menus {
 			var id int64
 			var parent_menu_id int64
@@ -141,7 +141,7 @@ func GetPermTree() map[string]interface{} {
 
 			if parent_menu_id == 0 {
 				if menus2[id] == nil {
-					menus2[id] = make([]map[string]interface{}, 0)
+					menus2[id] = make([]map[string]any, 0)
 				}
 				menu["children"] = menus2[id]
 				menus3 = append(menus3, menu)
@@ -151,8 +151,8 @@ func GetPermTree() map[string]interface{} {
 		}
 	}
 
-	var perm_tree map[string]interface{}
-	perm_tree = map[string]interface{}{
+	var perm_tree map[string]any
+	perm_tree = map[string]any{
 		"perms":         menus3,
 		"expanded_keys": expanded_keys,
 	}

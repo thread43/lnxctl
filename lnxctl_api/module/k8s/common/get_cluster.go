@@ -6,11 +6,11 @@ import (
 	"lnxctl/util"
 )
 
-func GetCluster(id int64) (map[string]interface{}, error) {
+func GetCluster(id int64) (map[string]any, error) {
 	var err error
 
-	var cluster map[string]interface{}
-	cluster = make(map[string]interface{})
+	var cluster map[string]any
+	cluster = make(map[string]any)
 
 	{
 		var query string
@@ -37,7 +37,7 @@ func GetCluster(id int64) (map[string]interface{}, error) {
 			return nil, err
 		}
 
-		cluster = map[string]interface{}{
+		cluster = map[string]any{
 			"id":          id2.Int64,
 			"name":        name.String,
 			"kubeconfig":  kubeconfig.String,

@@ -23,8 +23,8 @@ func GetUser(response http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	var user map[string]interface{}
-	user = make(map[string]interface{})
+	var user map[string]any
+	user = make(map[string]any)
 
 	{
 		var query string
@@ -56,12 +56,12 @@ func GetUser(response http.ResponseWriter, request *http.Request) {
 		)
 		util.Raise(err)
 
-		var dept_id2 interface{}
+		var dept_id2 any
 		if dept_id.Valid {
 			dept_id2 = dept_id.Int64
 		}
 
-		user = map[string]interface{}{
+		user = map[string]any{
 			"id":          id2.Int64,
 			"username":    username.String,
 			"nickname":    nickname.String,

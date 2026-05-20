@@ -59,8 +59,8 @@ func GetNetworks(response http.ResponseWriter, request *http.Request) {
 	}
 	util.Raise(err)
 
-	var networks []map[string]interface{}
-	networks = make([]map[string]interface{}, 0)
+	var networks []map[string]any
+	networks = make([]map[string]any, 0)
 
 	var network types_network.Summary
 	for _, network = range network_list {
@@ -89,7 +89,7 @@ func GetNetworks(response http.ResponseWriter, request *http.Request) {
 
 		networks = append(
 			networks,
-			map[string]interface{}{
+			map[string]any{
 				"server_id":      server_id2,
 				"id":             id,
 				"network_id_raw": network_id_raw,

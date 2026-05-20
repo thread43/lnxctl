@@ -6,11 +6,11 @@ import (
 	"lnxctl/util"
 )
 
-func GetHost(id int64) (map[string]interface{}, error) {
+func GetHost(id int64) (map[string]any, error) {
 	var err error
 
-	var host map[string]interface{}
-	host = make(map[string]interface{})
+	var host map[string]any
+	host = make(map[string]any)
 
 	{
 		var query string
@@ -36,7 +36,7 @@ func GetHost(id int64) (map[string]interface{}, error) {
 			return nil, err
 		}
 
-		host = map[string]interface{}{
+		host = map[string]any{
 			"id":              id.Int64,
 			"ip":              ip.String,
 			"ssh_host":        ssh_host.String,

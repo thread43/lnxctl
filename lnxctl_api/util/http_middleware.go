@@ -21,9 +21,9 @@ func MakeHandler(next func(http.ResponseWriter, *http.Request)) http.HandlerFunc
 		session, err = STORE.Get(request, "whatever")
 		Skip(err)
 
-		var user_id interface{}
-		var is_admin interface{}
-		var perms interface{}
+		var user_id any
+		var is_admin any
+		var perms any
 
 		user_id = session.Values["id"]
 		is_admin = session.Values["is_admin"]

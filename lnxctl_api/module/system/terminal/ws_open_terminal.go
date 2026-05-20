@@ -103,7 +103,7 @@ func WsOpenTerminal(response http.ResponseWriter, request *http.Request) {
 			util.Raise(err)
 		}
 
-		var message2 map[string]interface{}
+		var message2 map[string]any
 		err = json.Unmarshal(message, &message2)
 		if err != nil {
 			_ = ws.Close()

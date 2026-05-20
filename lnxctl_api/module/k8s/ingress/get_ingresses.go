@@ -51,8 +51,8 @@ func GetIngresses(response http.ResponseWriter, request *http.Request) {
 	ingress_list, err = clientset.NetworkingV1().Ingresses(namespace).List(context.Background(), meta_v1.ListOptions{})
 	util.Raise(err)
 
-	var ingresses []map[string]interface{}
-	ingresses = make([]map[string]interface{}, 0)
+	var ingresses []map[string]any
+	ingresses = make([]map[string]any, 0)
 
 	var item networking_v1.Ingress
 	for _, item = range ingress_list.Items {
@@ -90,7 +90,7 @@ func GetIngresses(response http.ResponseWriter, request *http.Request) {
 
 		ingresses = append(
 			ingresses,
-			map[string]interface{}{
+			map[string]any{
 				"cluster_id": cluster_id2,
 				"namespace":  namespace,
 				"name":       name,

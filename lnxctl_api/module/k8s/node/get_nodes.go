@@ -49,8 +49,8 @@ func GetNodes(response http.ResponseWriter, request *http.Request) {
 	node_list, err = clientset.CoreV1().Nodes().List(context.Background(), meta_v1.ListOptions{})
 	util.Raise(err)
 
-	var nodes []map[string]interface{}
-	nodes = make([]map[string]interface{}, 0)
+	var nodes []map[string]any
+	nodes = make([]map[string]any, 0)
 
 	var item core_v1.Node
 	for _, item = range node_list.Items {
@@ -185,7 +185,7 @@ func GetNodes(response http.ResponseWriter, request *http.Request) {
 
 		nodes = append(
 			nodes,
-			map[string]interface{}{
+			map[string]any{
 				"cluster_id": cluster_id2,
 				"name":       name,
 				"status":     status,

@@ -52,8 +52,8 @@ func GetPvcs(response http.ResponseWriter, request *http.Request) {
 	pvc_list, err = clientset.CoreV1().PersistentVolumeClaims(namespace).List(context.Background(), meta_v1.ListOptions{})
 	util.Raise(err)
 
-	var pvcs []map[string]interface{}
-	pvcs = make([]map[string]interface{}, 0)
+	var pvcs []map[string]any
+	pvcs = make([]map[string]any, 0)
 
 	var item core_v1.PersistentVolumeClaim
 	for _, item = range pvc_list.Items {
@@ -105,7 +105,7 @@ func GetPvcs(response http.ResponseWriter, request *http.Request) {
 
 		pvcs = append(
 			pvcs,
-			map[string]interface{}{
+			map[string]any{
 				"cluster_id":              cluster_id2,
 				"namespace":               namespace,
 				"name":                    name,

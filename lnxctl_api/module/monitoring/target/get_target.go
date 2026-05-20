@@ -23,8 +23,8 @@ func GetTarget(response http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	var target map[string]interface{}
-	target = make(map[string]interface{})
+	var target map[string]any
+	target = make(map[string]any)
 
 	{
 		var query string
@@ -71,7 +71,7 @@ func GetTarget(response http.ResponseWriter, request *http.Request) {
 		)
 		util.Raise(err)
 
-		target = map[string]interface{}{
+		target = map[string]any{
 			"id":           id2.Int64,
 			"name":         name.String,
 			"crontab":      crontab.String,

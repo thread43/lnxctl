@@ -10,8 +10,8 @@ import (
 func GetTargets(response http.ResponseWriter, request *http.Request) {
 	var err error
 
-	var targets []map[string]interface{}
-	targets = make([]map[string]interface{}, 0)
+	var targets []map[string]any
+	targets = make([]map[string]any, 0)
 
 	{
 		var query string
@@ -65,7 +65,7 @@ func GetTargets(response http.ResponseWriter, request *http.Request) {
 
 			targets = append(
 				targets,
-				map[string]interface{}{
+				map[string]any{
 					"id":           id.Int64,
 					"name":         name.String,
 					"crontab":      crontab.String,

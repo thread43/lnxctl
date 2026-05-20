@@ -13,7 +13,7 @@ func GetRestConfig(cluster_id int64) (*rest.Config, error) {
 
 	var rest_config *rest.Config
 
-	var cluster map[string]interface{}
+	var cluster map[string]any
 	cluster, err = GetCluster(cluster_id)
 	if err != nil {
 		return nil, err

@@ -29,14 +29,14 @@ func UploadTarget(response http.ResponseWriter, request *http.Request) {
 	log.Println("uploaded file size:", file_header.Size)
 	log.Println("uploaded file header:", file_header.Header)
 
-	var data []map[string]interface{}
+	var data []map[string]any
 	err = json.NewDecoder(file).Decode(&data)
 	util.Raise(err)
 
 	log.Println("data:", data)
 
 	{
-		var item map[string]interface{}
+		var item map[string]any
 		for _, item = range data {
 			log.Println("item:", item)
 

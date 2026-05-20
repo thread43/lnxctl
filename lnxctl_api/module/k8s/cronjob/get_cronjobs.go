@@ -52,8 +52,8 @@ func GetCronjobs(response http.ResponseWriter, request *http.Request) {
 	cronjob_list, err = clientset.BatchV1().CronJobs(namespace).List(context.Background(), meta_v1.ListOptions{})
 	util.Raise(err)
 
-	var cronjobs []map[string]interface{}
-	cronjobs = make([]map[string]interface{}, 0)
+	var cronjobs []map[string]any
+	cronjobs = make([]map[string]any, 0)
 
 	var item batch_v1.CronJob
 	for _, item = range cronjob_list.Items {
@@ -111,7 +111,7 @@ func GetCronjobs(response http.ResponseWriter, request *http.Request) {
 
 		cronjobs = append(
 			cronjobs,
-			map[string]interface{}{
+			map[string]any{
 				"cluster_id":    cluster_id2,
 				"namespace":     namespace,
 				"name":          name,

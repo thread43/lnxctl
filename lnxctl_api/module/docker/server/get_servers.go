@@ -19,8 +19,8 @@ func GetServers(response http.ResponseWriter, request *http.Request) {
 		ORDER BY name
 	`
 
-	var clusters []map[string]interface{}
-	clusters = make([]map[string]interface{}, 0)
+	var clusters []map[string]any
+	clusters = make([]map[string]any, 0)
 
 	{
 		var rows *sql.Rows
@@ -47,7 +47,7 @@ func GetServers(response http.ResponseWriter, request *http.Request) {
 
 			clusters = append(
 				clusters,
-				map[string]interface{}{
+				map[string]any{
 					"id":          id.Int64,
 					"name":        name.String,
 					"host":        host.String,

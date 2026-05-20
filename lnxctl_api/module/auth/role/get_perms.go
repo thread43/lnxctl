@@ -54,14 +54,14 @@ func GetPerms(response http.ResponseWriter, request *http.Request) {
 		}
 	}
 
-	var perm_tree map[string]interface{}
+	var perm_tree map[string]any
 	perm_tree = auth_common.GetPermTree()
 
-	var perms []map[string]interface{}
-	perms = perm_tree["perms"].([]map[string]interface{})
+	var perms []map[string]any
+	perms = perm_tree["perms"].([]map[string]any)
 
-	var extras map[string]interface{}
-	extras = map[string]interface{}{
+	var extras map[string]any
+	extras = map[string]any{
 		"perm_ids":      perm_ids,
 		"checked_keys":  checked_keys,
 		"expanded_keys": perm_tree["expanded_keys"],

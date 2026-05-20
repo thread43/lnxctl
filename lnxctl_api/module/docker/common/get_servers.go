@@ -13,8 +13,8 @@ func GetServers(response http.ResponseWriter, request *http.Request) {
 	var query string
 	query = "SELECT id, name FROM docker_server ORDER BY name"
 
-	var servers []map[string]interface{}
-	servers = make([]map[string]interface{}, 0)
+	var servers []map[string]any
+	servers = make([]map[string]any, 0)
 
 	{
 		var rows *sql.Rows
@@ -33,7 +33,7 @@ func GetServers(response http.ResponseWriter, request *http.Request) {
 
 			servers = append(
 				servers,
-				map[string]interface{}{
+				map[string]any{
 					"id":   id.Int64,
 					"name": name.String,
 				},

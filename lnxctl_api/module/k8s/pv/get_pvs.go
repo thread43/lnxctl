@@ -50,8 +50,8 @@ func GetPvs(response http.ResponseWriter, request *http.Request) {
 	pv_list, err = clientset.CoreV1().PersistentVolumes().List(context.Background(), meta_v1.ListOptions{})
 	util.Raise(err)
 
-	var secrets []map[string]interface{}
-	secrets = make([]map[string]interface{}, 0)
+	var secrets []map[string]any
+	secrets = make([]map[string]any, 0)
 
 	var item core_v1.PersistentVolume
 	for _, item = range pv_list.Items {
@@ -116,7 +116,7 @@ func GetPvs(response http.ResponseWriter, request *http.Request) {
 
 		secrets = append(
 			secrets,
-			map[string]interface{}{
+			map[string]any{
 				"cluster_id":              cluster_id2,
 				"namespace":               namespace,
 				"name":                    name,

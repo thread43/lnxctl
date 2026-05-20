@@ -39,7 +39,7 @@ func UpdatePerm(response http.ResponseWriter, request *http.Request) {
 		}
 	}
 
-	var menu_id2 interface{}
+	var menu_id2 any
 	if menu_id != "" {
 		menu_id2 = menu_id
 	}

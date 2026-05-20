@@ -6,11 +6,11 @@ import (
 	"lnxctl/util"
 )
 
-func GetService(id int64) (map[string]interface{}, error) {
+func GetService(id int64) (map[string]any, error) {
 	var err error
 
-	var service map[string]interface{}
-	service = make(map[string]interface{})
+	var service map[string]any
+	service = make(map[string]any)
 
 	{
 		var query string
@@ -44,7 +44,7 @@ func GetService(id int64) (map[string]interface{}, error) {
 			return nil, err
 		}
 
-		service = map[string]interface{}{
+		service = map[string]any{
 			"id":          id.Int64,
 			"name":        name.String,
 			"start_cmd":   start_cmd.String,

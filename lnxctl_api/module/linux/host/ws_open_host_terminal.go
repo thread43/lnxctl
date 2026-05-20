@@ -42,7 +42,7 @@ func WsOpenHostTerminal(response http.ResponseWriter, request *http.Request) {
 	host_id2, err = strconv.ParseInt(host_id, 10, 64)
 	util.Raise(err)
 
-	var host map[string]interface{}
+	var host map[string]any
 	host, err = linux_host_common.GetHost(host_id2)
 	util.Raise(err)
 
@@ -74,7 +74,7 @@ func WsOpenHostTerminal(response http.ResponseWriter, request *http.Request) {
 // https://pkg.go.dev/github.com/gorilla/websocket
 // https://pkg.go.dev/golang.org/x/crypto/ssh#Session.RequestPty
 // https://datatracker.ietf.org/doc/html/rfc4254#section-6
-func StartProcess(ws *websocket.Conn, host map[string]interface{}) {
+func StartProcess(ws *websocket.Conn, host map[string]any) {
 	var err error
 
 	var addr string
@@ -212,7 +212,7 @@ func StartProcess(ws *websocket.Conn, host map[string]interface{}) {
 			util.Raise(err)
 		}
 
-		var message2 map[string]interface{}
+		var message2 map[string]any
 		err = json.Unmarshal(message, &message2)
 		if err != nil {
 			_ = ws.Close()

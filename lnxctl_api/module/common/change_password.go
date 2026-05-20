@@ -30,7 +30,7 @@ func ChangePassword(response http.ResponseWriter, request *http.Request) {
 	session, err = util.STORE.Get(request, "whatever")
 	util.Skip(err)
 
-	var username interface{}
+	var username any
 	username = session.Values["username"]
 	if username == nil {
 		panic("invalid session or token")

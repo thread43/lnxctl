@@ -51,8 +51,8 @@ func GetConfigmaps(response http.ResponseWriter, request *http.Request) {
 	configmap_list, err = clientset.CoreV1().ConfigMaps(namespace).List(context.Background(), meta_v1.ListOptions{})
 	util.Raise(err)
 
-	var configmaps []map[string]interface{}
-	configmaps = make([]map[string]interface{}, 0)
+	var configmaps []map[string]any
+	configmaps = make([]map[string]any, 0)
 
 	var item core_v1.ConfigMap
 	for _, item = range configmap_list.Items {
@@ -77,7 +77,7 @@ func GetConfigmaps(response http.ResponseWriter, request *http.Request) {
 
 		configmaps = append(
 			configmaps,
-			map[string]interface{}{
+			map[string]any{
 				"cluster_id": cluster_id2,
 				"namespace":  namespace,
 				"name":       name,

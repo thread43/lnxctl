@@ -6,11 +6,11 @@ import (
 	"lnxctl/util"
 )
 
-func GetMenuTree() []map[string]interface{} {
+func GetMenuTree() []map[string]any {
 	var err error
 
-	var menus []map[string]interface{}
-	menus = make([]map[string]interface{}, 0)
+	var menus []map[string]any
+	menus = make([]map[string]any, 0)
 
 	{
 		var query string
@@ -34,7 +34,7 @@ func GetMenuTree() []map[string]interface{} {
 
 			menus = append(
 				menus,
-				map[string]interface{}{
+				map[string]any{
 					"id":             id.Int64,
 					"code":           code.String,
 					"name":           name.String,
@@ -44,11 +44,11 @@ func GetMenuTree() []map[string]interface{} {
 		}
 	}
 
-	var menus2 map[int64][]map[string]interface{}
-	menus2 = make(map[int64][]map[string]interface{})
+	var menus2 map[int64][]map[string]any
+	menus2 = make(map[int64][]map[string]any)
 
 	{
-		var menu map[string]interface{}
+		var menu map[string]any
 		for _, menu = range menus {
 			var parent_menu_id int64
 			parent_menu_id, _ = menu["parent_menu_id"].(int64)
@@ -59,11 +59,11 @@ func GetMenuTree() []map[string]interface{} {
 		}
 	}
 
-	var menus3 []map[string]interface{}
-	menus3 = make([]map[string]interface{}, 0)
+	var menus3 []map[string]any
+	menus3 = make([]map[string]any, 0)
 
 	{
-		var menu map[string]interface{}
+		var menu map[string]any
 		for _, menu = range menus {
 			var id int64
 			var parent_menu_id int64
@@ -73,7 +73,7 @@ func GetMenuTree() []map[string]interface{} {
 
 			if parent_menu_id == 0 {
 				if menus2[id] == nil {
-					menus2[id] = make([]map[string]interface{}, 0)
+					menus2[id] = make([]map[string]any, 0)
 				}
 				menu["children"] = menus2[id]
 				menus3 = append(menus3, menu)

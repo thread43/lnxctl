@@ -51,8 +51,8 @@ func GetRoles(response http.ResponseWriter, request *http.Request) {
 	role_list, err = clientset.RbacV1().Roles(namespace).List(context.Background(), meta_v1.ListOptions{})
 	util.Raise(err)
 
-	var roles []map[string]interface{}
-	roles = make([]map[string]interface{}, 0)
+	var roles []map[string]any
+	roles = make([]map[string]any, 0)
 
 	var item rbac_v1.Role
 	for _, item = range role_list.Items {
@@ -77,7 +77,7 @@ func GetRoles(response http.ResponseWriter, request *http.Request) {
 
 		roles = append(
 			roles,
-			map[string]interface{}{
+			map[string]any{
 				"cluster_id": cluster_id2,
 				"namespace":  namespace,
 				"name":       name,

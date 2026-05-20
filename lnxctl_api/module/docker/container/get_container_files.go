@@ -107,8 +107,8 @@ func GetContainerFiles(response http.ResponseWriter, request *http.Request) {
 	stdout2 = strings.TrimSpace(stdout2)
 	lines = strings.Split(stdout2, "\n")
 
-	var files []map[string]interface{}
-	files = make([]map[string]interface{}, 0)
+	var files []map[string]any
+	files = make([]map[string]any, 0)
 
 	var index int
 	var line string
@@ -169,7 +169,7 @@ func GetContainerFiles(response http.ResponseWriter, request *http.Request) {
 
 			files = append(
 				files,
-				map[string]interface{}{
+				map[string]any{
 					"id":       index,
 					"mode":     mode,
 					"size":     size,

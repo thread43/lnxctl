@@ -71,8 +71,8 @@ func GetContainers(response http.ResponseWriter, request *http.Request) {
 	}
 	util.Raise(err)
 
-	var containers []map[string]interface{}
-	containers = make([]map[string]interface{}, 0)
+	var containers []map[string]any
+	containers = make([]map[string]any, 0)
 
 	var container types_container.Summary
 	for _, container = range container_list {
@@ -135,8 +135,8 @@ func GetContainers(response http.ResponseWriter, request *http.Request) {
 		var ports []types_container.Port
 		ports = container.Ports
 
-		var ports2 []map[string]interface{}
-		ports2 = make([]map[string]interface{}, 0)
+		var ports2 []map[string]any
+		ports2 = make([]map[string]any, 0)
 
 		var ports3 []string
 		ports3 = make([]string, 0)
@@ -169,7 +169,7 @@ func GetContainers(response http.ResponseWriter, request *http.Request) {
 
 				ports2 = append(
 					ports2,
-					map[string]interface{}{
+					map[string]any{
 						"ip":                ip,
 						"private_port":      private_port,
 						"public_port":       public_port,
@@ -194,8 +194,8 @@ func GetContainers(response http.ResponseWriter, request *http.Request) {
 		var mounts []types_container.MountPoint
 		mounts = container.Mounts
 
-		var mounts2 []map[string]interface{}
-		mounts2 = make([]map[string]interface{}, 0)
+		var mounts2 []map[string]any
+		mounts2 = make([]map[string]any, 0)
 
 		var mounts3 []string
 		mounts3 = make([]string, 0)
@@ -217,7 +217,7 @@ func GetContainers(response http.ResponseWriter, request *http.Request) {
 				if mount_type == "bind" {
 					mounts2 = append(
 						mounts2,
-						map[string]interface{}{
+						map[string]any{
 							"type":        mount_type,
 							"source":      mount_source,
 							"destination": mount_destination,
@@ -234,7 +234,7 @@ func GetContainers(response http.ResponseWriter, request *http.Request) {
 
 		containers = append(
 			containers,
-			map[string]interface{}{
+			map[string]any{
 				"server_id":        server_id2,
 				"id":               id,
 				"container_id_raw": container_id_raw,

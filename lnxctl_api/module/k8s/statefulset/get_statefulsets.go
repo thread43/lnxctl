@@ -52,8 +52,8 @@ func GetStatefulsets(response http.ResponseWriter, request *http.Request) {
 	statefulset_list, err = clientset.AppsV1().StatefulSets(namespace).List(context.Background(), meta_v1.ListOptions{})
 	util.Raise(err)
 
-	var statefulsets []map[string]interface{}
-	statefulsets = make([]map[string]interface{}, 0)
+	var statefulsets []map[string]any
+	statefulsets = make([]map[string]any, 0)
 
 	var item apps_v1.StatefulSet
 	for _, item = range statefulset_list.Items {
@@ -94,7 +94,7 @@ func GetStatefulsets(response http.ResponseWriter, request *http.Request) {
 
 		statefulsets = append(
 			statefulsets,
-			map[string]interface{}{
+			map[string]any{
 				"cluster_id":      cluster_id2,
 				"namespace":       namespace,
 				"name":            name,

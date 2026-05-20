@@ -52,8 +52,8 @@ func GetDaemonsets(response http.ResponseWriter, request *http.Request) {
 	daemonset_list, err = clientset.AppsV1().DaemonSets(namespace).List(context.Background(), meta_v1.ListOptions{})
 	util.Raise(err)
 
-	var daemonsets []map[string]interface{}
-	daemonsets = make([]map[string]interface{}, 0)
+	var daemonsets []map[string]any
+	daemonsets = make([]map[string]any, 0)
 
 	var item apps_v1.DaemonSet
 	for _, item = range daemonset_list.Items {
@@ -103,7 +103,7 @@ func GetDaemonsets(response http.ResponseWriter, request *http.Request) {
 
 		daemonsets = append(
 			daemonsets,
-			map[string]interface{}{
+			map[string]any{
 				"cluster_id":               cluster_id2,
 				"namespace":                namespace,
 				"name":                     name,

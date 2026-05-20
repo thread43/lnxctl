@@ -48,8 +48,8 @@ func GetClusterroles(response http.ResponseWriter, request *http.Request) {
 	clusterrole_list, err = clientset.RbacV1().ClusterRoles().List(context.Background(), meta_v1.ListOptions{})
 	util.Raise(err)
 
-	var clusterroles []map[string]interface{}
-	clusterroles = make([]map[string]interface{}, 0)
+	var clusterroles []map[string]any
+	clusterroles = make([]map[string]any, 0)
 
 	var item rbac_v1.ClusterRole
 	for _, item = range clusterrole_list.Items {
@@ -74,7 +74,7 @@ func GetClusterroles(response http.ResponseWriter, request *http.Request) {
 
 		clusterroles = append(
 			clusterroles,
-			map[string]interface{}{
+			map[string]any{
 				"cluster_id": cluster_id2,
 				"namespace":  namespace,
 				"name":       name,

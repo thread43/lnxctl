@@ -16,14 +16,14 @@ func GetPerms(response http.ResponseWriter, request *http.Request) {
 	session, err = util.STORE.Get(request, "whatever")
 	util.Skip(err)
 
-	var user_id interface{}
+	var user_id any
 	user_id = session.Values["id"]
 	if user_id == nil {
 		panic("invalid session or token")
 	}
 
-	var perms []map[string]interface{}
-	perms = make([]map[string]interface{}, 0)
+	var perms []map[string]any
+	perms = make([]map[string]any, 0)
 
 	{
 		var query string
@@ -54,7 +54,7 @@ func GetPerms(response http.ResponseWriter, request *http.Request) {
 
 			perms = append(
 				perms,
-				map[string]interface{}{
+				map[string]any{
 					"id":   id,
 					"code": code,
 					"name": name,

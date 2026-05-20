@@ -40,7 +40,7 @@ func UpdateMenu(response http.ResponseWriter, request *http.Request) {
 		}
 	}
 
-	var parent_menu_id2 interface{}
+	var parent_menu_id2 any
 	if parent_menu_id != "" {
 		parent_menu_id2 = parent_menu_id
 	}

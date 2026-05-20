@@ -10,8 +10,8 @@ import (
 func GetDepts(response http.ResponseWriter, request *http.Request) {
 	var err error
 
-	var depts []map[string]interface{}
-	depts = make([]map[string]interface{}, 0)
+	var depts []map[string]any
+	depts = make([]map[string]any, 0)
 
 	{
 		var query string
@@ -33,7 +33,7 @@ func GetDepts(response http.ResponseWriter, request *http.Request) {
 
 			depts = append(
 				depts,
-				map[string]interface{}{
+				map[string]any{
 					"id":   id.Int64,
 					"name": name.String,
 				},

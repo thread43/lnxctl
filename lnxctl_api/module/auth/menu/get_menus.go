@@ -14,8 +14,8 @@ func GetMenus(response http.ResponseWriter, request *http.Request) {
 	var tree_view string
 	tree_view = strings.TrimSpace(request.FormValue("tree_view"))
 
-	var menus []map[string]interface{}
-	menus = make([]map[string]interface{}, 0)
+	var menus []map[string]any
+	menus = make([]map[string]any, 0)
 
 	{
 		var query string
@@ -46,7 +46,7 @@ func GetMenus(response http.ResponseWriter, request *http.Request) {
 
 			menus = append(
 				menus,
-				map[string]interface{}{
+				map[string]any{
 					"id":             id.Int64,
 					"code":           code.String,
 					"name":           name.String,
@@ -59,11 +59,11 @@ func GetMenus(response http.ResponseWriter, request *http.Request) {
 		}
 	}
 
-	var menus2 map[int64][]map[string]interface{}
-	menus2 = make(map[int64][]map[string]interface{})
+	var menus2 map[int64][]map[string]any
+	menus2 = make(map[int64][]map[string]any)
 
 	{
-		var menu map[string]interface{}
+		var menu map[string]any
 		for _, menu = range menus {
 			var parent_menu_id int64
 			parent_menu_id, _ = menu["parent_menu_id"].(int64)
@@ -73,11 +73,11 @@ func GetMenus(response http.ResponseWriter, request *http.Request) {
 		}
 	}
 
-	var menus3 []map[string]interface{}
-	menus3 = make([]map[string]interface{}, 0)
+	var menus3 []map[string]any
+	menus3 = make([]map[string]any, 0)
 
 	{
-		var menu map[string]interface{}
+		var menu map[string]any
 		for _, menu = range menus {
 			var id int64
 			var parent_menu_id int64
@@ -88,7 +88,7 @@ func GetMenus(response http.ResponseWriter, request *http.Request) {
 			if parent_menu_id == 0 {
 				if tree_view == "1" {
 					if len(menus2[id]) == 0 {
-						menu["children"] = []map[string]interface{}{}
+						menu["children"] = []map[string]any{}
 					} else {
 						menu["children"] = menus2[id]
 					}

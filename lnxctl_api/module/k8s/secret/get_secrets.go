@@ -51,8 +51,8 @@ func GetSecrets(response http.ResponseWriter, request *http.Request) {
 	secret_list, err = clientset.CoreV1().Secrets(namespace).List(context.Background(), meta_v1.ListOptions{})
 	util.Raise(err)
 
-	var secrets []map[string]interface{}
-	secrets = make([]map[string]interface{}, 0)
+	var secrets []map[string]any
+	secrets = make([]map[string]any, 0)
 
 	var item core_v1.Secret
 	for _, item = range secret_list.Items {
@@ -80,7 +80,7 @@ func GetSecrets(response http.ResponseWriter, request *http.Request) {
 
 		secrets = append(
 			secrets,
-			map[string]interface{}{
+			map[string]any{
 				"cluster_id": cluster_id2,
 				"namespace":  namespace,
 				"name":       name,

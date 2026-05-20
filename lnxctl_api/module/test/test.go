@@ -7,10 +7,10 @@ import (
 )
 
 func Test(response http.ResponseWriter, request *http.Request) {
-	var result map[string]interface{}
-	result = make(map[string]interface{})
+	var result map[string]any
+	result = make(map[string]any)
 
-	result = map[string]interface{}{
+	result = map[string]any{
 		"x": 1,
 		"y": 2,
 	}

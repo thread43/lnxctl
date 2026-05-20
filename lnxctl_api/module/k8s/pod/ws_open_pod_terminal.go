@@ -104,7 +104,7 @@ func (terminal_session TerminalSession) Read(buffer []byte) (int, error) {
 		return length, err
 	}
 
-	var message2 map[string]interface{}
+	var message2 map[string]any
 	err = json.Unmarshal(message, &message2)
 	if err != nil {
 		log.Println(err)
@@ -196,9 +196,9 @@ func WsOpenPodTerminal(response http.ResponseWriter, request *http.Request) {
 	rest_config, err = k8s_common.GetRestConfig(cluster_id2)
 	util.Raise(err)
 
-	var pod map[string]interface{}
-	pod = make(map[string]interface{})
-	pod = map[string]interface{}{
+	var pod map[string]any
+	pod = make(map[string]any)
+	pod = map[string]any{
 		"rest_config":    rest_config,
 		"namespace":      namespace,
 		"pod_name":       pod_name,
@@ -232,7 +232,7 @@ func WsOpenPodTerminal(response http.ResponseWriter, request *http.Request) {
 	StartProcess(terminal_session, pod)
 }
 
-func StartProcess(pty_handler PtyHandler, pod map[string]interface{}) {
+func StartProcess(pty_handler PtyHandler, pod map[string]any) {
 	defer util.TimeTaken(time.Now(), "StartProcess")
 
 	var err error
@@ -356,7 +356,7 @@ func StartProcess(pty_handler PtyHandler, pod map[string]interface{}) {
 	}
 }
 
-func TestShell(rest_config *rest.Config, clientset *kubernetes.Clientset, pod map[string]interface{}, command []string) error {
+func TestShell(rest_config *rest.Config, clientset *kubernetes.Clientset, pod map[string]any, command []string) error {
 	defer util.TimeTaken(time.Now(), "TestShell")
 
 	var err error

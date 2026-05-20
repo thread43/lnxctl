@@ -53,8 +53,8 @@ func GetMenu(response http.ResponseWriter, request *http.Request) {
 		}
 	}
 
-	var menu map[string]interface{}
-	menu = make(map[string]interface{})
+	var menu map[string]any
+	menu = make(map[string]any)
 
 	{
 		var query string
@@ -89,12 +89,12 @@ func GetMenu(response http.ResponseWriter, request *http.Request) {
 			has_children = true
 		}
 
-		var parent_menu_id2 interface{}
+		var parent_menu_id2 any
 		if parent_menu_id.Valid {
 			parent_menu_id2 = parent_menu_id.Int64
 		}
 
-		menu = map[string]interface{}{
+		menu = map[string]any{
 			"id":             id2.Int64,
 			"code":           code.String,
 			"name":           name.String,

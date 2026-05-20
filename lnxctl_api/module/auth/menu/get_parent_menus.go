@@ -11,8 +11,8 @@ import (
 func GetParentMenus(response http.ResponseWriter, request *http.Request) {
 	var err error
 
-	var parent_menus []map[string]interface{}
-	parent_menus = make([]map[string]interface{}, 0)
+	var parent_menus []map[string]any
+	parent_menus = make([]map[string]any, 0)
 
 	{
 		var query string
@@ -38,7 +38,7 @@ func GetParentMenus(response http.ResponseWriter, request *http.Request) {
 
 			parent_menus = append(
 				parent_menus,
-				map[string]interface{}{
+				map[string]any{
 					"id":   id.Int64,
 					"code": code.String,
 					"name": name.String,

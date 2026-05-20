@@ -118,8 +118,8 @@ func Login(response http.ResponseWriter, request *http.Request) {
 		panic("can not set a session")
 	}
 
-	var user map[string]interface{}
-	user = make(map[string]interface{})
+	var user map[string]any
+	user = make(map[string]any)
 
 	user["id"] = id.Int64
 	user["username"] = username

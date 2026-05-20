@@ -16,11 +16,11 @@ import (
 	"lnxctl/util"
 )
 
-func GetTargets() []map[string]interface{} {
+func GetTargets() []map[string]any {
 	var err error
 
-	var targets []map[string]interface{}
-	targets = make([]map[string]interface{}, 0)
+	var targets []map[string]any
+	targets = make([]map[string]any, 0)
 
 	{
 		var query string
@@ -67,7 +67,7 @@ func GetTargets() []map[string]interface{} {
 
 			targets = append(
 				targets,
-				map[string]interface{}{
+				map[string]any{
 					"id":        id.Int64,
 					"name":      name.String,
 					"crontab":   crontab.String,
@@ -311,10 +311,10 @@ func CheckHttp(http_url string) (int64, string) {
 }
 
 func StartCheck() {
-	var targets []map[string]interface{}
+	var targets []map[string]any
 	targets = GetTargets()
 
-	var target map[string]interface{}
+	var target map[string]any
 	for _, target = range targets {
 		log.Printf("target: %+v\n", target)
 

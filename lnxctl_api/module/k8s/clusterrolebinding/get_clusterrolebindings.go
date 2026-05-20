@@ -49,8 +49,8 @@ func GetClusterrolebindings(response http.ResponseWriter, request *http.Request)
 	clusterrolebinding_list, err = clientset.RbacV1().ClusterRoleBindings().List(context.Background(), meta_v1.ListOptions{})
 	util.Raise(err)
 
-	var clusterrolebindings []map[string]interface{}
-	clusterrolebindings = make([]map[string]interface{}, 0)
+	var clusterrolebindings []map[string]any
+	clusterrolebindings = make([]map[string]any, 0)
 
 	var item rbac_v1.ClusterRoleBinding
 	for _, item = range clusterrolebinding_list.Items {
@@ -94,7 +94,7 @@ func GetClusterrolebindings(response http.ResponseWriter, request *http.Request)
 
 		clusterrolebindings = append(
 			clusterrolebindings,
-			map[string]interface{}{
+			map[string]any{
 				"cluster_id":      cluster_id2,
 				"name":            name,
 				"role":            role,

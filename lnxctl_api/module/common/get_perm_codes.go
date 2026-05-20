@@ -16,7 +16,7 @@ func GetPermCodes(response http.ResponseWriter, request *http.Request) {
 	session, err = util.STORE.Get(request, "whatever")
 	util.Skip(err)
 
-	var user_id interface{}
+	var user_id any
 	user_id = session.Values["id"]
 	if user_id == nil {
 		panic("invalid session or token")

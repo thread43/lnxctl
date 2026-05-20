@@ -26,20 +26,20 @@ import (
 // get_monitoring, {target_total, target_running}
 
 func GetStatistics(response http.ResponseWriter, request *http.Request) {
-	var linux map[string]interface{}
+	var linux map[string]any
 	linux = GetLinux()
 
-	var dockers []map[string]interface{}
+	var dockers []map[string]any
 	dockers = GetDockers()
 
-	var k8ses []map[string]interface{}
+	var k8ses []map[string]any
 	k8ses = GetK8ses()
 
-	var monitoring map[string]interface{}
+	var monitoring map[string]any
 	monitoring = GetMonitoring()
 
-	var statistics map[string]interface{}
-	statistics = map[string]interface{}{
+	var statistics map[string]any
+	statistics = map[string]any{
 		"linux":      linux,
 		"dockers":    dockers,
 		"k8ses":      k8ses,
@@ -49,7 +49,7 @@ func GetStatistics(response http.ResponseWriter, request *http.Request) {
 	util.Api(response, 200, statistics)
 }
 
-func GetLinux() map[string]interface{} {
+func GetLinux() map[string]any {
 	var err error
 
 	var host_total int
@@ -93,8 +93,8 @@ func GetLinux() map[string]interface{} {
 		util.Raise(err)
 	}
 
-	var linux map[string]interface{}
-	linux = map[string]interface{}{
+	var linux map[string]any
+	linux = map[string]any{
 		"host_total":    host_total,
 		"host_running":  host_running,
 		"host_healthy":  host_healthy,
@@ -104,17 +104,17 @@ func GetLinux() map[string]interface{} {
 	return linux
 }
 
-func GetDockers() []map[string]interface{} {
+func GetDockers() []map[string]any {
 	var err error
 
-	var containers []map[string]interface{}
-	containers = make([]map[string]interface{}, 0)
+	var containers []map[string]any
+	containers = make([]map[string]any, 0)
 
 	var query string
 	query = `SELECT id, name FROM docker_server`
 
-	var servers []map[string]interface{}
-	servers = make([]map[string]interface{}, 0)
+	var servers []map[string]any
+	servers = make([]map[string]any, 0)
 
 	{
 		var rows *sql.Rows
@@ -133,7 +133,7 @@ func GetDockers() []map[string]interface{} {
 
 			servers = append(
 				servers,
-				map[string]interface{}{
+				map[string]any{
 					"id":   id.Int64,
 					"name": name.String,
 				},
@@ -141,10 +141,10 @@ func GetDockers() []map[string]interface{} {
 		}
 	}
 
-	var server map[string]interface{}
+	var server map[string]any
 	for _, server = range servers {
-		var container map[string]interface{}
-		container = make(map[string]interface{})
+		var container map[string]any
+		container = make(map[string]any)
 
 		var server_id int64
 		var server_name string
@@ -158,7 +158,7 @@ func GetDockers() []map[string]interface{} {
 		container_running = -1
 		container_healthy = false
 
-		container = map[string]interface{}{
+		container = map[string]any{
 			"server_id":         server_id,
 			"server_name":       server_name,
 			"container_total":   container_total,
@@ -212,17 +212,17 @@ func GetDockers() []map[string]interface{} {
 	return containers
 }
 
-func GetK8ses() []map[string]interface{} {
+func GetK8ses() []map[string]any {
 	var err error
 
-	var k8ses []map[string]interface{}
-	k8ses = make([]map[string]interface{}, 0)
+	var k8ses []map[string]any
+	k8ses = make([]map[string]any, 0)
 
 	var query string
 	query = "SELECT id, name FROM k8s_cluster"
 
-	var clusters []map[string]interface{}
-	clusters = make([]map[string]interface{}, 0)
+	var clusters []map[string]any
+	clusters = make([]map[string]any, 0)
 
 	{
 		var rows *sql.Rows
@@ -241,7 +241,7 @@ func GetK8ses() []map[string]interface{} {
 
 			clusters = append(
 				clusters,
-				map[string]interface{}{
+				map[string]any{
 					"id":   id.Int64,
 					"name": name.String,
 				},
@@ -249,10 +249,10 @@ func GetK8ses() []map[string]interface{} {
 		}
 	}
 
-	var cluster map[string]interface{}
+	var cluster map[string]any
 	for _, cluster = range clusters {
-		var k8s map[string]interface{}
-		k8s = make(map[string]interface{})
+		var k8s map[string]any
+		k8s = make(map[string]any)
 
 		var cluster_id int64
 		var cluster_name string
@@ -272,7 +272,7 @@ func GetK8ses() []map[string]interface{} {
 		pod_running = -1
 		pod_healthy = false
 
-		k8s = map[string]interface{}{
+		k8s = map[string]any{
 			"cluster_id":   cluster_id,
 			"cluster_name": cluster_name,
 			"node_total":   node_total,
@@ -387,7 +387,7 @@ func GetK8ses() []map[string]interface{} {
 	return k8ses
 }
 
-func GetMonitoring() map[string]interface{} {
+func GetMonitoring() map[string]any {
 	var err error
 
 	var target_total int
@@ -419,8 +419,8 @@ func GetMonitoring() map[string]interface{} {
 		target_healthy = true
 	}
 
-	var monitoring map[string]interface{}
-	monitoring = map[string]interface{}{
+	var monitoring map[string]any
+	monitoring = map[string]any{
 		"target_total":   target_total,
 		"target_running": target_running,
 		"target_healthy": target_healthy,

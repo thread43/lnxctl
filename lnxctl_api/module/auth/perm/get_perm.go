@@ -23,8 +23,8 @@ func GetPerm(response http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	var perm map[string]interface{}
-	perm = make(map[string]interface{})
+	var perm map[string]any
+	perm = make(map[string]any)
 
 	{
 		var query string
@@ -49,12 +49,12 @@ func GetPerm(response http.ResponseWriter, request *http.Request) {
 		err = row.Scan(&id2, &code, &name, &type2, &remark, &create_time, &update_time, &menu_id)
 		util.Raise(err)
 
-		var menu_id2 interface{}
+		var menu_id2 any
 		if menu_id.Valid {
 			menu_id2 = menu_id.Int64
 		}
 
-		perm = map[string]interface{}{
+		perm = map[string]any{
 			"id":          id2.Int64,
 			"code":        code.String,
 			"name":        name.String,

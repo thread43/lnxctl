@@ -16,10 +16,10 @@ var (
 	EMBEDDED_FILES embed.FS
 )
 
-func GetHostInfo(id int64) (map[string]interface{}, error) {
+func GetHostInfo(id int64) (map[string]any, error) {
 	var err error
 
-	var host map[string]interface{}
+	var host map[string]any
 	host, err = GetHost(id)
 	if err != nil {
 		log.Println(err)
@@ -124,7 +124,7 @@ func GetHostInfo(id int64) (map[string]interface{}, error) {
 		return nil, err
 	}
 
-	var output3 map[string]interface{}
+	var output3 map[string]any
 	err = json.Unmarshal(output2, &output3)
 	if err != nil {
 		log.Println(err)

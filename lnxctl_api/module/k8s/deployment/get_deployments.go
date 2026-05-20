@@ -52,8 +52,8 @@ func GetDeployments(response http.ResponseWriter, request *http.Request) {
 	deployment_list, err = clientset.AppsV1().Deployments(namespace).List(context.Background(), meta_v1.ListOptions{})
 	util.Raise(err)
 
-	var deployments []map[string]interface{}
-	deployments = make([]map[string]interface{}, 0)
+	var deployments []map[string]any
+	deployments = make([]map[string]any, 0)
 
 	var item apps_v1.Deployment
 	for _, item = range deployment_list.Items {
@@ -94,7 +94,7 @@ func GetDeployments(response http.ResponseWriter, request *http.Request) {
 
 		deployments = append(
 			deployments,
-			map[string]interface{}{
+			map[string]any{
 				"cluster_id":      cluster_id2,
 				"namespace":       namespace,
 				"name":            name,

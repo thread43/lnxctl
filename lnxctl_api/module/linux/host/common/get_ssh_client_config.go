@@ -10,7 +10,7 @@ import (
 	"golang.org/x/crypto/ssh"
 )
 
-func GetSshClientConfig(host map[string]interface{}) (string, *ssh.ClientConfig, error) {
+func GetSshClientConfig(host map[string]any) (string, *ssh.ClientConfig, error) {
 	var err error
 
 	var ssh_host string
