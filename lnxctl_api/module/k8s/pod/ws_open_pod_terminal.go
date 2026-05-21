@@ -13,7 +13,7 @@ import (
 
 	"github.com/gorilla/websocket"
 
-	"k8s.io/api/core/v1"
+	core_v1 "k8s.io/api/core/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/kubernetes/scheme"
 	"k8s.io/client-go/rest"
@@ -274,10 +274,10 @@ func StartProcess(pty_handler PtyHandler, pod map[string]any) {
 	if command == "" {
 		var shell_command map[string][]string
 		shell_command = map[string][]string{
-			"bash":       []string{"bash", "--version"},
-			"sh":         []string{"sh"},
-			"powershell": []string{"powershell", "/?"}, // "powershell" sometimes not working
-			"cmd":        []string{"cmd"},              // "cmd /?" not working
+			"bash":       {"bash", "--version"},
+			"sh":         {"sh"},
+			"powershell": {"powershell", "/?"}, // "powershell" sometimes not working
+			"cmd":        {"cmd"},              // "cmd /?" not working
 		}
 
 		var shell string
@@ -303,7 +303,7 @@ func StartProcess(pty_handler PtyHandler, pod map[string]any) {
 		Namespace(namespace).
 		Name(pod_name).
 		SubResource("exec")
-	rest_request.VersionedParams(&v1.PodExecOptions{
+	rest_request.VersionedParams(&core_v1.PodExecOptions{
 		Container: container_name,
 		Command:   []string{command},
 		Stdin:     true,
@@ -375,7 +375,7 @@ func TestShell(rest_config *rest.Config, clientset *kubernetes.Clientset, pod ma
 		Namespace(namespace).
 		Name(pod_name).
 		SubResource("exec")
-	rest_request.VersionedParams(&v1.PodExecOptions{
+	rest_request.VersionedParams(&core_v1.PodExecOptions{
 		// Command:   []string{"bash", "--version"},
 		Container: container_name,
 		Command:   command,

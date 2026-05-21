@@ -13,8 +13,8 @@ https://thread43.github.io/img/lnxctl_monitoring_target.png
 
 
 -- download
-wget "https://thread43.github.io/pkg/lnxctl_v20260518.tar.gz"
-tar xzvf lnxctl_v20260518.tar.gz
+wget "https://thread43.github.io/pkg/lnxctl_v20260521.tar.gz"
+tar xzvf lnxctl_v20260521.tar.gz
 cd lnxctl
 ./lnxctl
 
