@@ -5,6 +5,7 @@ import {useSelector} from 'react-redux';
 import {App} from 'antd';
 import {Button} from 'antd';
 import {Modal} from 'antd';
+import {Radio} from 'antd';
 import {Space} from 'antd';
 import {Table} from 'antd';
 import {SyncOutlined} from '@ant-design/icons';
@@ -19,18 +20,23 @@ function EventList() {
   const storeEventListVisible = useSelector(store.getEventListVisible);
 
   const [stateEvents, setStateEvents] = useState([]);
+  const [stateEventType, setStateEventType] = useState('All');
   const [stateTableLoading, setStateTableLoading] = useState(false);
 
   useEffect(() => {
-    init();
+    init(stateEventType);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  async function init() {
+  async function init(eventType) {
     try {
       setStateTableLoading(true);
       const cluster_id = storeCluster.id;
       const response = await api.get_events(cluster_id);
-      setStateEvents(response.data.data);
+      if (eventType === 'All') {
+        setStateEvents(response.data.data);
+      } else {
+        setStateEvents(response.data.data.filter(event => event.type === eventType));
+      }
     } catch (error) {
       console.error(error);
       message.error(error.message);
@@ -39,8 +45,13 @@ function EventList() {
     }
   }
 
+  function onChange(event) {
+    setStateEventType(event.target.value);
+    init(event.target.value);
+  }
+
   function refresh() {
-    init();
+    init(stateEventType);
   }
 
   const columns = [
@@ -98,6 +109,11 @@ function EventList() {
             {storeCluster.name} ({storeCluster.server})
           </span>
           <Space wrap>
+            <Radio.Group buttonStyle="solid" value={stateEventType} onChange={onChange}>
+              <Radio.Button value="All">All</Radio.Button>
+              <Radio.Button value="Normal">Normal</Radio.Button>
+              <Radio.Button value="Warning">Warning</Radio.Button>
+            </Radio.Group>
             <Button type="primary" icon={<SyncOutlined />} onClick={() => refresh()}>Refresh</Button>
           </Space>
         </div>

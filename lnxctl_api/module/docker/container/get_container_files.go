@@ -9,6 +9,7 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/docker/docker/api/types"
 	types_container "github.com/docker/docker/api/types/container"
@@ -55,6 +56,10 @@ func GetContainerFiles(response http.ResponseWriter, request *http.Request) {
 		_ = docker_client.Close()
 	}()
 
+	// coreutils ls, toybox ls
+	// ls -lA --time-style=locale
+	// ls -lA --time-style=long-iso
+	// The TIME_STYLE argument can be full-iso, long-iso, iso, locale, or +FORMAT. (toybox ls doesn't support)
 	var command []string
 	command = []string{"ls", "-lA", dir}
 	log.Println(command)
@@ -121,11 +126,11 @@ func GetContainerFiles(response http.ResponseWriter, request *http.Request) {
 		var fields []string
 		fields = strings.Fields(line)
 
-		if len(fields) < 9 {
+		if len(fields) < 8 {
 			log.Println("unexpected data:", line)
 		}
 
-		if len(fields) >= 9 {
+		if len(fields) >= 8 {
 			var mode string
 			var size string
 			var name string
@@ -137,16 +142,43 @@ func GetContainerFiles(response http.ResponseWriter, request *http.Request) {
 
 			mode = fields[0]
 			size = fields[4]
-			name = strings.Join(fields[8:], " ")
 
-			if strings.HasPrefix(mode, "c") {
-				mode = fields[0]
-				size = fields[5]
-				if len(fields) >= 10 {
-					name = strings.Join(fields[9:], " ")
+			{
+				var field5 string
+				field5 = fields[5]
+				_, err = time.Parse("2006-01-02", field5)
+
+				if err != nil {
+					name = strings.Join(fields[8:], " ")
 				} else {
-					name = "???"
-					log.Println("unexpected data:", line)
+					name = strings.Join(fields[7:], " ")
+				}
+			}
+
+			{
+				if strings.HasPrefix(mode, "c") {
+					mode = fields[0]
+					size = fields[5]
+
+					var field6 string
+					field6 = fields[6]
+					_, err = time.Parse("2006-01-02", field6)
+
+					if err != nil {
+						if len(fields) >= 10 {
+							name = strings.Join(fields[9:], " ")
+						} else {
+							name = "???"
+							log.Println("unexpected data:", line)
+						}
+					} else {
+						if len(fields) >= 9 {
+							name = strings.Join(fields[8:], " ")
+						} else {
+							name = "???"
+							log.Println("unexpected data:", line)
+						}
+					}
 				}
 			}
 

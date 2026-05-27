@@ -8,6 +8,7 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"time"
 
 	"k8s.io/api/core/v1"
 	"k8s.io/client-go/kubernetes"
@@ -121,11 +122,11 @@ func GetPodFiles(response http.ResponseWriter, request *http.Request) {
 		var fields []string
 		fields = strings.Fields(line)
 
-		if len(fields) < 9 {
+		if len(fields) < 8 {
 			log.Println("unexpected data:", line)
 		}
 
-		if len(fields) >= 9 {
+		if len(fields) >= 8 {
 			var mode string
 			var size string
 			var name string
@@ -137,16 +138,43 @@ func GetPodFiles(response http.ResponseWriter, request *http.Request) {
 
 			mode = fields[0]
 			size = fields[4]
-			name = strings.Join(fields[8:], " ")
 
-			if strings.HasPrefix(mode, "c") {
-				mode = fields[0]
-				size = fields[5]
-				if len(fields) >= 10 {
-					name = strings.Join(fields[9:], " ")
+			{
+				var field5 string
+				field5 = fields[5]
+				_, err = time.Parse("2006-01-02", field5)
+
+				if err != nil {
+					name = strings.Join(fields[8:], " ")
 				} else {
-					name = "???"
-					log.Println("unexpected data:", line)
+					name = strings.Join(fields[7:], " ")
+				}
+			}
+
+			{
+				if strings.HasPrefix(mode, "c") {
+					mode = fields[0]
+					size = fields[5]
+
+					var field6 string
+					field6 = fields[6]
+					_, err = time.Parse("2006-01-02", field6)
+
+					if err != nil {
+						if len(fields) >= 10 {
+							name = strings.Join(fields[9:], " ")
+						} else {
+							name = "???"
+							log.Println("unexpected data:", line)
+						}
+					} else {
+						if len(fields) >= 9 {
+							name = strings.Join(fields[8:], " ")
+						} else {
+							name = "???"
+							log.Println("unexpected data:", line)
+						}
+					}
 				}
 			}
 
