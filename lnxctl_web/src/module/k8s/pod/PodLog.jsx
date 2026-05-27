@@ -131,7 +131,8 @@ function PodLog() {
     const name = pod.name;
     const container_name = storeContext.container_name;
 
-    let url = 'ws://' + window.location.host + '/api/k8s/pod/ws_get_pod_log';
+    const protocol = (window.location.protocol === 'https:' ? 'wss:' : 'ws:');
+    let url = protocol + '//' + window.location.host + '/api/k8s/pod/ws_get_pod_log';
     url = url + '?cluster_id=' + cluster_id;
     url = url + '&namespace=' + namespace;
     url = url + '&name=' + name;

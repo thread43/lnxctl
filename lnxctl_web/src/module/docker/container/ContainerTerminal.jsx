@@ -70,7 +70,8 @@ function ContainerTerminal() {
     const server_id = storeContainer.server_id;
     const container_id = storeContainer.container_id;
 
-    let url = 'ws://' + window.location.host + '/api/docker/container/ws_open_container_terminal';
+    const protocol = (window.location.protocol === 'https:' ? 'wss:' : 'ws:');
+    let url = protocol + '//' + window.location.host + '/api/docker/container/ws_open_container_terminal';
     url = url + '?server_id=' + server_id;
     url = url + '&container_id=' + container_id;
     // url = url + '&command=' + command;

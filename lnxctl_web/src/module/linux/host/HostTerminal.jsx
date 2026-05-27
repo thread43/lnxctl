@@ -70,7 +70,8 @@ function HostTerminal() {
     const host_id = storeHost.id;
     const ssh_host = storeHost.ssh_host;
 
-    let url = 'ws://' + window.location.host + '/api/linux/host/ws_open_host_terminal';
+    const protocol = (window.location.protocol === 'https:' ? 'wss:' : 'ws:');
+    let url = protocol + '//' + window.location.host + '/api/linux/host/ws_open_host_terminal';
     url = url + '?host_id=' + host_id;
     url = url + '&ssh_host=' + ssh_host;
     console.log(url);

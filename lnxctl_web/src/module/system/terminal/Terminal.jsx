@@ -70,7 +70,8 @@ function Terminal_() {
       }
     }
 
-    let url = 'ws://' + window.location.host + '/api/system/terminal/ws_open_terminal';
+    const protocol = (window.location.protocol === 'https:' ? 'wss:' : 'ws:');
+    let url = protocol + '//' + window.location.host + '/api/system/terminal/ws_open_terminal';
     console.log(url);
 
     let term = termInstance.current;

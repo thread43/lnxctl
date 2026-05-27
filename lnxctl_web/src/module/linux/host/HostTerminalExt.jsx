@@ -66,7 +66,8 @@ function HostTerminalExt() {
     // document.title = 'ssh://' + ssh_user + '@' + ssh_host + ':' + ssh_port;
     document.title = ssh_host;
 
-    let url = 'ws://' + window.location.host + '/api/linux/host/ws_open_host_terminal';
+    const protocol = (window.location.protocol === 'https:' ? 'wss:' : 'ws:');
+    let url = protocol + '//' + window.location.host + '/api/linux/host/ws_open_host_terminal';
     url = url + '?host_id=' + host_id;
     url = url + '&ssh_host=' + ssh_host;
     console.log(url);

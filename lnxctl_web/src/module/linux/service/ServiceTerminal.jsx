@@ -69,7 +69,8 @@ function ServiceTerminal() {
 
     const service_id = storeService.id;
 
-    let url = 'ws://' + window.location.host + '/api/linux/service/ws_open_service_terminal';
+    const protocol = (window.location.protocol === 'https:' ? 'wss:' : 'ws:');
+    let url = protocol + '//' + window.location.host + '/api/linux/service/ws_open_service_terminal';
     url = url + '?service_id=' + service_id;
     console.log(url);
 

@@ -77,7 +77,8 @@ function PodTerminal() {
     const pod_name = pod.name;
     const container_name = storeContext.container_name;
 
-    let url = 'ws://' + window.location.host + '/api/k8s/pod/ws_open_pod_terminal';
+    const protocol = (window.location.protocol === 'https:' ? 'wss:' : 'ws:');
+    let url = protocol + '//' + window.location.host + '/api/k8s/pod/ws_open_pod_terminal';
     url = url + '?cluster_id=' + cluster_id;
     url = url + '&namespace=' + namespace;
     url = url + '&pod_name=' + pod_name;
