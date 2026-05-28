@@ -124,7 +124,15 @@ function HostFileBrowser() {
       dataIndex: 'name',
       render: (text, record) => {
         if (record.is_dir) {
-          return (<Button type="link" className="ButtonLink" onClick={() => init(record.abs_path)}>{text}</Button>);
+          return (
+            <Button
+              type="link"
+              className="ButtonLink"
+              onClick={() => init(record.abs_path)}
+            >
+              {text}
+            </Button>
+          );
         } else {
           return (text);
         }
@@ -160,7 +168,11 @@ function HostFileBrowser() {
         open={storeHostFileBrowserVisible}
         extra={
           <Space wrap>
-            <Button onClick={() => dispatch(store.setHostFileBrowserVisible(false))}>Close</Button>
+            <Button
+              onClick={() => dispatch(store.setHostFileBrowserVisible(false))}
+            >
+              Close
+            </Button>
           </Space>
         }
       >
@@ -169,7 +181,13 @@ function HostFileBrowser() {
             {storeHost.ssh_host}:{stateDir}
           </span>
           <Space wrap>
-            <Button type="primary" icon={<RollbackOutlined />} onClick={() => cdParentDir()}>Go Back</Button>
+            <Button
+              type="primary"
+              icon={<RollbackOutlined />}
+              onClick={() => cdParentDir()}
+            >
+              Go Back
+            </Button>
             <Upload
               name="file"
               showUploadList={false}
@@ -179,7 +197,13 @@ function HostFileBrowser() {
             >
               <Button type="primary" icon={<UploadOutlined />}>Upload</Button>
             </Upload>
-            <Button type="primary" icon={<SyncOutlined />} onClick={() => refresh()}>Refresh</Button>
+            <Button
+              type="primary"
+              icon={<SyncOutlined />}
+              onClick={() => refresh()}
+            >
+              Refresh
+            </Button>
           </Space>
         </div>
 

@@ -67,7 +67,12 @@ function StatefulsetYaml() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setStatefulsetYamlVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setStatefulsetYamlVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setStatefulsetYamlVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">

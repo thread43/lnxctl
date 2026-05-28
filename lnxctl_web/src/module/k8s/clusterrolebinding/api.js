@@ -16,7 +16,10 @@ function get_clusterrolebinding_yaml(clusterrolebinding) {
 }
 
 function get_clusterrolebindings(cluster_id) {
-  return http.get('/api/k8s/clusterrolebinding/get_clusterrolebindings?cluster_id=' + cluster_id);
+  let url = '/api/k8s/clusterrolebinding/get_clusterrolebindings';
+  url = url + '?cluster_id=' + cluster_id;
+
+  return http.get(url);
 }
 
 const api = {

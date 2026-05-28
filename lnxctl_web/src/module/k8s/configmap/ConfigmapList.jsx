@@ -188,7 +188,13 @@ function ConfigmapList() {
       sorter: (x, y) => x.name.localeCompare(y.name),
       sortDirections: ['ascend', 'descend'],
       render: (text, record) => (
-        <Button type="link" className="ButtonLink" onClick={() => getConfigmap(record)}>{text}</Button>
+        <Button
+          type="link"
+          className="ButtonLink"
+          onClick={() => getConfigmap(record)}
+        >
+          {text}
+        </Button>
       ),
     },
     {
@@ -207,7 +213,13 @@ function ConfigmapList() {
       fixed: 'right',
       render: (text, record) => (
         <div style={{display: 'flex', alignItems: 'center'}}>
-          <Button type="link" className="ButtonLink" onClick={() => getConfigmapYaml(record)}>YAML</Button>
+          <Button
+            type="link"
+            className="ButtonLink"
+            onClick={() => getConfigmapYaml(record)}
+          >
+            YAML
+          </Button>
         </div>
       ),
     },

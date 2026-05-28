@@ -50,10 +50,20 @@ function ServerDetail() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setServerDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setServerDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setServerDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 12}} wrapperCol={{span: 12}} className="MyForm">
+        <Form
+          layout="horizontal"
+          labelCol={{span: 12}}
+          wrapperCol={{span: 12}}
+          className="MyForm"
+        >
           <Form.Item label="ID">{stateServer.id}</Form.Item>
           <Form.Item label="Name">{stateServer.name}</Form.Item>
           <Form.Item label="Host">{stateServer.host}</Form.Item>

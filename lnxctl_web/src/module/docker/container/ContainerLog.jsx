@@ -109,7 +109,12 @@ function ContainerLog() {
         open={storeContainerLogVisible}
         onCancel={() => dispatch(store.setContainerLogVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setContainerLogVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setContainerLogVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">
@@ -117,8 +122,20 @@ function ContainerLog() {
             {storeContainer.name}
           </span>
           <Space wrap>
-            <Button type="primary" icon={<DownloadOutlined />} onClick={() => download()}>Download</Button>
-            <Button type="primary" icon={<SyncOutlined />} onClick={() => refresh()}>Refresh</Button>
+            <Button
+              type="primary"
+              icon={<DownloadOutlined />}
+              onClick={() => download()}
+            >
+              Download
+            </Button>
+            <Button
+              type="primary"
+              icon={<SyncOutlined />}
+              onClick={() => refresh()}
+            >
+              Refresh
+            </Button>
           </Space>
         </div>
         <div

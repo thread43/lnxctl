@@ -137,7 +137,13 @@ function ClusterroleList() {
       sorter: (x, y) => x.name.localeCompare(y.name),
       sortDirections: ['ascend', 'descend'],
       render: (text, record) => (
-        <Button type="link" className="ButtonLink" onClick={() => getClusterrole(record)}>{text}</Button>
+        <Button
+          type="link"
+          className="ButtonLink"
+          onClick={() => getClusterrole(record)}
+        >
+          {text}
+        </Button>
       ),
     },
     {
@@ -156,7 +162,13 @@ function ClusterroleList() {
       fixed: 'right',
       render: (text, record) => (
         <div style={{display: 'flex', alignItems: 'center'}}>
-          <Button type="link" className="ButtonLink" onClick={() => getClusterroleYaml(record)}>YAML</Button>
+          <Button
+            type="link"
+            className="ButtonLink"
+            onClick={() => getClusterroleYaml(record)}
+          >
+            YAML
+          </Button>
         </div>
       ),
     },
@@ -178,8 +190,20 @@ function ClusterroleList() {
           </Form.Item>
           <Form.Item style={{marginTop: '2px'}}>
             <Space wrap>
-              <Button type="primary" icon={<SearchOutlined />} onClick={() => search()}>Search</Button>
-              <Button type="primary" icon={<UndoOutlined />} onClick={() => reset()}>Reset</Button>
+              <Button
+                type="primary"
+                icon={<SearchOutlined />}
+                onClick={() => search()}
+              >
+                Search
+              </Button>
+              <Button
+                type="primary"
+                icon={<UndoOutlined />}
+                onClick={() => reset()}
+              >
+                Reset
+              </Button>
             </Space>
           </Form.Item>
         </Form>
@@ -191,7 +215,13 @@ function ClusterroleList() {
         <div className="MyContentHeader">
           <span className="MyContentHeaderTitle">ClusterRole List</span>
           <Space wrap>
-            <Button type="primary" icon={<SyncOutlined />} onClick={() => refresh()}>Refresh</Button>
+            <Button
+              type="primary"
+              icon={<SyncOutlined />}
+              onClick={() => refresh()}
+            >
+              Refresh
+            </Button>
           </Space>
         </div>
 

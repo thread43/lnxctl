@@ -20,10 +20,20 @@ function ClusterroleDetail() {
         open={storeClusterroleDetailVisible}
         onCancel={() => dispatch(store.setClusterroleDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setClusterroleDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setClusterroleDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 9}} wrapperCol={{span: 12}} className="MyForm">
+        <Form
+          layout="horizontal"
+          labelCol={{span: 9}}
+          wrapperCol={{span: 12}}
+          className="MyForm"
+        >
           <Form.Item label="Name">{storeClusterrole.name}</Form.Item>
           <Form.Item label="Created At">{storeClusterrole.created_at}</Form.Item>
           <Form.Item label="Age">{storeClusterrole.age}</Form.Item>

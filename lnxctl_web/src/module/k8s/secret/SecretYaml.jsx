@@ -67,7 +67,12 @@ function SecretYaml() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setSecretYamlVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setSecretYamlVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setSecretYamlVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">

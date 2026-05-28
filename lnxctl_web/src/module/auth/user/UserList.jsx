@@ -115,7 +115,13 @@ function UserList() {
       title: 'Username',
       dataIndex: 'username',
       render: (text, record) => (
-        <Button type="link" className="ButtonLink" onClick={() => getUser(record.id)}>{text}</Button>
+        <Button
+          type="link"
+          className="ButtonLink"
+          onClick={() => getUser(record.id)}
+        >
+          {text}
+        </Button>
       ),
     },
     {
@@ -132,7 +138,13 @@ function UserList() {
       key: 'is_admin',
       title: 'Is Admin',
       dataIndex: 'is_admin',
-      render: (text) => (text === 1) ? (<span><CheckOutlined /></span>) : (<span><CloseOutlined /></span>),
+      render: (text) => (
+        text === 1
+      ) ? (
+        <span><CheckOutlined /></span>
+      ) : (
+        <span><CloseOutlined /></span>
+      ),
     },
     {
       key: 'department',
@@ -144,7 +156,14 @@ function UserList() {
       title: 'Roles',
       dataIndex: 'role_names',
       render: (text) => (
-        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '1px'}}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            gap: '1px',
+          }}
+        >
           {text.map((item, index) => (
             <div key={index}>
               <Tag variant='outlined'>{item}</Tag>
@@ -191,7 +210,13 @@ function UserList() {
       fixed: 'right',
       render: (text, record) => (
         <span>
-          <Button type="link" className="ButtonLink" onClick={() => updateUser(record.id)}>Edit</Button>
+          <Button
+            type="link"
+            className="ButtonLink"
+            onClick={() => updateUser(record.id)}
+          >
+            Edit
+          </Button>
           <Divider orientation="vertical" />
           <Popconfirm
             title="Are you sure?"
@@ -203,9 +228,21 @@ function UserList() {
             <Button type="link" className="ButtonLink">Delete</Button>
           </Popconfirm>
           <Divider orientation="vertical" />
-          <Button type="link" className="ButtonLink" onClick={() => assignRole(record.id)}>Assign</Button>
+          <Button
+            type="link"
+            className="ButtonLink"
+            onClick={() => assignRole(record.id)}
+          >
+            Assign
+          </Button>
           <Divider orientation="vertical" />
-          <Button type="link" className="ButtonLink" onClick={() => grantPerm(record.id)}>Grant</Button>
+          <Button
+            type="link"
+            className="ButtonLink"
+            onClick={() => grantPerm(record.id)}
+          >
+            Grant
+          </Button>
           <Divider orientation="vertical" />
           <Dropdown
             menu={{
@@ -225,8 +262,20 @@ function UserList() {
       <div className="MyContentHeader">
         <span className="MyContentHeaderTitle">User List</span>
         <Space wrap>
-          <Button type="primary" icon={<PlusOutlined />} onClick={() => addUser()}>New User</Button>
-          <Button type="primary" icon={<SyncOutlined />} onClick={() => getUsers()}>Refresh</Button>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => addUser()}
+          >
+            New User
+          </Button>
+          <Button
+            type="primary"
+            icon={<SyncOutlined />}
+            onClick={() => getUsers()}
+          >
+            Refresh
+          </Button>
         </Space>
       </div>
 

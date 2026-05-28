@@ -5,7 +5,10 @@ function get_clusters() {
 }
 
 function get_namespaces(cluster_id) {
-  return http.get('/api/k8s/service/get_namespaces?cluster_id=' + cluster_id);
+  let url = '/api/k8s/service/get_namespaces';
+  url = url + '?cluster_id=' + cluster_id;
+
+  return http.get(url);
 }
 
 function get_service_yaml(service) {
@@ -22,10 +25,15 @@ function get_service_yaml(service) {
 }
 
 function get_services(cluster_id, namespace) {
+  let url = '/api/k8s/service/get_services';
+
   if (namespace !== '') {
-    return http.get('/api/k8s/service/get_services?cluster_id=' + cluster_id + '&namespace=' + namespace);
+    url = url + '?cluster_id=' + cluster_id;
+    url = url + '&namespace=' + namespace;
+    return http.get(url);
   } else {
-    return http.get('/api/k8s/service/get_services?cluster_id=' + cluster_id);
+    url = url + '?cluster_id=' + cluster_id;
+    return http.get(url);
   }
 }
 

@@ -20,14 +20,26 @@ function IngressDetail() {
         open={storeIngressDetailVisible}
         onCancel={() => dispatch(store.setIngressDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setIngressDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setIngressDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 9}} wrapperCol={{span: 12}} className="MyForm">
+        <Form
+          layout="horizontal"
+          labelCol={{span: 9}}
+          wrapperCol={{span: 12}}
+          className="MyForm"
+        >
           <Form.Item label="Namespace">{storeIngress.namespace}</Form.Item>
           <Form.Item label="Name">{storeIngress.name}</Form.Item>
           <Form.Item label="Hosts">
-            {storeIngress.hosts.map((item, index) => (<div key={index}>{item}</div>))}
+            {storeIngress.hosts.map((item, index) => (
+              <div key={index}>{item}</div>
+            ))}
           </Form.Item>
           <Form.Item label="Age">{storeIngress.age}</Form.Item>
         </Form>

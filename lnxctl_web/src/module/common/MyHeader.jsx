@@ -104,7 +104,13 @@ function MyHeader() {
             onClick={() => toggleSider()}
             style={{color: 'inherit', height: '48px', fontSize: '18px'}}
           >
-            {storeSiderCollapsed === false ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
+            {(
+              storeSiderCollapsed === false
+            ) ? (
+              <MenuFoldOutlined />
+            ) : (
+              <MenuUnfoldOutlined />
+            )}
           </Button>
         </div>
 

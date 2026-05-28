@@ -67,7 +67,12 @@ function PvYaml() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setPvYamlVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setPvYamlVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setPvYamlVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">

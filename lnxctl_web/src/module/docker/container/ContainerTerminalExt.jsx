@@ -68,7 +68,8 @@ function ContainerTerminalExt() {
     document.title = 'Docker - ' + container_name;
 
     const protocol = (window.location.protocol === 'https:' ? 'wss:' : 'ws:');
-    let url = protocol + '//' + window.location.host + '/api/docker/container/ws_open_container_terminal';
+    let url = protocol + '//' + window.location.host;
+    url = url + '/api/docker/container/ws_open_container_terminal';
     url = url + '?server_id=' + server_id;
     url = url + '&container_id=' + container_id;
     if (command !== null) {
@@ -105,8 +106,16 @@ function ContainerTerminalExt() {
         console.log(event.type);
         console.log('ws.onopen', url)
 
-        console.log({termCols: term.cols, termRows: term.rows, ...fitAddon.proposeDimensions()});
-        const msg = JSON.stringify({action: 'resize', cols: term.cols, rows: term.rows});
+        console.log({
+          termCols: term.cols,
+          termRows: term.rows,
+          ...fitAddon.proposeDimensions(),
+        });
+        const msg = JSON.stringify({
+          action: 'resize',
+          cols: term.cols,
+          rows: term.rows,
+        });
         ws.send(msg);
 
         term.focus();

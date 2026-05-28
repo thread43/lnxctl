@@ -20,10 +20,20 @@ function NetworkDetail() {
         open={storeNetworkDetailVisible}
         onCancel={() => dispatch(store.setNetworkDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setNetworkDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setNetworkDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 9}} wrapperCol={{span: 12}} className="MyForm">
+        <Form
+          layout="horizontal"
+          labelCol={{span: 9}}
+          wrapperCol={{span: 12}}
+          className="MyForm"
+        >
           <Form.Item label="Network ID">{storeNetwork.network_id_raw}</Form.Item>
           <Form.Item label="Name">{storeNetwork.name}</Form.Item>
           <Form.Item label="Driver">{storeNetwork.driver}</Form.Item>

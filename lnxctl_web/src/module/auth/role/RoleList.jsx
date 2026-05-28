@@ -80,7 +80,13 @@ function RoleList() {
       title: 'Name',
       dataIndex: 'name',
       render: (text, record) => (
-        <Button type="link" className="ButtonLink" onClick={() => getRole(record.id)}>{text}</Button>
+        <Button
+          type="link"
+          className="ButtonLink"
+          onClick={() => getRole(record.id)}
+        >
+          {text}
+        </Button>
       ),
     },
     {
@@ -96,7 +102,13 @@ function RoleList() {
       ),
       render: (record) => (
         <span>
-          <Button type="link" className="ButtonLink" onClick={() => updateRole(record.id)}>Edit</Button>
+          <Button
+            type="link"
+            className="ButtonLink"
+            onClick={() => updateRole(record.id)}
+          >
+            Edit
+          </Button>
           <Divider orientation="vertical" />
           <Popconfirm
             title="Are you sure?"
@@ -108,7 +120,13 @@ function RoleList() {
             <Button type="link" className="ButtonLink">Delete</Button>
           </Popconfirm>
           <Divider orientation="vertical" />
-          <Button type="link" className="ButtonLink" onClick={() => grantPerm(record.id)}>Grant</Button>
+          <Button
+            type="link"
+            className="ButtonLink"
+            onClick={() => grantPerm(record.id)}
+          >
+            Grant
+          </Button>
         </span>
       ),
     },
@@ -119,8 +137,20 @@ function RoleList() {
       <div className="MyContentHeader">
         <span className="MyContentHeaderTitle">Role List</span>
         <Space wrap>
-          <Button type="primary" icon={<PlusOutlined />} onClick={() => addRole()}>New Role</Button>
-          <Button type="primary" icon={<SyncOutlined />} onClick={() => getRoles()}>Refresh</Button>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => addRole()}
+          >
+            New Role
+          </Button>
+          <Button
+            type="primary"
+            icon={<SyncOutlined />}
+            onClick={() => getRoles()}
+          >
+            Refresh
+          </Button>
         </Space>
       </div>
 

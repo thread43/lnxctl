@@ -20,10 +20,20 @@ function ServiceaccountDetail() {
         open={storeServiceaccountDetailVisible}
         onCancel={() => dispatch(store.setServiceaccountDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setServiceaccountDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setServiceaccountDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 9}} wrapperCol={{span: 12}} className="MyForm">
+        <Form
+          layout="horizontal"
+          labelCol={{span: 9}}
+          wrapperCol={{span: 12}}
+          className="MyForm"
+        >
           <Form.Item label="Namespace">{storeServiceaccount.namespace}</Form.Item>
           <Form.Item label="Name">{storeServiceaccount.name}</Form.Item>
           <Form.Item label="Secrets">{storeServiceaccount.secrets}</Form.Item>

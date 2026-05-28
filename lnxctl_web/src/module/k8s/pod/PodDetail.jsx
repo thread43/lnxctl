@@ -20,10 +20,20 @@ function PodDetail() {
         open={storePodDetailVisible}
         onCancel={() => dispatch(store.setPodDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setPodDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setPodDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 9}} wrapperCol={{span: 12}} className="MyForm">
+        <Form
+          layout="horizontal"
+          labelCol={{span: 9}}
+          wapperCol={{span: 12}}
+          className="MyForm"
+        >
           <Form.Item label="Namespace">{storePod.namespace}</Form.Item>
           <Form.Item label="Name">{storePod.name}</Form.Item>
           <Form.Item label="Containers">
@@ -38,9 +48,11 @@ function PodDetail() {
           <Form.Item label="Ready">{storePod.ready}</Form.Item>
           <Form.Item label="Status">{storePod.pod_phase}</Form.Item>
           <Form.Item label="Restarts">
-            {storePod.containers !== null && storePod.containers.reduce((sum, item) => (
-              sum + item.restart_count
-            ), 0)}
+            {(storePod.containers !== null) && (
+              storePod.containers.reduce((sum, item) => (
+                sum + item.restart_count
+              ), 0)
+            )}
           </Form.Item>
           <Form.Item label="Age">{storePod.age}</Form.Item>
           <Form.Item label="Pod IP">{storePod.pod_ip}</Form.Item>

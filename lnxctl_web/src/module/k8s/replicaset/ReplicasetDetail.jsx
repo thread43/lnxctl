@@ -20,10 +20,20 @@ function ReplicasetDetail() {
         open={storeReplicasetDetailVisible}
         onCancel={() => dispatch(store.setReplicasetDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setReplicasetDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setReplicasetDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 9}} wrapperCol={{span: 12}} className="MyForm">
+        <Form
+          layout="horizontal"
+          labelCol={{span: 9}}
+          wrapperCol={{span: 12}}
+          className="MyForm"
+        >
           <Form.Item label="Namespace">{storeReplicaset.namespace}</Form.Item>
           <Form.Item label="Name">{storeReplicaset.name}</Form.Item>
           <Form.Item label="Desired">{storeReplicaset.spec_replicas}</Form.Item>

@@ -5,7 +5,10 @@ function get_clusters() {
 }
 
 function get_namespaces(cluster_id) {
-  return http.get('/api/k8s/pvc/get_namespaces?cluster_id=' + cluster_id);
+  let url = '/api/k8s/pvc/get_namespaces';
+  url = url + '?cluster_id=' + cluster_id;
+
+  return http.get(url);
 }
 
 function get_pvc_yaml(pvc) {
@@ -22,10 +25,14 @@ function get_pvc_yaml(pvc) {
 }
 
 function get_pvcs(cluster_id, namespace) {
+  let url = '/api/k8s/pvc/get_pvcs';
   if (namespace !== '') {
-    return http.get('/api/k8s/pvc/get_pvcs?cluster_id=' + cluster_id + '&namespace=' + namespace);
+    url = url + '?cluster_id=' + cluster_id;
+    url = url + '&namespace=' + namespace;
+    return http.get(url);
   } else {
-    return http.get('/api/k8s/pvc/get_pvcs?cluster_id=' + cluster_id);
+    url = url + '?cluster_id=' + cluster_id;
+    return http.get(url);
   }
 }
 

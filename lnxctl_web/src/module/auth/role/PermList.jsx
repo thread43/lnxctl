@@ -62,9 +62,13 @@ function PermList() {
           let title = item3['title'];
           let type = item3['type'];
           if (type === 0) {
-            title = <span><Tag color="success" style={{width: '28px'}}>R</Tag>{title}</span>;
+            title = (
+              <span><Tag color="success" style={{width: '28px'}}>R</Tag>{title}</span>
+            );
           } else if (type === 1) {
-            title = <span><Tag color="warning">W</Tag>{title}</span>;
+            title = (
+              <span><Tag color="warning">W</Tag>{title}</span>
+            );
           } else {
             //
           }
@@ -100,7 +104,11 @@ function PermList() {
 
   function onCheck(checkedKeys, info) {
     setStateCheckedKeys(checkedKeys);
-    const permIds = info.checkedNodes.filter(node => node.is_leaf === true).map(node => node.key);
+    const permIds = info.checkedNodes.filter(
+      node => node.is_leaf === true
+    ).map(
+      node => node.key
+    );
     setStatePermIds(permIds);
   }
 
@@ -186,10 +194,34 @@ function PermList() {
       >
         <div className="MyContentHeader">
           <Space wrap>
-            <Button type="primary" icon={<ColumnHeightOutlined />} onClick={() => expand()}>Expand</Button>
-            <Button type="primary" icon={<VerticalAlignMiddleOutlined />} onClick={() => collapse()}>Collapse</Button>
-            <Button type="primary" icon={<ReadOutlined />} onClick={() => readonly()}>Read-only</Button>
-            <Button type="primary" icon={<EditOutlined />} onClick={() => readwrite()}>Read-write</Button>
+            <Button
+              type="primary"
+              icon={<ColumnHeightOutlined />}
+              onClick={() => expand()}
+            >
+              Expand
+            </Button>
+            <Button
+              type="primary"
+              icon={<VerticalAlignMiddleOutlined />}
+              onClick={() => collapse()}
+            >
+              Collapse
+            </Button>
+            <Button
+              type="primary"
+              icon={<ReadOutlined />}
+              onClick={() => readonly()}
+            >
+              Read-only
+            </Button>
+            <Button
+              type="primary"
+              icon={<EditOutlined />}
+              onClick={() => readwrite()}
+            >
+              Read-write
+            </Button>
           </Space>
         </div>
         <Form layout="horizontal">

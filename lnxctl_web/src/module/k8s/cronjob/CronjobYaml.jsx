@@ -67,7 +67,12 @@ function CronjobYaml() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setCronjobYamlVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setCronjobYamlVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setCronjobYamlVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">

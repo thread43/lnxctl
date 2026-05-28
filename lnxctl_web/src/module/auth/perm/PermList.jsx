@@ -152,7 +152,13 @@ function PermList() {
       title: 'Code',
       dataIndex: 'code',
       render: (text, record) => (
-        <Button type="link" className="ButtonLink" onClick={() => getPerm(record.id)}>{text}</Button>
+        <Button
+          type="link"
+          className="ButtonLink"
+          onClick={() => getPerm(record.id)}
+        >
+          {text}
+        </Button>
       ),
     },
     {
@@ -185,7 +191,13 @@ function PermList() {
       fixed: 'right',
       render: (record) => (
         <span>
-          <Button type="link" className="ButtonLink" onClick={() => updatePerm(record.id)}>Edit</Button>
+          <Button
+            type="link"
+            className="ButtonLink"
+            onClick={() => updatePerm(record.id)}
+          >
+            Edit
+          </Button>
           <Divider orientation="vertical" />
           <Popconfirm
             title="Are you sure?"
@@ -197,7 +209,13 @@ function PermList() {
             <Button type="link" className="ButtonLink">Delete</Button>
           </Popconfirm>
           <Divider orientation="vertical" />
-          <Button type="link" className="ButtonLink" onClick={() => copyPerm(record.id)}>Copy</Button>
+          <Button
+            type="link"
+            className="ButtonLink"
+            onClick={() => copyPerm(record.id)}
+          >
+            Copy
+          </Button>
         </span>
       ),
     },
@@ -208,7 +226,11 @@ function PermList() {
       <div className="MyContentBlock">
         <Form form={form} name="horizontal_login" layout="inline">
           <Form.Item name="menu_id" label="Menu" style={{marginTop: '2px'}}>
-            <Select allowClear={true} style={{width: 160}} onChange={(value) => changeMenu(value)}>
+            <Select
+              allowClear={true}
+              style={{width: 160}}
+              onChange={(value) => changeMenu(value)}
+            >
               {storeMenus.map((item, index) => (
                 <Select.Option key={index} value={item.id} disabled={item.is_parent}>
                   {item.alias}
@@ -218,8 +240,20 @@ function PermList() {
           </Form.Item>
           <Form.Item style={{marginTop: '2px'}}>
             <Space wrap>
-              <Button type="primary" icon={<SearchOutlined />} onClick={() => search()}>Search</Button>
-              <Button type="primary" icon={<UndoOutlined />} onClick={() => reset()}>Reset</Button>
+              <Button
+                type="primary"
+                icon={<SearchOutlined />}
+                onClick={() => search()}
+              >
+                Search
+              </Button>
+              <Button
+                type="primary"
+                icon={<UndoOutlined />}
+                onClick={() => reset()}
+              >
+                Reset
+              </Button>
             </Space>
           </Form.Item>
         </Form>
@@ -231,8 +265,20 @@ function PermList() {
         <div className="MyContentHeader">
           <span className="MyContentHeaderTitle">Permission List</span>
           <Space wrap>
-            <Button type="primary" icon={<PlusOutlined />} onClick={() => addPerm()}>New Permission</Button>
-            <Button type="primary" icon={<SyncOutlined />} onClick={() => getPerms()}>Refresh</Button>
+            <Button
+              type="primary"
+              icon={<PlusOutlined />}
+              onClick={() => addPerm()}
+            >
+              New Permission
+            </Button>
+            <Button
+              type="primary"
+              icon={<SyncOutlined />}
+              onClick={() => getPerms()}
+            >
+              Refresh
+            </Button>
           </Space>
         </div>
 

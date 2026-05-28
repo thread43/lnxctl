@@ -16,7 +16,10 @@ function get_node_yaml(node) {
 }
 
 function get_nodes(cluster_id) {
-  return http.get('/api/k8s/node/get_nodes?cluster_id=' + cluster_id);
+  let url = '/api/k8s/node/get_nodes';
+  url = url + '?cluster_id=' + cluster_id;
+
+  return http.get(url);
 }
 
 const api = {

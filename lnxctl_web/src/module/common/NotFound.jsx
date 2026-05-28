@@ -1,8 +1,10 @@
 function NotFound() {
   return (
-    <div style={{textAlign: 'center', margin: '40px'}}>
-      Not Found
-    </div>
+    <>
+      <div style={{textAlign: 'center', margin: '40px'}}>
+        Not Found
+      </div>
+    </>
   );
 }
 

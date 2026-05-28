@@ -67,7 +67,12 @@ function EndpointYaml() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setEndpointYamlVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setEndpointYamlVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setEndpointYamlVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">

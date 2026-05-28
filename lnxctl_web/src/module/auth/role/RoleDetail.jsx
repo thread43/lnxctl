@@ -50,10 +50,20 @@ function RoleDetail() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setRoleDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setRoleDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setRoleDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 12}} wrapperCol={{span: 12}} className="MyForm">
+        <Form
+          layout="horizontal"
+          labelCol={{span: 12}}
+          wrapperCol={{span: 12}}
+          className="MyForm"
+        >
           <Form.Item label="ID">{stateRole.id}</Form.Item>
           <Form.Item label="Name">{stateRole.name}</Form.Item>
           <Form.Item label="Remark">{stateRole.remark}</Form.Item>

@@ -20,7 +20,12 @@ function LogDetail() {
         open={storeLogDetailVisible}
         onCancel={() => dispatch(store.setLogDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setLogDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setLogDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <Form layout="horizontal" labelCol={{span: 9}} wrapperCol={{span: 9}}>

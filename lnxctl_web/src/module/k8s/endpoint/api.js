@@ -4,10 +4,6 @@ function get_clusters() {
   return http.get('/api/k8s/endpoint/get_clusters');
 }
 
-function get_namespaces(cluster_id) {
-  return http.get('/api/k8s/endpoint/get_namespaces?cluster_id=' + cluster_id);
-}
-
 function get_endpoint_yaml(endpoint) {
   const cluster_id = endpoint.cluster_id;
   const namespace = endpoint.namespace;
@@ -22,18 +18,29 @@ function get_endpoint_yaml(endpoint) {
 }
 
 function get_endpoints(cluster_id, namespace) {
+  let url = '/api/k8s/endpoint/get_endpoints';
   if (namespace !== '') {
-    return http.get('/api/k8s/endpoint/get_endpoints?cluster_id=' + cluster_id + '&namespace=' + namespace);
+    url = url + '?cluster_id=' + cluster_id;
+    url = url + '&namespace=' + namespace;
+    return http.get(url);
   } else {
-    return http.get('/api/k8s/endpoint/get_endpoints?cluster_id=' + cluster_id);
+    url = url + '?cluster_id=' + cluster_id;
+    return http.get(url);
   }
+}
+
+function get_namespaces(cluster_id) {
+  let url = '/api/k8s/endpoint/get_namespaces';
+  url = url + '?cluster_id=' + cluster_id;
+
+  return http.get(url);
 }
 
 const api = {
   get_clusters,
-  get_namespaces,
   get_endpoint_yaml,
   get_endpoints,
+  get_namespaces,
 };
 
 export default api;

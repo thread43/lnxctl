@@ -67,7 +67,12 @@ function ServiceYaml() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setServiceYamlVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setServiceYamlVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setServiceYamlVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">

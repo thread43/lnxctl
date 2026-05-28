@@ -69,7 +69,12 @@ function ContainerJson() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setContainerJsonVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setContainerJsonVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setContainerJsonVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">

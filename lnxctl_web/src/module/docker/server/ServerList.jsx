@@ -74,7 +74,13 @@ function ServerList() {
       title: 'Name',
       dataIndex: 'name',
       render: (text, record) => (
-        <Button type="link" className="ButtonLink" onClick={() => getServer(record.id)}>{text}</Button>
+        <Button
+          type="link"
+          className="ButtonLink"
+          onClick={() => getServer(record.id)}
+        >
+          {text}
+        </Button>
       ),
     },
     {
@@ -92,7 +98,13 @@ function ServerList() {
       title: 'Actions',
       render: (record) => (
         <span>
-          <Button type="link" className="ButtonLink" onClick={() => updateServer(record.id)}>Edit</Button>
+          <Button
+            type="link"
+            className="ButtonLink"
+            onClick={() => updateServer(record.id)}
+          >
+            Edit
+          </Button>
           <Divider orientation="vertical" />
           <Popconfirm
             title="Are you sure?"
@@ -113,8 +125,20 @@ function ServerList() {
       <div className="MyContentHeader">
         <span className="MyContentHeaderTitle">Server List</span>
         <Space wrap>
-          <Button type="primary" icon={<PlusOutlined />} onClick={() => addServer()}>New Server</Button>
-          <Button type="primary" icon={<SyncOutlined />} onClick={() => getServers()}>Refresh</Button>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => addServer()}
+          >
+            New Server
+          </Button>
+          <Button
+            type="primary"
+            icon={<SyncOutlined />}
+            onClick={() => getServers()}
+          >
+            Refresh
+          </Button>
         </Space>
       </div>
 

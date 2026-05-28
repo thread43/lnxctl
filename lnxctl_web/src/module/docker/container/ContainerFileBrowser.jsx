@@ -117,7 +117,15 @@ function ContainerFileBrowser() {
       dataIndex: 'name',
       render: (text, record) => {
         if (record.is_dir) {
-          return (<Button type="link" className="ButtonLink" onClick={() => init(record.abs_path)}>{text}</Button>);
+          return (
+            <Button
+              type="link"
+              className="ButtonLink"
+              onClick={() => init(record.abs_path)}
+            >
+              {text}
+            </Button>
+          );
         } else {
           return (text);
         }
@@ -153,7 +161,11 @@ function ContainerFileBrowser() {
         open={storeContainerFileBrowserVisible}
         extra={
           <Space wrap>
-            <Button onClick={() => dispatch(store.setContainerFileBrowserVisible(false))}>Close</Button>
+            <Button
+              onClick={() => dispatch(store.setContainerFileBrowserVisible(false))}
+            >
+              Close
+            </Button>
           </Space>
         }
       >
@@ -162,7 +174,13 @@ function ContainerFileBrowser() {
             {storeContainer.name}:{stateDir}
           </span>
           <Space wrap>
-            <Button type="primary" icon={<RollbackOutlined />} onClick={() => cdParentDir()}>Go Back</Button>
+            <Button
+              type="primary"
+              icon={<RollbackOutlined />}
+              onClick={() => cdParentDir()}
+            >
+              Go Back
+            </Button>
             <Upload
               name="file"
               showUploadList={false}
@@ -176,7 +194,13 @@ function ContainerFileBrowser() {
             >
               <Button type="primary" icon={<UploadOutlined />}>Upload</Button>
             </Upload>
-            <Button type="primary" icon={<SyncOutlined />} onClick={() => refresh()}>Refresh</Button>
+            <Button
+              type="primary"
+              icon={<SyncOutlined />}
+              onClick={() => refresh()}
+            >
+              Refresh
+            </Button>
           </Space>
         </div>
 

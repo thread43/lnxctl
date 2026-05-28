@@ -130,7 +130,13 @@ function ServiceList() {
       title: 'Name',
       dataIndex: 'name',
       render: (text, record) => (
-        <Button type="link" className="ButtonLink" onClick={() => getService(record)}>{text}</Button>
+        <Button
+          type="link"
+          className="ButtonLink"
+          onClick={() => getService(record)}
+        >
+          {text}
+        </Button>
       ),
     },
     /*
@@ -155,14 +161,25 @@ function ServiceList() {
       title: 'Service CMD',
       dataIndex: 'start_cmd',
       render: (text, record) => (
-        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '1px'}}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            gap: '1px',
+          }}
+        >
           {record.start_cmd !== '' && (
             <div>
               Start:
               &nbsp;
               <Tooltip
                 placement="topLeft"
-                title={(<div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>{text}</div>)}
+                title={(
+                  <div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>
+                    {text}
+                  </div>
+                )}
               >
                 <Tag variant="outlined">
                   {text.length > 50 ? text.substring(0, 50) + '...' : text}
@@ -187,10 +204,20 @@ function ServiceList() {
               &nbsp;
               <Tooltip
                 placement="topLeft"
-                title={(<div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>{record.stop_cmd}</div>)}
+                title={(
+                  <div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>
+                    {record.stop_cmd}
+                  </div>
+                )}
               >
                 <Tag variant="outlined">
-                  {record.stop_cmd.length > 50 ? record.stop_cmd.substring(0, 50) + '...' : record.stop_cmd}
+                  {(
+                    record.stop_cmd.length > 50
+                  ) ? (
+                    record.stop_cmd.substring(0, 50) + '...'
+                  ) : (
+                    record.stop_cmd
+                  )}
                 </Tag>
               </Tooltip>
               &nbsp;
@@ -212,10 +239,20 @@ function ServiceList() {
               &nbsp;
               <Tooltip
                 placement="topLeft"
-                title={(<div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>{record.restart_cmd}</div>)}
+                title={(
+                  <div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>
+                    {record.restart_cmd}
+                  </div>
+                )}
               >
                 <Tag variant="outlined">
-                  {record.restart_cmd.length > 50 ? record.restart_cmd.substring(0, 50) + '...' : record.restart_cmd}
+                  {(
+                    record.restart_cmd.length > 50
+                  ) ? (
+                    record.restart_cmd.substring(0, 50) + '...'
+                  ) : (
+                    record.restart_cmd
+                  )}
                 </Tag>
               </Tooltip>
               &nbsp;
@@ -237,10 +274,20 @@ function ServiceList() {
               &nbsp;
               <Tooltip
                 placement="topLeft"
-                title={(<div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>{record.reload_cmd}</div>)}
+                title={(
+                  <div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>
+                    {record.reload_cmd}
+                  </div>
+                )}
               >
                 <Tag variant="outlined">
-                  {record.reload_cmd.length > 50 ? record.reload_cmd.substring(0, 50) + '...' : record.reload_cmd}
+                  {(
+                    record.reload_cmd.length > 50
+                  ) ? (
+                    record.reload_cmd.substring(0, 50) + '...'
+                  ) : (
+                    record.reload_cmd
+                  )}
                 </Tag>
               </Tooltip>
               &nbsp;
@@ -262,10 +309,20 @@ function ServiceList() {
               &nbsp;
               <Tooltip
                 placement="topLeft"
-                title={(<div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>{record.status_cmd}</div>)}
+                title={(
+                  <div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>
+                    {record.status_cmd}
+                  </div>
+                )}
               >
                 <Tag variant="outlined">
-                  {record.status_cmd.length > 50 ? record.status_cmd.substring(0, 50) + '...' : record.status_cmd}
+                  {(
+                    record.status_cmd.length > 50
+                  ) ? (
+                    record.status_cmd.substring(0, 50) + '...'
+                  ) : (
+                    record.status_cmd
+                  )}
                 </Tag>
               </Tooltip>
               &nbsp;
@@ -290,7 +347,11 @@ function ServiceList() {
       render: (text) => (
         <Tooltip
           placement="topLeft"
-          title={(<div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>{text}</div>)}
+          title={(
+            <div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>
+              {text}
+            </div>
+          )}
         >
           {text.length > 30 ? text.substring(0, 30) + '...' : text}
         </Tooltip>
@@ -303,7 +364,11 @@ function ServiceList() {
       render: (text) => (
         <Tooltip
           placement="topLeft"
-          title={(<div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>{text}</div>)}
+          title={(
+            <div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>
+              {text}
+            </div>
+          )}
         >
           {text.length > 30 ? text.substring(0, 30) + '...' : text}
         </Tooltip>
@@ -316,7 +381,11 @@ function ServiceList() {
       render: (text) => (
         <Tooltip
           placement="topLeft"
-          title={(<div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>{text}</div>)}
+          title={(
+            <div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>
+              {text}
+            </div>
+          )}
         >
           {text.length > 30 ? text.substring(0, 30) + '...' : text}
         </Tooltip>
@@ -329,7 +398,11 @@ function ServiceList() {
       render: (text) => (
         <Tooltip
           placement="topLeft"
-          title={(<div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>{text}</div>)}
+          title={(
+            <div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>
+              {text}
+            </div>
+          )}
         >
           {text.length > 30 ? text.substring(0, 30) + '...' : text}
         </Tooltip>
@@ -343,7 +416,11 @@ function ServiceList() {
       render: (text) => (
         <Tooltip
           placement="topLeft"
-          title={(<div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>{text}</div>)}
+          title={(
+            <div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>
+              {text}
+            </div>
+          )}
         >
           {text.length > 30 ? text.substring(0, 30) + '...' : text}
         </Tooltip>
@@ -355,7 +432,13 @@ function ServiceList() {
       fixed: 'right',
       render: (record) => (
         <span>
-          <Button type="link" className="ButtonLink" onClick={() => updateService(record.id)}>Edit</Button>
+          <Button
+            type="link"
+            className="ButtonLink"
+            onClick={() => updateService(record.id)}
+          >
+            Edit
+          </Button>
           <Divider orientation="vertical" />
           <Popconfirm
             title="Are you sure?"
@@ -425,29 +508,60 @@ function ServiceList() {
           )}
           <Divider orientation="vertical" />
           {record.status_cmd !== '' ? (
-            <Button type="link" className="ButtonLink" onClick={() => openServiceCmdExec(record, 'status')}>Status</Button>
+            <Button
+              type="link"
+              className="ButtonLink"
+              onClick={() => openServiceCmdExec(record, 'status')}
+            >
+              Status
+            </Button>
           ) : (
             <Button type="link" className="ButtonLink" disabled>Status</Button>
           )}
           <Divider orientation="vertical" />
           */}
           {record.term_cmd !== '' ? (
-            <Typography.Link onClick={(event) => {event.preventDefault(); openServiceTerminal(record);}}>
-              <img src={terminalIcon} alt="" style={{height: '22px', verticalAlign: 'top'}} />
+            <Typography.Link
+              onClick={(event) => {
+                event.preventDefault();
+                openServiceTerminal(record);
+              }}
+            >
+              <img
+                src={terminalIcon}
+                alt=""
+                style={{height: '22px', verticalAlign: 'top'}}
+              />
             </Typography.Link>
           ) : (
             <Typography.Link disabled>
-              <img src={terminalIcon} alt="" style={{height: '22px', verticalAlign: 'top', opacity: 0.3}} />
+              <img
+                src={terminalIcon}
+                alt=""
+                style={{height: '22px', verticalAlign: 'top', opacity: 0.3}}
+              />
             </Typography.Link>
           )}
           <Divider orientation="vertical" />
           {record.term_cmd !== '' ? (
-            <Typography.Link onClick={(event) => {event.preventDefault(); openServiceTerminalExt(record);}}>
-              <img src={externalLinkIcon} alt="" style={{height: '22px', verticalAlign: 'top'}} />
+            <Typography.Link
+              onClick={(event) => {
+                event.preventDefault();
+                openServiceTerminalExt(record);
+              }}>
+              <img
+                src={externalLinkIcon}
+                alt=""
+                style={{height: '22px', verticalAlign: 'top'}}
+              />
             </Typography.Link>
           ) : (
             <Typography.Link disabled>
-              <img src={externalLinkIcon} alt="" style={{height: '22px', verticalAlign: 'top', opacity: 0.3}} />
+              <img
+                src={externalLinkIcon}
+                alt=""
+                style={{height: '22px', verticalAlign: 'top', opacity: 0.3}}
+              />
             </Typography.Link>
           )}
         </span>
@@ -460,7 +574,13 @@ function ServiceList() {
       <div className="MyContentHeader">
         <span className="MyContentHeaderTitle">Service List</span>
         <Space wrap>
-          <Button type="primary" icon={<PlusOutlined />} onClick={() => addService()}>New Service</Button>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => addService()}
+          >
+              New Service
+          </Button>
           <Upload
             name="file"
             showUploadList={false}
@@ -469,8 +589,20 @@ function ServiceList() {
           >
             <Button type="primary" icon={<UploadOutlined />}>Upload</Button>
           </Upload>
-          <Button type="primary" icon={<DownloadOutlined />} onClick={() => downloadService()}>Download</Button>
-          <Button type="primary" icon={<SyncOutlined />} onClick={() => getServices()}>Refresh</Button>
+          <Button
+            type="primary"
+            icon={<DownloadOutlined />}
+            onClick={() => downloadService()}
+          >
+            Download
+          </Button>
+          <Button
+            type="primary"
+            icon={<SyncOutlined />}
+            onClick={() => getServices()}
+          >
+            Refresh
+          </Button>
         </Space>
       </div>
 

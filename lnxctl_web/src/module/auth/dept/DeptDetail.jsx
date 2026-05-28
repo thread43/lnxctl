@@ -50,10 +50,20 @@ function DeptDetail() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setDeptDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setDeptDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setDeptDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 12}} wrapperCol={{span: 12}} className="MyForm">
+        <Form
+          layout="horizontal"
+          labelCol={{span: 12}}
+          wrapperCol={{span: 12}}
+          className="MyForm"
+        >
           <Form.Item label="ID">{stateDept.id}</Form.Item>
           <Form.Item label="Name">{stateDept.name}</Form.Item>
           <Form.Item label="Remark">{stateDept.remark}</Form.Item>

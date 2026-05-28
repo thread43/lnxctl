@@ -67,7 +67,12 @@ function ClusterroleYaml() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setClusterroleYamlVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setClusterroleYamlVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setClusterroleYamlVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">

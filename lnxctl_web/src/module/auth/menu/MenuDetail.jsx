@@ -50,14 +50,26 @@ function MenuDetail() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setMenuDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setMenuDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setMenuDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 12}} wrapperCol={{span: 12}} className="MyForm">
+        <Form
+          layout="horizontal"
+          labelCol={{span: 12}}
+          wrapperCol={{span: 12}}
+          className="MyForm"
+        >
           <Form.Item label="ID">{stateMenu.id}</Form.Item>
           <Form.Item label="Code">{stateMenu.code}</Form.Item>
           <Form.Item label="Name">{stateMenu.name}</Form.Item>
-          <Form.Item label="Is Virtual">{stateMenu.is_virtual === 1 ? 'Yes' : 'No'}</Form.Item>
+          <Form.Item label="Is Virtual">
+            {stateMenu.is_virtual === 1 ? 'Yes' : 'No'}
+          </Form.Item>
           <Form.Item label="Remark">{stateMenu.remark}</Form.Item>
           <Form.Item label="Created At">{stateMenu.create_time}</Form.Item>
           <Form.Item label="Updated At">{stateMenu.update_time}</Form.Item>

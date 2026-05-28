@@ -67,7 +67,12 @@ function ServiceaccountYaml() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setServiceaccountYamlVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setServiceaccountYamlVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setServiceaccountYamlVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">

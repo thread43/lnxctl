@@ -18,15 +18,22 @@ function get_job_yaml(job) {
 }
 
 function get_jobs(cluster_id, namespace) {
+  let url = '/api/k8s/job/get_jobs';
   if (namespace !== '') {
-    return http.get('/api/k8s/job/get_jobs?cluster_id=' + cluster_id + '&namespace=' + namespace);
+    url = url + '?cluster_id=' + cluster_id;
+    url = url + '&namespace=' + namespace;
+    return http.get(url);
   } else {
-    return http.get('/api/k8s/job/get_jobs?cluster_id=' + cluster_id);
+    url = url + '?cluster_id=' + cluster_id;
+    return http.get(url);
   }
 }
 
 function get_namespaces(cluster_id) {
-  return http.get('/api/k8s/job/get_namespaces?cluster_id=' + cluster_id);
+  let url = '/api/k8s/job/get_namespaces';
+  url = url + '?cluster_id=' + cluster_id;
+
+  return http.get(url);
 }
 
 const api = {

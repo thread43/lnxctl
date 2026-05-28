@@ -20,21 +20,37 @@ function ClusterrolebindingDetail() {
         open={storeClusterrolebindingDetailVisible}
         onCancel={() => dispatch(store.setClusterrolebindingDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setClusterrolebindingDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setClusterrolebindingDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 9}} wrapperCol={{span: 12}} className="MyForm">
+        <Form
+          layout="horizontal"
+          labelCol={{span: 9}}
+          wrapperCol={{span: 12}}
+          className="MyForm"
+        >
           <Form.Item label="Name">{storeClusterrolebinding.name}</Form.Item>
           <Form.Item label="Role">{storeClusterrolebinding.role}</Form.Item>
           <Form.Item label="Age">{storeClusterrolebinding.age}</Form.Item>
           <Form.Item label="Users">
-            {storeClusterrolebinding.users.map((item, index) => (<div key={index}>{item}</div>))}
+            {storeClusterrolebinding.users.map((item, index) => (
+              <div key={index}>{item}</div>
+            ))}
           </Form.Item>
           <Form.Item label="Groups">
-            {storeClusterrolebinding.groups.map((item, index) => (<div key={index}>{item}</div>))}
+            {storeClusterrolebinding.groups.map((item, index) => (
+              <div key={index}>{item}</div>
+            ))}
           </Form.Item>
           <Form.Item label="ServiceAccounts">
-            {storeClusterrolebinding.serviceaccounts.map((item, index) => (<div key={index}>{item}</div>))}
+            {storeClusterrolebinding.serviceaccounts.map((item, index) => (
+              <div key={index}>{item}</div>
+            ))}
           </Form.Item>
         </Form>
       </Modal>

@@ -69,7 +69,8 @@ function ServiceTerminalExt() {
     document.title = service_name;
 
     const protocol = (window.location.protocol === 'https:' ? 'wss:' : 'ws:');
-    let url = protocol + '//' + window.location.host + '/api/linux/service/ws_open_service_terminal';
+    let url = protocol + '//' + window.location.host;
+    url = url + '/api/linux/service/ws_open_service_terminal';
     url = url + '?service_id=' + service_id;
     console.log(url);
 
@@ -102,8 +103,16 @@ function ServiceTerminalExt() {
         console.log(event.type);
         console.log('ws.onopen', url)
 
-        console.log({termCols: term.cols, termRows: term.rows, ...fitAddon.proposeDimensions()});
-        const msg = JSON.stringify({action: 'resize', cols: term.cols, rows: term.rows});
+        console.log({
+          termCols: term.cols,
+          termRows: term.rows,
+          ...fitAddon.proposeDimensions(),
+        });
+        const msg = JSON.stringify({
+          action: 'resize',
+          cols: term.cols,
+          rows: term.rows,
+        });
         ws.send(msg);
 
         term.focus();

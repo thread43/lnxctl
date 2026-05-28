@@ -95,10 +95,14 @@ function get_pod_yaml(pod) {
 }
 
 function get_pods(cluster_id, namespace) {
+  let url = '/api/k8s/pod/get_pods';
   if (namespace !== '') {
-    return http.get('/api/k8s/pod/get_pods?cluster_id=' + cluster_id + '&namespace=' + namespace);
+    url = url + '?cluster_id=' + cluster_id;
+    url = url + '&namespace=' + namespace;
+    return http.get(url);
   } else {
-    return http.get('/api/k8s/pod/get_pods?cluster_id=' + cluster_id);
+    url = url + '?cluster_id=' + cluster_id;
+    return http.get(url);
   }
 }
 

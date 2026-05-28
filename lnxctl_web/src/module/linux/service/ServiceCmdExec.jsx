@@ -76,56 +76,115 @@ function ServiceCmdExec() {
         open={storeServiceCmdExecVisible}
         onCancel={() => dispatch(store.setServiceCmdExecVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setServiceCmdExecVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setServiceCmdExecVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <Form layout="vertical" className="MyForm">
-          <Form.Item label={<span className="Underline"><CaretRightOutlined />&nbsp;Name</span>}>
+          <Form.Item
+            label={
+              <span className="Underline">
+                <CaretRightOutlined />&nbsp;Name
+              </span>
+            }
+          >
             {storeService.name}
           </Form.Item>
           {storeService.action === 'start' && (
-            <Form.Item label={<span className="Underline"><CaretRightOutlined />&nbsp;Start CMD</span>}>
+            <Form.Item
+              label={
+                <span className="Underline">
+                  <CaretRightOutlined />&nbsp;Start CMD
+                </span>
+              }
+            >
               <pre style={{margin: 0, padding: 0}}>
                 {storeService.start_cmd}
               </pre>
             </Form.Item>
           )}
           {storeService.action === 'stop' && (
-            <Form.Item label={<span className="Underline"><CaretRightOutlined />&nbsp;Stop CMD</span>}>
+            <Form.Item
+              label={
+                <span className="Underline">
+                  <CaretRightOutlined />&nbsp;Stop CMD
+                </span>
+              }
+            >
               <pre style={{margin: 0, padding: 0}}>
                 {storeService.stop_cmd}
               </pre>
             </Form.Item>
           )}
           {storeService.action === 'restart' && (
-            <Form.Item label={<span className="Underline"><CaretRightOutlined />&nbsp;Restart CMD</span>}>
+            <Form.Item
+              label={
+                <span className="Underline">
+                  <CaretRightOutlined />&nbsp;Restart CMD
+                </span>
+              }
+            >
               <pre style={{margin: 0, padding: 0}}>
                 {storeService.restart_cmd}
               </pre>
             </Form.Item>
           )}
           {storeService.action === 'reload' && (
-            <Form.Item label={<span className="Underline"><CaretRightOutlined />&nbsp;Reload CMD</span>}>
+            <Form.Item
+              label={
+                <span className="Underline">
+                  <CaretRightOutlined />&nbsp;Reload CMD
+                </span>
+              }
+            >
               <pre style={{margin: 0, padding: 0}}>
                 {storeService.reload_cmd}
               </pre>
             </Form.Item>
           )}
           {storeService.action === 'status' && (
-            <Form.Item label={<span className="Underline"><CaretRightOutlined />&nbsp;Status CMD</span>}>
+            <Form.Item
+              label={
+                <span className="Underline">
+                  <CaretRightOutlined />&nbsp;Status CMD
+                </span>
+              }
+            >
               <pre style={{margin: 0, padding: 0}}>
                 {storeService.status_cmd}
               </pre>
             </Form.Item>
           )}
-          <Form.Item label={<span className="Underline"><CaretRightOutlined />&nbsp;Exit Status</span>}>
-            {stateService.cmd_exit_code === null && (<span><Tag>Executing...</Tag>&nbsp;<SyncOutlined spin /></span>)}
-            {stateService.cmd_exit_code === 0 && (<span><Tag color="success">Succeeded</Tag></span>)}
-            {stateService.cmd_exit_code === 1 && (<span><Tag color="error">Failed</Tag></span>)}
+          <Form.Item
+            label={
+              <span className="Underline">
+                <CaretRightOutlined />&nbsp;Exit Status
+              </span>
+            }
+          >
+            {stateService.cmd_exit_code === null && (
+              <span><Tag>Executing...</Tag>&nbsp;<SyncOutlined spin /></span>
+            )}
+            {stateService.cmd_exit_code === 0 && (
+              <span><Tag color="success">Succeeded</Tag></span>
+            )}
+            {stateService.cmd_exit_code === 1 && (
+              <span><Tag color="error">Failed</Tag></span>
+            )}
             &nbsp;
             {stateService.cmd_error_msg}
           </Form.Item>
-          <Form.Item label={<span className="Underline"><CaretRightOutlined />&nbsp;Output</span>}>
+          <Form.Item
+            label={
+              <span className="Underline">
+                <CaretRightOutlined />&nbsp;Output
+              </span>
+            }
+          >
             <pre style={{background: '#000', color: '#fff', padding: '5px'}}>
               {stateService.cmd_output}
             </pre>

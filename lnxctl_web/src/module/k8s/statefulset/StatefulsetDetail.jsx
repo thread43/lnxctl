@@ -20,10 +20,20 @@ function StatefulsetDetail() {
         open={storeStatefulsetDetailVisible}
         onCancel={() => dispatch(store.setStatefulsetDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setStatefulsetDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setStatefulsetDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 9}} wrapperCol={{span: 12}} className="MyForm">
+        <Form
+          layout="horizontal"
+          labelCol={{span: 9}}
+          wrapperCol={{span: 12}}
+          className="MyForm"
+        >
           <Form.Item label="Namespace">{storeStatefulset.namespace}</Form.Item>
           <Form.Item label="Name">{storeStatefulset.name}</Form.Item>
           <Form.Item label="Ready">

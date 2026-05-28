@@ -35,7 +35,9 @@ function EventList() {
       if (eventType === 'All') {
         setStateEvents(response.data.data);
       } else {
-        setStateEvents(response.data.data.filter(event => event.type === eventType));
+        setStateEvents(response.data.data.filter(
+          event => event.type === eventType
+        ));
       }
     } catch (error) {
       console.error(error);
@@ -101,7 +103,12 @@ function EventList() {
         open={storeEventListVisible}
         onCancel={() => dispatch(store.setEventListVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setEventListVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setEventListVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">
@@ -109,12 +116,22 @@ function EventList() {
             {storeCluster.name} ({storeCluster.server})
           </span>
           <Space wrap>
-            <Radio.Group buttonStyle="solid" value={stateEventType} onChange={onChange}>
+            <Radio.Group
+              buttonStyle="solid"
+              value={stateEventType}
+              onChange={onChange}
+            >
               <Radio.Button value="All">All</Radio.Button>
               <Radio.Button value="Normal">Normal</Radio.Button>
               <Radio.Button value="Warning">Warning</Radio.Button>
             </Radio.Group>
-            <Button type="primary" icon={<SyncOutlined />} onClick={() => refresh()}>Refresh</Button>
+            <Button
+              type="primary"
+              icon={<SyncOutlined />}
+              onClick={() => refresh()}
+            >
+              Refresh
+            </Button>
           </Space>
         </div>
 

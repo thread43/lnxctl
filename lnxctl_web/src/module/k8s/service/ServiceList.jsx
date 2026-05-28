@@ -188,7 +188,13 @@ function ServiceList() {
       sorter: (x, y) => x.name.localeCompare(y.name),
       sortDirections: ['ascend', 'descend'],
       render: (text, record) => (
-        <Button type="link" className="ButtonLink" onClick={() => getService(record)}>{text}</Button>
+        <Button
+          type="link"
+          className="ButtonLink"
+          onClick={() => getService(record)}
+        >
+          {text}
+        </Button>
       ),
     },
     {
@@ -236,7 +242,13 @@ function ServiceList() {
       fixed: 'right',
       render: (text, record) => (
         <div style={{display: 'flex', alignItems: 'center'}}>
-          <Button type="link" className="ButtonLink" onClick={() => getServiceYaml(record)}>YAML</Button>
+          <Button
+            type="link"
+            className="ButtonLink"
+            onClick={() => getServiceYaml(record)}
+          >
+            YAML
+          </Button>
         </div>
       ),
     },
@@ -268,8 +280,20 @@ function ServiceList() {
           </Form.Item>
           <Form.Item style={{marginTop: '2px'}}>
             <Space wrap>
-              <Button type="primary" icon={<SearchOutlined />} onClick={() => search()}>Search</Button>
-              <Button type="primary" icon={<UndoOutlined />} onClick={() => reset()}>Reset</Button>
+              <Button
+                type="primary"
+                icon={<SearchOutlined />}
+                onClick={() => search()}
+              >
+                Search
+              </Button>
+              <Button
+                type="primary"
+                icon={<UndoOutlined />}
+                onClick={() => reset()}
+              >
+                Reset
+              </Button>
             </Space>
           </Form.Item>
         </Form>
@@ -281,7 +305,13 @@ function ServiceList() {
         <div className="MyContentHeader">
           <span className="MyContentHeaderTitle">Service List</span>
           <Space wrap>
-            <Button type="primary" icon={<SyncOutlined />} onClick={() => refresh()}>Refresh</Button>
+            <Button
+              type="primary"
+              icon={<SyncOutlined />}
+              onClick={() => refresh()}
+            >
+              Refresh
+            </Button>
           </Space>
         </div>
 

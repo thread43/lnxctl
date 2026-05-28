@@ -67,7 +67,12 @@ function IngressYaml() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setIngressYamlVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setIngressYamlVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setIngressYamlVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">

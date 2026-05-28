@@ -106,7 +106,10 @@ function ClusterFormUpdate() {
           <Form.Item
             name="kubeconfig"
             label="Kubeconfig"
-            help="Either Kubeconfig or Server+Token is required, if both provided, use Kubeconfig"
+            help={`
+              Either Kubeconfig or Server+Token is required,
+              if both provided, use Kubeconfig
+            `}
           >
             <Input />
           </Form.Item>

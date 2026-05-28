@@ -165,7 +165,13 @@ function MenuList() {
       title: 'Code',
       dataIndex: 'code',
       render: (text, record) => (
-        <Button type="link" className="ButtonLink" onClick={() => getMenu(record.id)}>{text}</Button>
+        <Button
+          type="link"
+          className="ButtonLink"
+          onClick={() => getMenu(record.id)}
+        >
+          {text}
+        </Button>
       ),
     },
     {
@@ -192,11 +198,19 @@ function MenuList() {
         <span>
           Is Visible
           &nbsp;
-          <Tooltip title="Show on the Left Side or Not"><QuestionCircleOutlined /></Tooltip>
+          <Tooltip title="Show on the Left Side or Not">
+            <QuestionCircleOutlined />
+          </Tooltip>
         </span>
       ),
       dataIndex: 'is_virtual',
-      render: (text) => (text === 0) ? (<span><CheckOutlined /></span>) : (<span><CloseOutlined /></span>),
+      render: (text) => (
+        text === 0
+      ) ? (
+        <span><CheckOutlined /></span>
+      ) : (
+        <span><CloseOutlined /></span>
+      ),
     },
     {
       key: 'sort',
@@ -210,7 +224,13 @@ function MenuList() {
       title: 'Actions',
       render: (record) => (
         <span>
-          <Button type="link" className="ButtonLink" onClick={() => updateMenu(record.id)}>Edit</Button>
+          <Button
+            type="link"
+            className="ButtonLink"
+            onClick={() => updateMenu(record.id)}
+          >
+            Edit
+          </Button>
           <Divider orientation="vertical" />
           <Popconfirm
             title="Are you sure?"
@@ -222,7 +242,13 @@ function MenuList() {
             <Button type="link" className="ButtonLink">Delete</Button>
           </Popconfirm>
           <Divider orientation="vertical" />
-          <Button type="link" className="ButtonLink" onClick={() => copyMenu(record.id)}>Copy</Button>
+          <Button
+            type="link"
+            className="ButtonLink"
+            onClick={() => copyMenu(record.id)}
+          >
+            Copy
+          </Button>
         </span>
       ),
     },
@@ -252,13 +278,28 @@ function MenuList() {
       <div className="MyContentHeader">
         <span className="MyContentHeaderTitle">Menu List</span>
         <Space wrap>
-          <Button type="primary" icon={<PlusOutlined />} onClick={() => addMenu()}>New Menu</Button>
-          <Button type="primary" icon={<SyncOutlined />} onClick={() => getMenus()}>Refresh</Button>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => addMenu()}
+          >
+            New Menu
+          </Button>
+          <Button
+            type="primary"
+            icon={<SyncOutlined />}
+            onClick={() => getMenus()}
+          >
+            Refresh
+          </Button>
         </Space>
       </div>
 
       <DndContext modifiers={[restrictToVerticalAxis]} onDragEnd={onDragEnd}>
-        <SortableContext items={storeMenus.map(i => i.id)} strategy={verticalListSortingStrategy}>
+        <SortableContext
+          items={storeMenus.map(i => i.id)}
+          strategy={verticalListSortingStrategy}
+        >
           <Table
             rowKey="id"
             columns={columns}

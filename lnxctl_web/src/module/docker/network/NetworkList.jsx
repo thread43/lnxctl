@@ -145,7 +145,13 @@ function NetworkList() {
       title: 'Network ID',
       dataIndex: 'network_id',
       render: (text, record) => (
-        <Button type="link" className="ButtonLink" onClick={() => getNetwork(record)}>{text}</Button>
+        <Button
+          type="link"
+          className="ButtonLink"
+          onClick={() => getNetwork(record)}
+        >
+          {text}
+        </Button>
       ),
     },
     {
@@ -174,7 +180,13 @@ function NetworkList() {
       fixed: 'right',
       render: (record) => (
         <>
-          <Button type="link" className="ButtonLink" onClick={() => inspectNetwork(record)}>Inspect</Button>
+          <Button
+            type="link"
+            className="ButtonLink"
+            onClick={() => inspectNetwork(record)}
+          >
+            Inspect
+          </Button>
         </>
       ),
     },
@@ -196,8 +208,20 @@ function NetworkList() {
           </Form.Item>
           <Form.Item style={{marginTop: '2px'}}>
             <Space wrap>
-              <Button type="primary" icon={<SearchOutlined />} onClick={() => search()}>Search</Button>
-              <Button type="primary" icon={<UndoOutlined />} onClick={() => reset()}>Reset</Button>
+              <Button
+                type="primary"
+                icon={<SearchOutlined />}
+                onClick={() => search()}
+              >
+                Search
+              </Button>
+              <Button
+                type="primary"
+                icon={<UndoOutlined />}
+                onClick={() => reset()}
+              >
+                Reset
+              </Button>
             </Space>
           </Form.Item>
         </Form>
@@ -209,7 +233,13 @@ function NetworkList() {
         <div className="MyContentHeader">
           <span className="MyContentHeaderTitle">Network List</span>
           <Space wrap>
-            <Button type="primary" icon={<SyncOutlined />} onClick={() => refresh()}>Refresh</Button>
+            <Button
+              type="primary"
+              icon={<SyncOutlined />}
+              onClick={() => refresh()}
+            >
+              Refresh
+            </Button>
           </Space>
         </div>
 

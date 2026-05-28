@@ -67,7 +67,12 @@ function JobYaml() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setJobYamlVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setJobYamlVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setJobYamlVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">

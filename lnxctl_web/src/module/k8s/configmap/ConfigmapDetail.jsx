@@ -20,10 +20,20 @@ function ConfigmapDetail() {
         open={storeConfigmapDetailVisible}
         onCancel={() => dispatch(store.setConfigmapDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setConfigmapDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setConfigmapDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 9}} wrapperCol={{span: 12}} className="MyForm">
+        <Form
+          layout="horizontal"
+          labelCol={{span: 9}}
+          wrapperCol={{span: 12}}
+          className="MyForm"
+        >
           <Form.Item label="Namespace">{storeConfigmap.namespace}</Form.Item>
           <Form.Item label="Name">{storeConfigmap.name}</Form.Item>
           <Form.Item label="Data">{storeConfigmap.data}</Form.Item>

@@ -67,7 +67,12 @@ function ConfigmapYaml() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setConfigmapYamlVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setConfigmapYamlVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setConfigmapYamlVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">

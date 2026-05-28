@@ -16,7 +16,10 @@ function get_pv_yaml(pv) {
 }
 
 function get_pvs(cluster_id) {
-  return http.get('/api/k8s/pv/get_pvs?cluster_id=' + cluster_id);
+  let url = '/api/k8s/pv/get_pvs';
+  url = url + '?cluster_id=' + cluster_id;
+
+  return http.get(url);
 }
 
 const api = {

@@ -67,7 +67,12 @@ function RolebindingYaml() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setRolebindingYamlVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setRolebindingYamlVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setRolebindingYamlVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">

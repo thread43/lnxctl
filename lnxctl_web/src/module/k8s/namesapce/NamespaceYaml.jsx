@@ -67,7 +67,12 @@ function NamespaceYaml() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setNamespaceYamlVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setNamespaceYamlVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setNamespaceYamlVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">

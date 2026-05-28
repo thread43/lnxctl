@@ -143,7 +143,11 @@ function PodList() {
 
   function deletePod(pod) {
     modal.confirm({
-      title: (<span style={{fontWeight: 'normal'}}>Are you sure you want to delete?</span>),
+      title: (
+        <span style={{fontWeight: 'normal'}}>
+          Are you sure you want to delete?
+        </span>
+      ),
       content: pod.name,
       okText: 'Yes',
       cancelText: 'No',
@@ -262,7 +266,13 @@ function PodList() {
       sorter: (x, y) => x.name.localeCompare(y.name),
       sortDirections: ['ascend', 'descend'],
       render: (text, record) => (
-        <Button type="link" className="ButtonLink" onClick={() => getPod(record)}>{text}</Button>
+        <Button
+          type="link"
+          className="ButtonLink"
+          onClick={() => getPod(record)}
+        >
+          {text}
+        </Button>
       ),
     },
     {
@@ -306,9 +316,17 @@ function PodList() {
         <>
           {text.map((item, index) => {
             if (item.status === 'Running') {
-              return (<span key={index}><Tag color="success">{item.status}</Tag></span>);
+              return (
+                <span key={index}>
+                  <Tag color="success">{item.status}</Tag>
+                </span>
+              );
             } else {
-              return (<span key={index}><Tag>{item.status}</Tag></span>);
+              return (
+                <span key={index}>
+                  <Tag>{item.status}</Tag>
+                </span>
+              );
             }
           })}
         </>
@@ -331,9 +349,17 @@ function PodList() {
         <>
           {text.map((item, index) => {
             if (item.last_termination !== '') {
-              return (<span key={index}>{item.restart_count} ({item.last_termination})</span>);
+              return (
+                <span key={index}>
+                  {item.restart_count} ({item.last_termination})
+                </span>
+              );
             } else {
-              return (<span key={index}>{item.restart_count}</span>);
+              return (
+                <span key={index}>
+                  {item.restart_count}
+                </span>
+              );
             }
           })}
         </>
@@ -372,23 +398,61 @@ function PodList() {
       fixed: 'right',
       render: (text, record) => (
         <div style={{display: 'flex', alignItems: 'center'}}>
-          <Button type="link" className="ButtonLink" onClick={() => getPodYaml(record)}>YAML</Button>
+          <Button
+            type="link"
+            className="ButtonLink"
+            onClick={() => getPodYaml(record)}
+          >
+            YAML
+          </Button>
           <Divider orientation="vertical" />
           <div>
             {text.length > 0 && text.map((item, index) => (
               <div key={index}>
-                <Button type="link" className="ButtonLink" onClick={() => getPodLog(record, item.name)}>Log</Button>
+                <Button
+                  type="link"
+                  className="ButtonLink"
+                  onClick={() => getPodLog(record, item.name)}
+                >
+                  Log
+                </Button>
                 <Divider orientation="vertical" />
-                <a onClick={(event) => {event.preventDefault(); openPodTerminal(record, item.name);}}>
-                  <img src={terminalIcon} alt="" style={{height: '22px', verticalAlign: 'top'}} />
+                <a
+                  onClick={(event) => {
+                    event.preventDefault();
+                    openPodTerminal(record, item.name);
+                  }}
+                >
+                  <img
+                    src={terminalIcon}
+                    alt=""
+                    style={{height: '22px', verticalAlign: 'top'}}
+                  />
                 </a>
                 <Divider orientation="vertical" />
-                <a onClick={(event) => {event.preventDefault(); openPodFileBrowser(record, item.name);}}>
-                  <img src={folderIcon} alt="" style={{height: '22px', verticalAlign: 'top'}} />
+                <a
+                  onClick={(event) => {
+                    event.preventDefault();
+                    openPodFileBrowser(record, item.name);
+                  }}
+                >
+                  <img
+                    src={folderIcon}
+                    alt=""
+                    style={{height: '22px', verticalAlign: 'top'}}
+                  />
                 </a>
                 <Divider orientation="vertical" />
-                <a onClick={(event) => {event.preventDefault(); openPodTerminalExt(record, item.name);}}>
-                  <img src={externalLinkIcon} alt="" style={{height: '22px', verticalAlign: 'top'}} />
+                <a
+                  onClick={(event) => {
+                    event.preventDefault();
+                    openPodTerminalExt(record, item.name);
+                  }}>
+                  <img
+                    src={externalLinkIcon}
+                    alt=""
+                    style={{height: '22px', verticalAlign: 'top'}}
+                  />
                 </a>
               </div>
             ))}
@@ -397,15 +461,27 @@ function PodList() {
                 <Typography.Link disabled>Log</Typography.Link>
                 <Divider orientation="vertical" />
                 <Typography.Link disabled>
-                  <img src={terminalIcon} alt="" style={{height: '22px', verticalAlign: 'top', opacity: 0.3}} />
+                  <img
+                    src={terminalIcon}
+                    alt=""
+                    style={{height: '22px', verticalAlign: 'top', opacity: 0.3}}
+                  />
                 </Typography.Link>
                 <Divider orientation="vertical" />
                 <Typography.Link disabled>
-                  <img src={folderIcon} alt="" style={{height: '22px', verticalAlign: 'top', opacity: 0.3}} />
+                  <img
+                    src={folderIcon}
+                    alt=""
+                    style={{height: '22px', verticalAlign: 'top', opacity: 0.3}}
+                  />
                 </Typography.Link>
                 <Divider orientation="vertical" />
                 <Typography.Link disabled>
-                  <img src={externalLinkIcon} alt="" style={{height: '22px', verticalAlign: 'top', opacity: 0.3}} />
+                  <img
+                    src={externalLinkIcon}
+                    alt=""
+                    style={{height: '22px', verticalAlign: 'top', opacity: 0.3}}
+                  />
                 </Typography.Link>
               </div>
             )}
@@ -454,8 +530,20 @@ function PodList() {
           </Form.Item>
           <Form.Item style={{marginTop: '2px'}}>
             <Space wrap>
-              <Button type="primary" icon={<SearchOutlined />} onClick={() => search()}>Search</Button>
-              <Button type="primary" icon={<UndoOutlined />} onClick={() => reset()}>Reset</Button>
+              <Button
+                type="primary"
+                icon={<SearchOutlined />}
+                onClick={() => search()}
+              >
+                Search
+              </Button>
+              <Button
+                type="primary"
+                icon={<UndoOutlined />}
+                onClick={() => reset()}
+              >
+                Reset
+              </Button>
             </Space>
           </Form.Item>
         </Form>
@@ -467,7 +555,13 @@ function PodList() {
         <div className="MyContentHeader">
           <span className="MyContentHeaderTitle">Pod List</span>
           <Space wrap>
-            <Button type="primary" icon={<SyncOutlined />} onClick={() => refresh()}>Refresh</Button>
+            <Button
+              type="primary"
+              icon={<SyncOutlined />}
+              onClick={() => refresh()}
+            >
+              Refresh
+            </Button>
           </Space>
         </div>
 

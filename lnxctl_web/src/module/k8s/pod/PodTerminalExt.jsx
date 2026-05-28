@@ -73,7 +73,8 @@ function PodTerminalExt() {
     document.title = 'Pod - ' + pod_name + '/' + container_name;
 
     const protocol = (window.location.protocol === 'https:' ? 'wss:' : 'ws:');
-    let url = protocol + '//' + window.location.host + '/api/k8s/pod/ws_open_pod_terminal';
+    let url = protocol + '//' + window.location.host;
+    url = url + '/api/k8s/pod/ws_open_pod_terminal';
     url = url + '?cluster_id=' + cluster_id;
     url = url + '&namespace=' + namespace;
     url = url + '&pod_name=' + pod_name;
@@ -112,8 +113,16 @@ function PodTerminalExt() {
         console.log(event.type);
         console.log('ws.onopen', url)
 
-        console.log({termCols: term.cols, termRows: term.rows, ...fitAddon.proposeDimensions()});
-        const msg = JSON.stringify({action: 'resize', cols: term.cols, rows: term.rows});
+        console.log({
+          termCols: term.cols,
+          termRows: term.rows,
+          ...fitAddon.proposeDimensions(),
+        });
+        const msg = JSON.stringify({
+          action: 'resize',
+          cols: term.cols,
+          rows: term.rows,
+        });
         ws.send(msg);
 
         term.focus();

@@ -70,7 +70,8 @@ function ServiceTerminal() {
     const service_id = storeService.id;
 
     const protocol = (window.location.protocol === 'https:' ? 'wss:' : 'ws:');
-    let url = protocol + '//' + window.location.host + '/api/linux/service/ws_open_service_terminal';
+    let url = protocol + '//' + window.location.host;
+    url = url + '/api/linux/service/ws_open_service_terminal';
     url = url + '?service_id=' + service_id;
     console.log(url);
 
@@ -112,8 +113,16 @@ function ServiceTerminal() {
       console.log(event.type);
       console.log('ws.onopen', url)
 
-      console.log({termCols: term.cols, termRows: term.rows, ...fitAddon.proposeDimensions()});
-      const msg = JSON.stringify({action: 'resize', cols: term.cols, rows: term.rows});
+      console.log({
+        termCols: term.cols,
+        termRows: term.rows,
+        ...fitAddon.proposeDimensions(),
+      });
+      const msg = JSON.stringify({
+        action: 'resize',
+        cols: term.cols,
+        rows: term.rows,
+      });
       ws.send(msg);
 
       term.focus();
@@ -183,7 +192,12 @@ function ServiceTerminal() {
         open={storeServiceTerminalVisible}
         onCancel={() => dispatch(store.setServiceTerminalVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setServiceTerminalVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setServiceTerminalVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">
@@ -191,7 +205,13 @@ function ServiceTerminal() {
             {storeService.name} ({storeService.term_cmd})
           </span>
           <Space wrap>
-            <Button type="primary" icon={<SyncOutlined />} onClick={() => reconnect()}>Reconnect</Button>
+            <Button
+              type="primary"
+              icon={<SyncOutlined />}
+              onClick={() => reconnect()}
+            >
+              Reconnect
+            </Button>
           </Space>
         </div>
         <div

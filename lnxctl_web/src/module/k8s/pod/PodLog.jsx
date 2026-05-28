@@ -132,7 +132,8 @@ function PodLog() {
     const container_name = storeContext.container_name;
 
     const protocol = (window.location.protocol === 'https:' ? 'wss:' : 'ws:');
-    let url = protocol + '//' + window.location.host + '/api/k8s/pod/ws_get_pod_log';
+    let url = protocol + '//' + window.location.host;
+    url = url + '/api/k8s/pod/ws_get_pod_log';
     url = url + '?cluster_id=' + cluster_id;
     url = url + '&namespace=' + namespace;
     url = url + '&name=' + name;
@@ -191,7 +192,12 @@ function PodLog() {
         open={storePodLogVisible}
         onCancel={() => dispatch(store.setPodLogVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setPodLogVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setPodLogVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">
@@ -199,9 +205,27 @@ function PodLog() {
             {storePod.namespace} / {storePod.name} / {storeContext.container_name}
           </span>
           <Space wrap>
-            <Button type="primary" icon={<DownloadOutlined />} onClick={() => download()}>Download</Button>
-            <Button type="primary" icon={<FileTextOutlined />} onClick={() => tailf()}>Tailf</Button>
-            <Button type="primary" icon={<SyncOutlined />} onClick={() => refresh()}>Refresh</Button>
+            <Button
+              type="primary"
+              icon={<DownloadOutlined />}
+              onClick={() => download()}
+            >
+              Download
+            </Button>
+            <Button
+              type="primary"
+              icon={<FileTextOutlined />}
+              onClick={() => tailf()}
+            >
+              Tailf
+            </Button>
+            <Button
+              type="primary"
+              icon={<SyncOutlined />}
+              onClick={() => refresh()}
+            >
+              Refresh
+            </Button>
           </Space>
         </div>
         <div

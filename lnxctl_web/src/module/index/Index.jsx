@@ -17,7 +17,12 @@ import styles from './Index.module.css';
 function Index() {
   const {message} = App.useApp();
 
-  const [stateStatistics, setStateStatistics] = useState({linux: {}, dockers: [], k8ses: [], monitoring: {}});
+  const [stateStatistics, setStateStatistics] = useState({
+    linux: {},
+    dockers: [],
+    k8ses: [],
+    monitoring: {},
+  });
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/immutability
@@ -104,7 +109,11 @@ function Index() {
               >
                 <div
                   // onClick={() => handleClick('/#/linux/host')}
-                  style={{overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis'}}
+                  style={{
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                    textOverflow: 'ellipsis',
+                  }}
                 >
                   <p>
                     <CaretRightOutlined />&nbsp;Hosts:&nbsp;
@@ -137,7 +146,11 @@ function Index() {
               >
                 <div
                   // onClick={() => handleClick('/#/docker/container')}
-                  style={{overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis'}}
+                  style={{
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                    textOverflow: 'ellipsis',
+                  }}
                 >
                   <p>
                     <CaretRightOutlined />&nbsp;Containers:&nbsp;
@@ -175,7 +188,11 @@ function Index() {
               >
                 <div
                   // onClick={() => handleClick('/#/k8s/pod')}
-                  style={{overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis'}}
+                  style={{
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                    textOverflow: 'ellipsis',
+                  }}
                 >
                   <p>
                     <CaretRightOutlined />&nbsp;Nodes:&nbsp;
@@ -224,17 +241,25 @@ function Index() {
               >
                 <div
                   // onClick={() => handleClick('/#/monitoring/target')}
-                  style={{overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis'}}
+                  style={{
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                    textOverflow: 'ellipsis',
+                  }}
                 >
                   <p>
                     <CaretRightOutlined />&nbsp;Targets:&nbsp;
                     {stateStatistics.monitoring.target_healthy === true ? (
                       <span style={{color: '#52c41a'}}>
-                        {stateStatistics.monitoring.target_running}/{stateStatistics.monitoring.target_total}
+                        {stateStatistics.monitoring.target_running}
+                        /
+                        {stateStatistics.monitoring.target_total}
                       </span>
                     ) : (
                       <span style={{color: '#ff4d4f'}}>
-                        {stateStatistics.monitoring.target_running}/{stateStatistics.monitoring.target_total}
+                        {stateStatistics.monitoring.target_running}
+                        /
+                        {stateStatistics.monitoring.target_total}
                       </span>
                     )}
                   </p>

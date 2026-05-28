@@ -51,10 +51,20 @@ function ClusterDetail() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setClusterDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setClusterDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setClusterDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 8}} wrapperCol={{span: 12}} className="MyForm">
+        <Form
+          layout="horizontal"
+          labelCol={{span: 8}}
+          wrapperCol={{span: 12}}
+          className="MyForm"
+        >
           <Form.Item label="ID">{stateCluster.id}</Form.Item>
           <Form.Item label="Name">{stateCluster.name}</Form.Item>
           <Form.Item label="Kubeconfig">{stateCluster.kubeconfig}</Form.Item>

@@ -67,7 +67,8 @@ function HostTerminalExt() {
     document.title = ssh_host;
 
     const protocol = (window.location.protocol === 'https:' ? 'wss:' : 'ws:');
-    let url = protocol + '//' + window.location.host + '/api/linux/host/ws_open_host_terminal';
+    let url = protocol + '//' + window.location.host;
+    url = url + '/api/linux/host/ws_open_host_terminal';
     url = url + '?host_id=' + host_id;
     url = url + '&ssh_host=' + ssh_host;
     console.log(url);
@@ -101,8 +102,16 @@ function HostTerminalExt() {
         console.log(event.type);
         console.log('ws.onopen', url)
 
-        console.log({termCols: term.cols, termRows: term.rows, ...fitAddon.proposeDimensions()});
-        const msg = JSON.stringify({action: 'resize', cols: term.cols, rows: term.rows});
+        console.log({
+          termCols: term.cols,
+          termRows: term.rows,
+          ...fitAddon.proposeDimensions(),
+        });
+        const msg = JSON.stringify({
+          action: 'resize',
+          cols: term.cols,
+          rows: term.rows,
+        });
         ws.send(msg);
 
         term.focus();

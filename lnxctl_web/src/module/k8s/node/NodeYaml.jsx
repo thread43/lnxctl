@@ -67,7 +67,12 @@ function NodeYaml() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setNodeYamlVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setNodeYamlVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setNodeYamlVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">

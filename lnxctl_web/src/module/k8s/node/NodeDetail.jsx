@@ -20,10 +20,20 @@ function NodeDetail() {
         open={storeNodeDetailVisible}
         onCancel={() => dispatch(store.setNodeDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setNodeDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setNodeDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 9}} wrapperCol={{span: 12}} className="MyForm">
+        <Form
+          layout="horizontal"
+          labelCol={{span: 9}}
+          wrapperCol={{span: 12}}
+          className="MyForm"
+        >
           <Form.Item label="Name">{storeNode.name}</Form.Item>
           <Form.Item label="Status">{storeNode.status}</Form.Item>
           <Form.Item label="Roles">{storeNode.roles}</Form.Item>

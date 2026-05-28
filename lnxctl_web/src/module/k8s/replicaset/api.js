@@ -4,6 +4,12 @@ function get_clusters() {
   return http.get('/api/k8s/replicaset/get_clusters');
 }
 
+function get_namespaces(cluster_id) {
+  let url = '/api/k8s/replicaset/get_namespaces';
+  url = url + '?cluster_id=' + cluster_id;
+  return http.get(url);
+}
+
 function get_replicaset_yaml(replicaset) {
   const cluster_id = replicaset.cluster_id;
   const namespace = replicaset.namespace;
@@ -18,22 +24,22 @@ function get_replicaset_yaml(replicaset) {
 }
 
 function get_replicasets(cluster_id, namespace) {
+  let url = '/api/k8s/replicaset/get_replicasets';
   if (namespace !== '') {
-    return http.get('/api/k8s/replicaset/get_replicasets?cluster_id=' + cluster_id + '&namespace=' + namespace);
+    url = url + '?cluster_id=' + cluster_id;
+    url = url + '&namespace=' + namespace;
+    return http.get(url);
   } else {
-    return http.get('/api/k8s/replicaset/get_replicasets?cluster_id=' + cluster_id);
+    url = url + '?cluster_id=' + cluster_id;
+    return http.get(url);
   }
-}
-
-function get_namespaces(cluster_id) {
-  return http.get('/api/k8s/replicaset/get_namespaces?cluster_id=' + cluster_id);
 }
 
 const api = {
   get_clusters,
+  get_namespaces,
   get_replicaset_yaml,
   get_replicasets,
-  get_namespaces,
 };
 
 export default api;

@@ -50,10 +50,20 @@ function ServiceDetail() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setServiceDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setServiceDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setServiceDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 12}} wrapperCol={{span: 12}} className="MyForm">
+        <Form
+          layout="horizontal"
+          labelCol={{span: 12}}
+          wrapperCol={{span: 12}}
+          className="MyForm"
+        >
           <Form.Item label="ID">{stateService.id}</Form.Item>
           <Form.Item label="Name">{stateService.name}</Form.Item>
           <Form.Item label="Start CMD">{stateService.start_cmd}</Form.Item>

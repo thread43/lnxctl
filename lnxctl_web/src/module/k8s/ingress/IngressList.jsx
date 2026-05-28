@@ -188,7 +188,13 @@ function IngressList() {
       sorter: (x, y) => x.name.localeCompare(y.name),
       sortDirections: ['ascend', 'descend'],
       render: (text, record) => (
-        <Button type="link" className="ButtonLink" onClick={() => getIngress(record)}>{text}</Button>
+        <Button
+          type="link"
+          className="ButtonLink"
+          onClick={() => getIngress(record)}
+        >
+          {text}
+        </Button>
       ),
     },
     {

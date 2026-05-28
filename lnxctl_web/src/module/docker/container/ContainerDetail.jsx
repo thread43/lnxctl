@@ -21,11 +21,23 @@ function ContainerDetail() {
         open={storeContainerDetailVisible}
         onCancel={() => dispatch(store.setContainerDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setContainerDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setContainerDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 9}} wrapperCol={{span: 12}} className="MyForm">
-          <Form.Item label="Container ID">{storeContainer.container_id_raw}</Form.Item>
+        <Form
+          layout="horizontal"
+          labelCol={{span: 9}}
+          wrapperCol={{span: 12}}
+          className="MyForm"
+        >
+          <Form.Item label="Container ID">
+            {storeContainer.container_id_raw}
+          </Form.Item>
           <Form.Item label="Name">{storeContainer.name_raw}</Form.Item>
           <Form.Item label="Image">{storeContainer.image}</Form.Item>
           <Form.Item label="Created At">{storeContainer.created}</Form.Item>
@@ -35,7 +47,9 @@ function ContainerDetail() {
           <Form.Item label="Network">{storeContainer.network_mode}</Form.Item>
           <Form.Item label="IP">{storeContainer.ip_address}</Form.Item>
           <Form.Item label="Ports">
-            {storeContainer.ports2.map((item, index) => (<div key={index}>{item}</div>))}
+            {storeContainer.ports2.map((item, index) => (
+              <div key={index}>{item}</div>
+            ))}
             {/*
             {storeContainer.ports.map((item, index) => (
               <>
@@ -55,7 +69,9 @@ function ContainerDetail() {
             */}
           </Form.Item>
           <Form.Item label="Mounts (bind)">
-            {storeContainer.mounts2.map((item, index) => (<div key={index}>{item}</div>))}
+            {storeContainer.mounts2.map((item, index) => (
+              <div key={index}>{item}</div>
+            ))}
             {/*
             {storeContainer.mounts.map((item, index) => (
               <div key={index}>

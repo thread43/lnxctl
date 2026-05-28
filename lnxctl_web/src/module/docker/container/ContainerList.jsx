@@ -147,7 +147,11 @@ function ContainerList() {
 
   function restartContainer(container) {
     modal.confirm({
-      title: (<span style={{fontWeight: 'normal'}}>Are you sure you want to restart?</span>),
+      title: (
+        <span style={{fontWeight: 'normal'}}>
+          Are you sure you want to restart?
+        </span>
+      ),
       content: container.name,
       okText: 'Yes',
       cancelText: 'No',
@@ -216,7 +220,13 @@ function ContainerList() {
       title: 'Container ID',
       dataIndex: 'container_id',
       render: (text, record) => (
-        <Button type="link" className="ButtonLink" onClick={() => getContainer(record)}>{text}</Button>
+        <Button
+          type="link"
+          className="ButtonLink"
+          onClick={() => getContainer(record)}
+        >
+          {text}
+        </Button>
       ),
     },
     {
@@ -287,7 +297,14 @@ function ContainerList() {
       title: 'Ports',
       dataIndex: 'ports',
       render: (text) => (
-        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '1px'}}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            gap: '1px',
+          }}
+        >
           {text.map((item, index) => {
             if (item.ip !== '') {
               return (
@@ -329,7 +346,14 @@ function ContainerList() {
       title: 'Mounts (bind)',
       dataIndex: 'mounts',
       render: (text) => (
-        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '1px'}}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            gap: '1px',
+          }}
+        >
           {text.map((item, index) => (
             <div key={index}>
               <Tag variant="outlined">{item.source}</Tag>
@@ -348,20 +372,59 @@ function ContainerList() {
       render: (text, record) => (
         <div style={{display: 'flex', alignItems: 'center'}}>
           <div>
-            <Button type="link" className="ButtonLink" onClick={() => inspectContainer(record)}>Inspect</Button>
+            <Button
+              type="link"
+              className="ButtonLink"
+              onClick={() => inspectContainer(record)}
+            >
+              Inspect
+            </Button>
             <Divider orientation="vertical" />
-            <Button type="link" className="ButtonLink" onClick={() => getContainerLog(record)}>Log</Button>
+            <Button
+              type="link"
+              className="ButtonLink"
+              onClick={() => getContainerLog(record)}
+            >
+              Log
+            </Button>
             <Divider orientation="vertical" />
-            <a onClick={(event) => {event.preventDefault(); openContainerTerminal(record);}}>
-              <img src={terminalIcon} alt="" style={{height: '22px', verticalAlign: 'top'}} />
+            <a
+              onClick={(event) => {
+                event.preventDefault();
+                openContainerTerminal(record);
+              }}
+            >
+              <img
+                src={terminalIcon}
+                alt=""
+                style={{height: '22px', verticalAlign: 'top'}}
+              />
             </a>
             <Divider orientation="vertical" />
-            <a onClick={(event) => {event.preventDefault(); openContainerFileBrowser(record);}}>
-              <img src={folderIcon} alt="" style={{height: '22px', verticalAlign: 'top'}} />
+            <a
+              onClick={(event) => {
+                event.preventDefault();
+                openContainerFileBrowser(record);
+              }}
+            >
+              <img
+                src={folderIcon}
+                alt=""
+                style={{height: '22px', verticalAlign: 'top'}}
+              />
             </a>
             <Divider orientation="vertical" />
-            <a onClick={(event) => {event.preventDefault(); openContainerTerminalExt(record);}}>
-              <img src={externalLinkIcon} alt="" style={{height: '22px', verticalAlign: 'top'}} />
+            <a
+              onClick={(event) => {
+                event.preventDefault();
+                openContainerTerminalExt(record);
+              }}
+            >
+              <img
+                src={externalLinkIcon}
+                alt=""
+                style={{height: '22px', verticalAlign: 'top'}}
+              />
             </a>
             <Divider orientation="vertical" />
             <Dropdown

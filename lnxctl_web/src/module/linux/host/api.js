@@ -1,7 +1,9 @@
 import http from '../../../util/http.js';
 
 function add_host(host) {
-  const {ip, ssh_host, ssh_port, ssh_user, ssh_password, ssh_private_key, remark} = host;
+  const {ip} = host;
+  const {ssh_host, ssh_port, ssh_user, ssh_password, ssh_private_key} = host;
+  const {remark} = host;
 
   const formData = new FormData();
   formData.append('ip', ip);
@@ -62,7 +64,9 @@ function get_hosts() {
 }
 
 function update_host(host) {
-  const {id, ip, ssh_host, ssh_port, ssh_user, ssh_password, ssh_private_key, remark} = host;
+  const {id, ip} = host;
+  const {ssh_host, ssh_port, ssh_user, ssh_password, ssh_private_key} = host;
+  const {remark} = host;
 
   const formData = new FormData();
   formData.append('id', id);

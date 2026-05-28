@@ -20,10 +20,20 @@ function SecretDetail() {
         open={storeSecretDetailVisible}
         onCancel={() => dispatch(store.setSecretDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setSecretDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setSecretDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 9}} wrapperCol={{span: 12}} className="MyForm">
+        <Form
+          layout="horizontal"
+          labelCol={{span: 9}}
+          wrapperCol={{span: 12}}
+          className="MyForm"
+        >
           <Form.Item label="Namespace">{storeSecret.namespace}</Form.Item>
           <Form.Item label="Name">{storeSecret.name}</Form.Item>
           <Form.Item label="Type">{storeSecret.type}</Form.Item>

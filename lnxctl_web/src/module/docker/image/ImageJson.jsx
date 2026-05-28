@@ -69,7 +69,12 @@ function ImageJson() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setImageJsonVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setImageJsonVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setImageJsonVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">

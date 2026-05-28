@@ -67,7 +67,12 @@ function ReplicasetYaml() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setReplicasetYamlVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setReplicasetYamlVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setReplicasetYamlVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">

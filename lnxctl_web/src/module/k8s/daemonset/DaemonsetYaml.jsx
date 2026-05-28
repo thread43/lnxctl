@@ -67,7 +67,12 @@ function DaemonsetYaml() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setDaemonsetYamlVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setDaemonsetYamlVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setDaemonsetYamlVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">

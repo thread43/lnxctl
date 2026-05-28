@@ -67,7 +67,12 @@ function DeploymentYaml() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setDeploymentYamlVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setDeploymentYamlVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setDeploymentYamlVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">

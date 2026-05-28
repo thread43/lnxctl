@@ -128,7 +128,13 @@ function TargetList() {
       title: 'Name',
       dataIndex: 'name',
       render: (text, record) => (
-        <Button type="link" className="ButtonLink" onClick={() => getTarget(record.id)}>{text}</Button>
+        <Button
+          type="link"
+          className="ButtonLink"
+          onClick={() => getTarget(record.id)}
+        >
+          {text}
+        </Button>
       ),
     },
     {
@@ -178,7 +184,11 @@ function TargetList() {
       render: (text) => (
         <Tooltip
           placement="topLeft"
-          title={(<div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>{text}</div>)}
+          title={(
+            <div style={{whiteSpace: 'normal', wordBreak: 'break-all'}}>
+              {text}
+            </div>
+          )}
         >
           <a href={text} target="_blank">
             {text.length > 30 ? text.substring(0, 30) + '...' : text}
@@ -259,7 +269,13 @@ function TargetList() {
       fixed: 'right',
       render: (text, record) => (
         <span>
-          <Button type="link" className="ButtonLink" onClick={() => updateTarget(record.id)}>Edit</Button>
+          <Button
+            type="link"
+            className="ButtonLink"
+            onClick={() => updateTarget(record.id)}
+          >
+            Edit
+          </Button>
           <Divider orientation="vertical" />
           <Popconfirm
             title="Are you sure?"
@@ -280,7 +296,13 @@ function TargetList() {
       <div className="MyContentHeader">
         <span className="MyContentHeaderTitle">Target List</span>
         <Space wrap>
-          <Button type="primary" icon={<PlusOutlined />} onClick={() => addTarget()}>New Target</Button>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => addTarget()}
+          >
+            New Target
+          </Button>
           <Upload
             name="file"
             showUploadList={false}
@@ -289,8 +311,20 @@ function TargetList() {
           >
             <Button type="primary" icon={<UploadOutlined />}>Upload</Button>
           </Upload>
-          <Button type="primary" icon={<DownloadOutlined />} onClick={() => downloadTarget()}>Download</Button>
-          <Button type="primary" icon={<SyncOutlined />} onClick={() => getTargets()}>Refresh</Button>
+          <Button
+            type="primary"
+            icon={<DownloadOutlined />}
+            onClick={() => downloadTarget()}
+          >
+            Download
+          </Button>
+          <Button
+            type="primary"
+            icon={<SyncOutlined />}
+            onClick={() => getTargets()}
+          >
+            Refresh
+          </Button>
         </Space>
       </div>
 

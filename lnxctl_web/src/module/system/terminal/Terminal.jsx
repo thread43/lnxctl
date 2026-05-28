@@ -71,7 +71,8 @@ function Terminal_() {
     }
 
     const protocol = (window.location.protocol === 'https:' ? 'wss:' : 'ws:');
-    let url = protocol + '//' + window.location.host + '/api/system/terminal/ws_open_terminal';
+    let url = protocol + '//' + window.location.host;
+    url = url + '/api/system/terminal/ws_open_terminal';
     console.log(url);
 
     let term = termInstance.current;
@@ -130,8 +131,16 @@ function Terminal_() {
       console.log(event.type);
       console.log('ws.onopen', url)
 
-      console.log({termCols: term.cols, termRows: term.rows, ...fitAddon.proposeDimensions()});
-      const msg = JSON.stringify({action: 'resize', cols: term.cols, rows: term.rows});
+      console.log({
+        termCols: term.cols,
+        termRows: term.rows,
+        ...fitAddon.proposeDimensions(),
+      });
+      const msg = JSON.stringify({
+        action: 'resize',
+        cols: term.cols,
+        rows: term.rows,
+      });
       ws.send(msg);
 
       term.focus();
@@ -205,8 +214,20 @@ function Terminal_() {
         <div className="MyContentHeader">
           <span className="MyContentHeaderTitle">Terminal</span>
           <Space wrap>
-            <Button type="primary" icon={<SyncOutlined />} onClick={() => reconnect()}>Reconnect</Button>
-            <Button type="primary" icon={<ExportOutlined />} onClick={() => openTerminalExt()}>Fullscreen</Button>
+            <Button
+              type="primary"
+              icon={<SyncOutlined />}
+              onClick={() => reconnect()}
+            >
+              Reconnect
+            </Button>
+            <Button
+              type="primary"
+              icon={<ExportOutlined />}
+              onClick={() => openTerminalExt()}
+            >
+              Fullscreen
+            </Button>
           </Space>
         </div>
         <div

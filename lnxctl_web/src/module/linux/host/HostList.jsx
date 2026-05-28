@@ -107,7 +107,13 @@ function HostList() {
       sorter: (x, y) => x.ip.localeCompare(y.ip),
       sortDirections: ['ascend', 'descend'],
       render: (text, record) => (
-        <Button type="link" className="ButtonLink" onClick={() => getHost(record.id)}>{text}</Button>
+        <Button
+          type="link"
+          className="ButtonLink"
+          onClick={() => getHost(record.id)}
+        >
+          {text}
+        </Button>
       ),
     },
     {
@@ -120,7 +126,11 @@ function HostList() {
             return (
               <span>
                 <Tag variant='outlined'>
-                  ssh {record.ssh_user}@{record.ssh_host}:{record.ssh_port} -i {record.ssh_private_key}
+                  {`
+                    ssh
+                    ${record.ssh_user}@${record.ssh_host}:${record.ssh_port}
+                    -i ${record.ssh_private_key}
+                  `}
                 </Tag>
               </span>
             );
@@ -128,7 +138,11 @@ function HostList() {
             return (
               <span>
                 <Tag variant='outlined'>
-                  ssh {record.ssh_user}@{record.ssh_host}:{record.ssh_port} -p
+                  {`
+                    ssh
+                    ${record.ssh_user}@${record.ssh_host}:${record.ssh_port}
+                    -p
+                  `}
                 </Tag>
               </span>
             );
@@ -150,7 +164,14 @@ function HostList() {
       title: 'IPs',
       dataIndex: 'ips',
       render: (text) => (
-        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '1px'}}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            gap: '1px',
+          }}
+        >
           {text !== '' && text.split(',').map((item, index) => (
             <div key={index}>
               <Tag variant='outlined'>{item}</Tag>
@@ -202,7 +223,13 @@ function HostList() {
       fixed: 'right',
       render: (record) => (
         <span>
-          <Button type="link" className="ButtonLink" onClick={() => updateHost(record.id)}>Edit</Button>
+          <Button
+            type="link"
+            className="ButtonLink"
+            onClick={() => updateHost(record.id)}
+          >
+            Edit
+          </Button>
           <Divider orientation="vertical" />
           <Popconfirm
             title="Are you sure?"
@@ -214,16 +241,43 @@ function HostList() {
             <Button type="link" className="ButtonLink">Delete</Button>
           </Popconfirm>
           <Divider orientation="vertical" />
-          <a onClick={(event) => {event.preventDefault(); openHostTerminal(record);}}>
-            <img src={terminalIcon} alt="" style={{height: '22px', verticalAlign: 'top'}} />
+          <a
+            onClick={(event) => {
+              event.preventDefault();
+              openHostTerminal(record);
+            }}
+          >
+            <img
+              src={terminalIcon}
+              alt=""
+              style={{height: '22px', verticalAlign: 'top'}}
+            />
           </a>
           <Divider orientation="vertical" />
-          <a onClick={(event) => {event.preventDefault(); openHostFileBrowser(record.id, record.ssh_host);}}>
-            <img src={folderIcon} alt="" style={{height: '22px', verticalAlign: 'top'}} />
+          <a
+            onClick={(event) => {
+              event.preventDefault();
+              openHostFileBrowser(record.id, record.ssh_host);
+            }}
+          >
+            <img
+              src={folderIcon}
+              alt=""
+              style={{height: '22px', verticalAlign: 'top'}}
+            />
           </a>
           <Divider orientation="vertical" />
-          <a onClick={(event) => {event.preventDefault(); openHostTerminalExt(record);}}>
-            <img src={externalLinkIcon} alt="" style={{height: '22px', verticalAlign: 'top'}} />
+          <a
+            onClick={(event) => {
+              event.preventDefault();
+              openHostTerminalExt(record);
+            }}
+          >
+            <img
+              src={externalLinkIcon}
+              alt=""
+              style={{height: '22px', verticalAlign: 'top'}}
+            />
           </a>
         </span>
       ),
@@ -235,8 +289,20 @@ function HostList() {
       <div className="MyContentHeader">
         <span className="MyContentHeaderTitle">Host List</span>
         <Space wrap>
-          <Button type="primary" icon={<PlusOutlined />} onClick={() => addHost()}>New Host</Button>
-          <Button type="primary" icon={<SyncOutlined />} onClick={() => getHosts()}>Refresh</Button>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => addHost()}
+          >
+            New Host
+          </Button>
+          <Button
+            type="primary"
+            icon={<SyncOutlined />}
+            onClick={() => getHosts()}
+          >
+            Refresh
+          </Button>
         </Space>
       </div>
 

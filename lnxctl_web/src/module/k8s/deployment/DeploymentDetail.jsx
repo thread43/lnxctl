@@ -20,10 +20,20 @@ function DeploymentDetail() {
         open={storeDeploymentDetailVisible}
         onCancel={() => dispatch(store.setDeploymentDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setDeploymentDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setDeploymentDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 9}} wrapperCol={{span: 12}} className="MyForm">
+        <Form
+          layout="horizontal"
+          labelCol={{span: 9}}
+          wrapperCol={{span: 12}}
+          className="MyForm"
+        >
           <Form.Item label="Namespace">{storeDeployment.namespace}</Form.Item>
           <Form.Item label="Name">{storeDeployment.name}</Form.Item>
           <Form.Item label="Ready">

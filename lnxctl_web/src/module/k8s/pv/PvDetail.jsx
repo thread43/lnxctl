@@ -20,10 +20,20 @@ function PvDetail() {
         open={storePvDetailVisible}
         onCancel={() => dispatch(store.setPvDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setPvDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setPvDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 9}} wrapperCol={{span: 12}} className="MyForm">
+        <Form
+          layout="horizontal"
+          labelCol={{span: 9}}
+          wrapperCol={{span: 12}}
+          className="MyForm"
+        >
           <Form.Item label="Name">{storePv.name}</Form.Item>
           <Form.Item label="Capacity">{storePv.capacity}</Form.Item>
           <Form.Item label="Access Modes">{storePv.access_modes.join(',')}</Form.Item>
@@ -32,7 +42,9 @@ function PvDetail() {
           <Form.Item label="Claim">{storePv.claim}</Form.Item>
           <Form.Item label="Storage Class">{storePv.storage_class}</Form.Item>
           {/*
-          <Form.Item label="Volume Attributes Class">{storePv.volume_attributes_class}</Form.Item>
+          <Form.Item label="Volume Attributes Class">
+            {storePv.volume_attributes_class}
+          </Form.Item>
           <Form.Item label="Reason">{storePv.reason}</Form.Item>
           */}
           <Form.Item label="Age">{storePv.age}</Form.Item>

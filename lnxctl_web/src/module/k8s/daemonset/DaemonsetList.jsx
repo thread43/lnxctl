@@ -188,7 +188,13 @@ function DaemonsetList() {
       sorter: (x, y) => x.name.localeCompare(y.name),
       sortDirections: ['ascend', 'descend'],
       render: (text, record) => (
-        <Button type="link" className="ButtonLink" onClick={() => getDaemonset(record)}>{text}</Button>
+        <Button
+          type="link"
+          className="ButtonLink"
+          onClick={() => getDaemonset(record)}
+        >
+          {text}
+        </Button>
       ),
     },
     {
@@ -269,7 +275,13 @@ function DaemonsetList() {
       fixed: 'right',
       render: (text, record) => (
         <div style={{display: 'flex', alignItems: 'center'}}>
-          <Button type="link" className="ButtonLink" onClick={() => getDaemonsetYaml(record)}>YAML</Button>
+          <Button
+            type="link"
+            className="ButtonLink"
+            onClick={() => getDaemonsetYaml(record)}
+          >
+            YAML
+          </Button>
         </div>
       ),
     },
@@ -301,8 +313,20 @@ function DaemonsetList() {
           </Form.Item>
           <Form.Item style={{marginTop: '2px'}}>
             <Space wrap>
-              <Button type="primary" icon={<SearchOutlined />} onClick={() => search()}>Search</Button>
-              <Button type="primary" icon={<UndoOutlined />} onClick={() => reset()}>Reset</Button>
+              <Button
+                type="primary"
+                icon={<SearchOutlined />}
+                onClick={() => search()}
+              >
+                Search
+              </Button>
+              <Button
+                type="primary"
+                icon={<UndoOutlined />}
+                onClick={() => reset()}
+              >
+                Reset
+              </Button>
             </Space>
           </Form.Item>
         </Form>
@@ -314,7 +338,13 @@ function DaemonsetList() {
         <div className="MyContentHeader">
           <span className="MyContentHeaderTitle">DaemonSet List</span>
           <Space wrap>
-            <Button type="primary" icon={<SyncOutlined />} onClick={() => refresh()}>Refresh</Button>
+            <Button
+              type="primary"
+              icon={<SyncOutlined />}
+              onClick={() => refresh()}
+            >
+              Refresh
+            </Button>
           </Space>
         </div>
 

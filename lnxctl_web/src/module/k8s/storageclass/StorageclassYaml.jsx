@@ -67,7 +67,12 @@ function StorageclassYaml() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setStorageclassYamlVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setStorageclassYamlVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setStorageclassYamlVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
         <div className="MyContentHeader">

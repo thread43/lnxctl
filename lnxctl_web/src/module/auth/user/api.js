@@ -1,7 +1,8 @@
 import http from '../../../util/http.js';
 
 function add_user(user) {
-  const {username, password, nickname, email, phone, is_admin, remark, dept_id} = user;
+  const {username, password, nickname} = user;
+  const {email, phone, is_admin, remark, dept_id} = user;
 
   const formData = new FormData();
   formData.append('username', username);
@@ -90,7 +91,8 @@ function reset_password(user) {
 }
 
 function update_user(user) {
-  const {id, username, password, nickname, email, phone, is_admin, remark, dept_id} = user;
+  const {id, username, password, nickname} = user;
+  const {email, phone, is_admin, remark, dept_id} = user;
 
   const formData = new FormData();
   formData.append('id', id);

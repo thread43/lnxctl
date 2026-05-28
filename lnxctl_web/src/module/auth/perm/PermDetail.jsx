@@ -50,14 +50,26 @@ function PermDetail() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setPermDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setPermDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setPermDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 9}} wrapperCol={{span: 12}} className="MyForm">
+        <Form
+          layout="horizontal"
+          labelCol={{span: 9}}
+          wrapperCol={{span: 12}}
+          className="MyForm"
+        >
           <Form.Item label="ID">{statePerm.id}</Form.Item>
           <Form.Item label="Code">{statePerm.code}</Form.Item>
           <Form.Item label="Name">{statePerm.name}</Form.Item>
-          <Form.Item label="Type">{statePerm.type === 0 ? 'Read-only' : 'Read-write'}</Form.Item>
+          <Form.Item label="Type">
+            {statePerm.type === 0 ? 'Read-only' : 'Read-write'}
+          </Form.Item>
           <Form.Item label="Remark">{statePerm.remark}</Form.Item>
           <Form.Item label="Created At">{statePerm.create_time}</Form.Item>
           <Form.Item label="Updated At">{statePerm.update_time}</Form.Item>

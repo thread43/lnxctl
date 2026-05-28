@@ -20,18 +20,38 @@ function StorageclassDetail() {
         open={storeStorageclassDetailVisible}
         onCancel={() => dispatch(store.setStorageclassDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setStorageclassDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setStorageclassDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 9}} wrapperCol={{span: 12}} className="MyForm">
-          <Form.Item label="Name">{storeStorageclass.name}</Form.Item>
-          <Form.Item label="Provisioner">{storeStorageclass.provisioner}</Form.Item>
-          <Form.Item label="Reclaim Policy">{storeStorageclass.reclaim_policy}</Form.Item>
-          <Form.Item label="Volume Binding Mode">{storeStorageclass.volume_binding_mode}</Form.Item>
+        <Form
+          layout="horizontal"
+          labelCol={{span: 9}}
+          wrapperCol={{span: 12}}
+          className="MyForm"
+        >
+          <Form.Item label="Name">
+            {storeStorageclass.name}
+          </Form.Item>
+          <Form.Item label="Provisioner">
+            {storeStorageclass.provisioner}
+          </Form.Item>
+          <Form.Item label="Reclaim Policy">
+            {storeStorageclass.reclaim_policy}
+          </Form.Item>
+          <Form.Item label="Volume Binding Mode">
+            {storeStorageclass.volume_binding_mode}
+          </Form.Item>
           <Form.Item label="Allow Volume Expansion">
             {storeStorageclass.allow_volume_expansion === true ? 'true' : 'false'}
           </Form.Item>
-          <Form.Item label="Age">{storeStorageclass.age}</Form.Item>
+          <Form.Item label="Age">
+            {storeStorageclass.age}
+          </Form.Item>
         </Form>
       </Modal>
     </>

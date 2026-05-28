@@ -80,7 +80,13 @@ function ClusterList() {
       title: 'Name',
       dataIndex: 'name',
       render: (text, record) => (
-        <Button type="link" className="ButtonLink" onClick={() => getCluster(record.id)}>{text}</Button>
+        <Button
+          type="link"
+          className="ButtonLink"
+          onClick={() => getCluster(record.id)}
+        >
+          {text}
+        </Button>
       ),
     },
     {
@@ -94,7 +100,11 @@ function ClusterList() {
       dataIndex: 'server',
       render: (text) => {
         if (text !== '') {
-          return (<a href={text} target="_blank">{text}&nbsp;<ExportOutlined /></a>);
+          return (
+            <a href={text} target="_blank">
+              {text}&nbsp;<ExportOutlined />
+            </a>
+          );
         } else {
           return ('');
         }
@@ -116,7 +126,13 @@ function ClusterList() {
       title: 'Actions',
       render: (record) => (
         <span>
-          <Button type="link" className="ButtonLink" onClick={() => updateCluster(record.id)}>Edit</Button>
+          <Button
+            type="link"
+            className="ButtonLink"
+            onClick={() => updateCluster(record.id)}
+          >
+            Edit
+          </Button>
           <Divider orientation="vertical" />
           <Popconfirm
             title="Are you sure?"
@@ -128,7 +144,13 @@ function ClusterList() {
             <Button type="link" className="ButtonLink">Delete</Button>
           </Popconfirm>
           <Divider orientation="vertical" />
-          <Button type="link" className="ButtonLink" onClick={() => getEvents(record)}>Events</Button>
+          <Button
+            type="link"
+            className="ButtonLink"
+            onClick={() => getEvents(record)}
+          >
+            Events
+          </Button>
         </span>
       ),
     },
@@ -139,8 +161,20 @@ function ClusterList() {
       <div className="MyContentHeader">
         <span className="MyContentHeaderTitle">Cluster List</span>
         <Space wrap>
-          <Button type="primary" icon={<PlusOutlined />} onClick={() => addCluster()}>New Cluster</Button>
-          <Button type="primary" icon={<SyncOutlined />} onClick={() => getClusters()}>Refresh</Button>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => addCluster()}
+          >
+            New Cluster
+          </Button>
+          <Button
+            type="primary"
+            icon={<SyncOutlined />}
+            onClick={() => getClusters()}
+          >
+            Refresh
+          </Button>
         </Space>
       </div>
 

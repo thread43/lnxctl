@@ -51,10 +51,20 @@ function TargetDetail() {
         loading={stateLoading}
         onCancel={() => dispatch(store.setTargetDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setTargetDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setTargetDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 9}} wrapperCol={{span: 12}} className="MyForm">
+        <Form
+          layout="horizontal"
+          labelCol={{span: 9}}
+          wrapperCol={{span: 12}}
+          className="MyForm"
+        >
           <Form.Item label="ID">{stateTarget.id}</Form.Item>
           <Form.Item label="Name">{stateTarget.name}</Form.Item>
           <Form.Item label="Crontab">{stateTarget.crontab}</Form.Item>
@@ -114,9 +124,13 @@ function TargetDetail() {
               {stateTarget.check_result}
             </div>
           </Form.Item>
-          <Form.Item label="Check Time">{stateTarget.check_time}</Form.Item>
+          <Form.Item label="Check Time">
+            {stateTarget.check_time}
+          </Form.Item>
           <Divider />
-          <Form.Item label="Is Active">{stateTarget.is_active === 1 ? 'Yes' : 'No'}</Form.Item>
+          <Form.Item label="Is Active">
+            {stateTarget.is_active === 1 ? 'Yes' : 'No'}
+          </Form.Item>
           <Form.Item label="Remark">{stateTarget.remark}</Form.Item>
           <Form.Item label="Created At">{stateTarget.create_time}</Form.Item>
           <Form.Item label="Updated At">{stateTarget.update_time}</Form.Item>

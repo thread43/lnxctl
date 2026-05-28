@@ -16,7 +16,10 @@ function get_namespace_yaml(namespace) {
 }
 
 function get_namespaces(cluster_id) {
-  return http.get('/api/k8s/namespace/get_namespaces?cluster_id=' + cluster_id);
+  let url = '/api/k8s/namespace/get_namespaces';
+  url = url + '?cluster_id=' + cluster_id;
+
+  return http.get(url);
 }
 
 const api = {

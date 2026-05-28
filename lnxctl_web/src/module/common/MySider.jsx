@@ -178,7 +178,11 @@ function MySider() {
           <div className={styles.SiteInfo}>
             <Space wrap>
               <img src={logo} alt="" className={styles.SiteLogo} />
-              {storeSiderCollapsed === false && <span className={styles.SiteTitle}>LNXCTL</span>}
+              {(
+                storeSiderCollapsed === false
+              ) && (
+                <span className={styles.SiteTitle}>LNXCTL</span>
+              )}
             </Space>
           </div>
         </div>
@@ -192,9 +196,10 @@ function MySider() {
             key: menu.code,
             label: menu.name,
             icon: menuIcon[menu.code],
-            children: menu.children.map((menu2) => (
-              {key: menu2.code, label: <Link to={menuLink[menu2.code]}>{menu2.name}</Link>})
-            ),
+            children: menu.children.map((menu2) => ({
+              key: menu2.code,
+              label: <Link to={menuLink[menu2.code]}>{menu2.name}</Link>,
+            })),
           }))}
           // onOpenChange={(keys) => dispatch(store.setOpenKeys(keys))}
           onOpenChange={(keys) => onOpenChange(keys)}

@@ -75,7 +75,13 @@ function LogList() {
       sorter: (x, y) => x.nickname.localeCompare(y.nickname),
       sortDirections: ['ascend', 'descend'],
       render: (text, record) => (
-        <Button type="link" className="ButtonLink" onClick={() => getLog(record.id)}>{text}</Button>
+        <Button
+          type="link"
+          className="ButtonLink"
+          onClick={() => getLog(record.id)}
+        >
+          {text}
+        </Button>
       ),
     },
     {
@@ -94,7 +100,13 @@ function LogList() {
       dataIndex: 'user_agent',
       render: text => (
         <span>
-          {text.length > 30 ? <Tooltip title={text}>{text.substring(0, 30) + '...'}</Tooltip> : text}
+          {(
+            text.length > 30
+          ) ? (
+            <Tooltip title={text}>{text.substring(0, 30) + '...'}</Tooltip>
+          ) : (
+            text
+          )}
         </span>
       ),
     },
@@ -104,7 +116,13 @@ function LogList() {
       dataIndex: 'referer',
       render: text => (
         <span>
-          {text.length > 30 ? <Tooltip title={text}>{text.substring(0, 30) + '...'}</Tooltip> : text}
+          {(
+            text.length > 30
+          ) ? (
+            <Tooltip title={text}>{text.substring(0, 30) + '...'}</Tooltip>
+          ) : (
+            text
+          )}
         </span>
       ),
     },
@@ -120,7 +138,13 @@ function LogList() {
       <div className="MyContentHeader">
         <span className="MyContentHeaderTitle">Log List</span>
         <Space wrap>
-          <Button type="primary" icon={<SyncOutlined />} onClick={() => refreshLog()}>Refresh</Button>
+          <Button
+            type="primary"
+            icon={<SyncOutlined />}
+            onClick={() => refreshLog()}
+          >
+            Refresh
+          </Button>
         </Space>
       </div>
       <Table

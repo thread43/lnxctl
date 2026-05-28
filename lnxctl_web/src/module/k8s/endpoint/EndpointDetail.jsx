@@ -20,10 +20,20 @@ function EndpointDetail() {
         open={storeEndpointDetailVisible}
         onCancel={() => dispatch(store.setEndpointDetailVisible(false))}
         footer={[
-          <Button key="close" onClick={() => dispatch(store.setEndpointDetailVisible(false))}>Close</Button>,
+          <Button
+            key="close"
+            onClick={() => dispatch(store.setEndpointDetailVisible(false))}
+          >
+            Close
+          </Button>,
         ]}
       >
-        <Form layout="horizontal" labelCol={{span: 9}} wrapperCol={{span: 12}} className="MyForm">
+        <Form
+          layout="horizontal"
+          labelCol={{span: 9}}
+          wrapperCol={{span: 12}}
+          className="MyForm"
+        >
           <Form.Item label="Namespace">{storeEndpoint.namespace}</Form.Item>
           <Form.Item label="Name">{storeEndpoint.name}</Form.Item>
           <Form.Item label="Endpoints">

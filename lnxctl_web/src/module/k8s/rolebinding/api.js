@@ -4,6 +4,13 @@ function get_clusters() {
   return http.get('/api/k8s/rolebinding/get_clusters');
 }
 
+function get_namespaces(cluster_id) {
+  let url = '/api/k8s/rolebinding/get_namespaces';
+  url = url + '?cluster_id=' + cluster_id;
+
+  return http.get(url);
+}
+
 function get_rolebinding_yaml(rolebinding) {
   const cluster_id = rolebinding.cluster_id;
   const namespace = rolebinding.namespace;
@@ -18,22 +25,22 @@ function get_rolebinding_yaml(rolebinding) {
 }
 
 function get_rolebindings(cluster_id, namespace) {
+  let url = '/api/k8s/rolebinding/get_rolebindings';
   if (namespace !== '') {
-    return http.get('/api/k8s/rolebinding/get_rolebindings?cluster_id=' + cluster_id + '&namespace=' + namespace);
+    url = url + '?cluster_id=' + cluster_id;
+    url = url + '&namespace=' + namespace;
+    return http.get(url);
   } else {
-    return http.get('/api/k8s/rolebinding/get_rolebindings?cluster_id=' + cluster_id);
+    url = url + '?cluster_id=' + cluster_id;
+    return http.get(url);
   }
-}
-
-function get_namespaces(cluster_id) {
-  return http.get('/api/k8s/rolebinding/get_namespaces?cluster_id=' + cluster_id);
 }
 
 const api = {
   get_clusters,
+  get_namespaces,
   get_rolebinding_yaml,
   get_rolebindings,
-  get_namespaces,
 };
 
 export default api;

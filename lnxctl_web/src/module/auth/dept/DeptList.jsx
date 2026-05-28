@@ -76,7 +76,13 @@ function DeptList() {
       sorter: (x, y) => x.name.localeCompare(y.name),
       sortDirections: ['ascend', 'descend'],
       render: (text, record) => (
-        <Button type="link" className="ButtonLink" onClick={() => getDept(record.id)}>{text}</Button>
+        <Button
+          type="link"
+          className="ButtonLink"
+          onClick={() => getDept(record.id)}
+        >
+          {text}
+        </Button>
       ),
     },
     {
@@ -84,7 +90,13 @@ function DeptList() {
       title: 'Actions',
       render: (record) => (
         <span>
-          <Button type="link" className="ButtonLink" onClick={() => updateDept(record.id)}>Edit</Button>
+          <Button
+            type="link"
+            className="ButtonLink"
+            onClick={() => updateDept(record.id)}
+          >
+            Edit
+          </Button>
           <Divider orientation="vertical" />
           <Popconfirm
             title="Are you sure?"
@@ -105,8 +117,20 @@ function DeptList() {
       <div className="MyContentHeader">
         <span className="MyContentHeaderTitle">Department List</span>
         <Space wrap>
-          <Button type="primary" icon={<PlusOutlined />} onClick={() => addDept()}>New Department</Button>
-          <Button type="primary" icon={<SyncOutlined />} onClick={() => getDepts()}>Refresh</Button>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => addDept()}
+          >
+            New Department
+          </Button>
+          <Button
+            type="primary"
+            icon={<SyncOutlined />}
+            onClick={() => getDepts()}
+          >
+            Refresh
+          </Button>
         </Space>
       </div>
 
