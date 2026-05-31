@@ -15,6 +15,8 @@ import styles from './MySider.module.css';
 import logo from '/src/static/react/logo_dark.svg';
 import routes from '../../util/routes.jsx';
 
+const debug = false;
+
 function MySider() {
   const {message} = App.useApp();
 
@@ -89,6 +91,12 @@ function MySider() {
     }
   }
 
+  function onClickIndex() {
+    dispatch(store.setOpenKeys([]));
+    setStateSelectedKeys([]);
+    navigate('/');
+  }
+
   function onCollapse(collapsed, type) {
     console.log(collapsed, type);
   }
@@ -98,8 +106,8 @@ function MySider() {
     // dispatch(store.setOpenKeys(keys));
     // return;
 
-    // console.log('keys', keys);
-    // console.log('storeOpenKeys', storeOpenKeys);
+    debug === true && console.log('keys', keys);
+    debug === true && console.log('storeOpenKeys', storeOpenKeys);
 
     // all closed
     if (keys.length === 0) {
@@ -109,7 +117,7 @@ function MySider() {
 
     // diff
     const newOpenKey = keys.find((key) => storeOpenKeys.indexOf(key) === -1);
-    // console.log('newOpenKey', newOpenKey);
+    debug === true && console.log('newOpenKey', newOpenKey);
 
     // all closed
     if (newOpenKey === undefined) {
@@ -126,17 +134,17 @@ function MySider() {
       return;
     }
 
-    // console.log('stateMenus', stateMenus);
+    debug === true && console.log('stateMenus', stateMenus);
     const menu = stateMenus.find(item => item.code === newOpenKey);
     if (menu !== undefined) {
       const subMenus = menu.children;
-      // console.log('subMenus', subMenus);
+      debug === true && console.log('subMenus', subMenus);
 
       if (subMenus.length > 0) {
         const subMenuKeys = subMenus.map(item => item.code);
 
-        // console.log('subMenuKeys', subMenuKeys);
-        // console.log('stateSelectedKeys', stateSelectedKeys);
+        debug === true && console.log('subMenuKeys', subMenuKeys);
+        debug === true && console.log('stateSelectedKeys', stateSelectedKeys);
 
         if (stateSelectedKeys.length > 0) {
           // close then open the same menu, do nothing
@@ -145,7 +153,7 @@ function MySider() {
           }
         }
 
-        // console.log('subMenus[0]', subMenus[0]);
+        debug === true && console.log('subMenus[0]', subMenus[0]);
 
         // select the first subMenu, and jump
         setStateSelectedKeys([subMenuKeys[0]]);
@@ -174,7 +182,7 @@ function MySider() {
         onCollapse={(collapsed, type) => onCollapse(collapsed, type)}
       >
         {/* <Link to="/"></Link> */}
-        <div onClick={() => {dispatch(store.setOpenKeys([])); navigate('/');}}>
+        <div onClick={() => onClickIndex()}>
           <div className={styles.SiteInfo}>
             <Space wrap>
               <img src={logo} alt="" className={styles.SiteLogo} />
