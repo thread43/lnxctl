@@ -11,6 +11,7 @@
 --
 -- linux_host
 -- linux_service
+-- linux_task
 --
 -- docker_server
 --
@@ -151,6 +152,16 @@ CREATE TABLE linux_service (
   reload_cmd VARCHAR(256),
   status_cmd VARCHAR(256),
   term_cmd VARCHAR(256),
+  remark VARCHAR(128),
+  create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+  update_time DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE linux_task (
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(128),
+  command VARCHAR(256),
+  timeout INTEGER,
   remark VARCHAR(128),
   create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
   update_time DATETIME DEFAULT CURRENT_TIMESTAMP

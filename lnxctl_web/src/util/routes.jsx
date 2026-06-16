@@ -7,6 +7,7 @@ import {SettingOutlined} from '@ant-design/icons';
 import Index from '../module/index/Index.jsx';
 import LinuxHost from '../module/linux/host/Index.jsx';
 import LinuxService from '../module/linux/service/Index.jsx';
+import LinuxTask from '../module/linux/task/Index.jsx';
 import DockerServer from '../module/docker/server/Index.jsx';
 import DockerImage from '../module/docker/image/Index.jsx';
 import DockerContainer from '../module/docker/container/Index.jsx';
@@ -51,6 +52,7 @@ const routes = [
   {path: '/linux', component: LinuxHost, alias: 'linux', icon: <LinuxOutlined />},
   {path: '/linux/host', component: LinuxHost, alias: 'linux_host'},
   {path: '/linux/service', component: LinuxService, alias: 'linux_service'},
+  {path: '/linux/task', component: LinuxTask, alias: 'linux_task'},
 
   {path: '/docker', component: DockerContainer, alias: 'docker', icon: <DockerOutlined />},
   {path: '/docker/server', component: DockerServer, alias: 'docker_server'},

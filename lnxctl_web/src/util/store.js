@@ -2,6 +2,7 @@ import {configureStore} from '@reduxjs/toolkit';
 import commonStore from '../module/common/store.js';
 import linuxHostStore from '../module/linux/host/store.js';
 import linuxServiceStore from '../module/linux/service/store.js';
+import linuxTaskStore from '../module/linux/task/store.js';
 import dockerCommonStore from '../module/docker/common/store.js';
 import dockerServerStore from '../module/docker/server/store.js';
 import dockerImageStore from '../module/docker/image/store.js';
@@ -45,6 +46,7 @@ const store = configureStore({
 
     linuxHost: linuxHostStore.hostSlice.reducer,
     linuxService: linuxServiceStore.serviceSlice.reducer,
+    linuxTask: linuxTaskStore.taskSlice.reducer,
 
     dockerCommon: dockerCommonStore.commonSlice.reducer,
     dockerServer: dockerServerStore.serverSlice.reducer,

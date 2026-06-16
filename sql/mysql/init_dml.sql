@@ -74,6 +74,7 @@ VALUES
 ('/api/linux/host/ws_open_host_terminal',                   'Linux - Hosts - WS Open Host Terminal',                          1, 202),
 ('/api/linux/service/add_service',                          'Linux - Services - Add Service',                                 1, 203),
 ('/api/linux/service/delete_service',                       'Linux - Services - Delete Service',                              1, 203),
+('/api/linux/service/download_service',                     'Linux - Services - Download Service',                            0, 203),
 ('/api/linux/service/get_service',                          'Linux - Services - Get Service',                                 0, 203),
 ('/api/linux/service/get_services',                         'Linux - Services - Get Services',                                0, 203),
 ('/api/linux/service/reload_service',                       'Linux - Services - Reload Service',                              1, 203),
@@ -82,7 +83,16 @@ VALUES
 ('/api/linux/service/status_service',                       'Linux - Services - Status Service',                              0, 203),
 ('/api/linux/service/stop_service',                         'Linux - Services - Stop Service',                                1, 203),
 ('/api/linux/service/update_service',                       'Linux - Services - Update Service',                              1, 203),
+('/api/linux/service/upload_service',                       'Linux - Services - Upload Service',                              1, 203),
 ('/api/linux/service/ws_open_service_terminal',             'Linux - Services - WS Open Service Terminal',                    1, 203),
+('/api/linux/task/add_task',                                'Linux - Tasks - Add Task',                                       1, 204),
+('/api/linux/task/delete_task',                             'Linux - Tasks - Delete Task',                                    1, 204),
+('/api/linux/task/download_task',                           'Linux - Tasks - Download Task',                                  0, 204),
+('/api/linux/task/get_task',                                'Linux - Tasks - Get Task',                                       0, 204),
+('/api/linux/task/get_tasks',                               'Linux - Tasks - Get Tasks',                                      0, 204),
+('/api/linux/task/run_task',                                'Linux - Tasks - Run Task',                                       1, 204),
+('/api/linux/task/update_task',                             'Linux - Tasks - Update Task',                                    1, 204),
+('/api/linux/task/upload_task',                             'Linux - Tasks - Upload Task',                                    1, 204),
 ('/api/docker/server/add_server',                           'Docker - Servers - Add Server',                                  1, 302),
 ('/api/docker/server/delete_server',                        'Docker - Servers - Delete Server',                               1, 302),
 ('/api/docker/server/get_server',                           'Docker - Servers - Get Server',                                  0, 302),
@@ -203,10 +213,12 @@ VALUES
 ('/api/monitoring/target/add_target',                       'Monitoring - Targets - Add Target',                              1, 502),
 ('/api/monitoring/target/delete_target',                    'Monitoring - Targets - Delete Target',                           1, 502),
 ('/api/monitoring/target/disable_target',                   'Monitoring - Targets - Disable Target',                          1, 502),
+('/api/monitoring/target/download_target',                  'Monitoring - Targets - Download Target',                         0, 502),
 ('/api/monitoring/target/enable_target',                    'Monitoring - Targets - Enable Target',                           1, 502),
 ('/api/monitoring/target/get_target',                       'Monitoring - Targets - Get Target',                              0, 502),
 ('/api/monitoring/target/get_targets',                      'Monitoring - Targets - Get Targets',                             0, 502),
-('/api/monitoring/target/update_target',                    'Monitoring - Targets - Update Target',                           1, 502);
+('/api/monitoring/target/update_target',                    'Monitoring - Targets - Update Target',                           1, 502),
+('/api/monitoring/target/upload_target',                    'Monitoring - Targets - Upload Target',                           1, 502);
 
 INSERT INTO auth_menu
 (id, code, name, sort, is_virtual, parent_menu_id)
@@ -223,6 +235,7 @@ VALUES
 (201, 'linux',                  'Linux',               1,  0, NULL),
 (202, 'linux_host',             'Hosts',               2,  0, 201 ),
 (203, 'linux_service',          'Services',            3,  0, 201 ),
+(204, 'linux_task',             'Tasks',               4,  0, 201 ),
 (301, 'docker',                 'Docker',              11, 0, NULL),
 (302, 'docker_server',          'Servers',             12, 0, 301 ),
 (303, 'docker_image',           'Images',              13, 0, 301 ),

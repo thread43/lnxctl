@@ -48,6 +48,7 @@ import (
 	linux_cronjob "lnxctl/module/linux/cronjob"
 	linux_host "lnxctl/module/linux/host"
 	linux_service "lnxctl/module/linux/service"
+	linux_task "lnxctl/module/linux/task"
 	monitoring_cronjob "lnxctl/module/monitoring/cronjob"
 	monitoring_target "lnxctl/module/monitoring/target"
 	system_log "lnxctl/module/system/log"
@@ -144,6 +145,15 @@ var Routes = []Route{
 	{"/api/linux/service/update_service", linux_service.UpdateService},
 	{"/api/linux/service/upload_service", linux_service.UploadService},
 	{"/api/linux/service/ws_open_service_terminal", linux_service.WsOpenServiceTerminal},
+
+	{"/api/linux/task/add_task", linux_task.AddTask},
+	{"/api/linux/task/delete_task", linux_task.DeleteTask},
+	{"/api/linux/task/download_task", linux_task.DownloadTask},
+	{"/api/linux/task/get_task", linux_task.GetTask},
+	{"/api/linux/task/get_tasks", linux_task.GetTasks},
+	{"/api/linux/task/run_task", linux_task.RunTask},
+	{"/api/linux/task/update_task", linux_task.UpdateTask},
+	{"/api/linux/task/upload_task", linux_task.UploadTask},
 
 	{"/api/docker/server/add_server", docker_server.AddServer},
 	{"/api/docker/server/delete_server", docker_server.DeleteServer},

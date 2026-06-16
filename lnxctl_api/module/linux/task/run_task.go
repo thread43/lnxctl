@@ -1,0 +1,62 @@
+package task
+
+import (
+	"log"
+	"net/http"
+	"strconv"
+	"strings"
+
+	linux_task_common "lnxctl/module/linux/task/common"
+	"lnxctl/util"
+)
+
+func RunTask(response http.ResponseWriter, request *http.Request) {
+	var err error
+
+	var id string
+	id = strings.TrimSpace(request.FormValue("id"))
+
+	if util.IsNotSet(id) {
+		util.Api(response, 400)
+		return
+	}
+	if util.IsNotInt(id) {
+		util.Api(response, 400)
+		return
+	}
+
+	var id2 int64
+	id2, err = strconv.ParseInt(id, 10, 64)
+	util.Raise(err)
+
+	var task map[string]any
+	task, err = linux_task_common.GetTask(id2)
+	util.Raise(err)
+
+	var cmd string
+	cmd = task["command"].(string)
+	log.Println("cmd:", cmd)
+	if cmd == "" {
+		util.Api(response, 400)
+	}
+
+	var cmd_exit_code int64
+	var cmd_error_msg string
+	var cmd_output string
+
+	cmd_output, err = util.ExecCmdWithTimeout(cmd, 60)
+
+	if err != nil {
+		cmd_exit_code = 1
+		cmd_error_msg = err.Error()
+	}
+
+	log.Println(err)
+	log.Println(cmd_output)
+
+	task["cmd_exit_code"] = cmd_exit_code
+	task["cmd_error_msg"] = cmd_error_msg
+	task["cmd_output"] = cmd_output
+
+	util.Api(response, 200, task)
+}
