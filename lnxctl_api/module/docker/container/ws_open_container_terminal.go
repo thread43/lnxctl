@@ -14,9 +14,7 @@ import (
 
 	"github.com/gorilla/websocket"
 
-	"github.com/docker/docker/api/types"
-	types_container "github.com/docker/docker/api/types/container"
-	"github.com/docker/docker/client"
+	"github.com/moby/moby/client"
 
 	docker_common "lnxctl/module/docker/common"
 	"lnxctl/util"
@@ -78,37 +76,40 @@ func WsOpenContainerTerminal(response http.ResponseWriter, request *http.Request
 	}
 
 	var docker_client *client.Client
-	docker_client, err = client.NewClientWithOpts(client.WithHost(host), client.WithAPIVersionNegotiation())
+	docker_client, err = client.New(client.WithHost(host))
 	util.Raise(err)
 	defer func() {
 		_ = docker_client.Close()
 	}()
 
 	log.Println("ContainerExecCreate......")
-	var exec_create_response types_container.ExecCreateResponse
-	exec_create_response, err = docker_client.ContainerExecCreate(
+	var exec_create_result client.ExecCreateResult
+	exec_create_result, err = docker_client.ExecCreate(
 		context.Background(),
 		container_id,
-		types_container.ExecOptions{
+		client.ExecCreateOptions{
 			AttachStdin:  true,
 			AttachStdout: true,
 			AttachStderr: true,
-			Tty:          true,
+			TTY:          true,
 			Cmd:          []string{command},
 		},
 	)
 	util.Raise(err)
 
 	log.Println("ContainerExecAttach......")
-	var hijacked_response types.HijackedResponse
-	hijacked_response, err = docker_client.ContainerExecAttach(
+	var exec_attach_result client.ExecAttachResult
+	exec_attach_result, err = docker_client.ExecAttach(
 		context.Background(),
-		exec_create_response.ID,
-		types_container.ExecAttachOptions{
-			Tty: true,
+		exec_create_result.ID,
+		client.ExecAttachOptions{
+			TTY: true,
 		},
 	)
 	util.Raise(err)
+
+	var hijacked_response client.HijackedResponse
+	hijacked_response = exec_attach_result.HijackedResponse
 	defer func() {
 		log.Println("hijacked_response closed......")
 		hijacked_response.Close()
@@ -206,10 +207,11 @@ func WsOpenContainerTerminal(response http.ResponseWriter, request *http.Request
 		case "resize":
 			// if resize the tty of an exec process running within a container,
 			// use ContainerExecResize instead of ContainerResize
-			err = docker_client.ContainerExecResize(
+			// var exec_resize_result client.ExecResizeResult
+			_, err = docker_client.ExecResize(
 				context.Background(),
-				exec_create_response.ID,
-				types_container.ResizeOptions{
+				exec_create_result.ID,
+				client.ExecResizeOptions{
 					Height: uint(rows),
 					Width:  uint(cols),
 				},
@@ -230,37 +232,41 @@ func TestShell(host string, container_id string) error {
 	var err error
 
 	var docker_client *client.Client
-	docker_client, err = client.NewClientWithOpts(client.WithHost(host), client.WithAPIVersionNegotiation())
+	docker_client, err = client.New(client.WithHost(host))
 	util.Raise(err)
 	defer func() {
 		_ = docker_client.Close()
 	}()
 
 	log.Println("ContainerExecCreate......")
-	var exec_create_response types_container.ExecCreateResponse
-	exec_create_response, err = docker_client.ContainerExecCreate(
+	var exec_create_result client.ExecCreateResult
+	exec_create_result, err = docker_client.ExecCreate(
 		context.Background(),
 		container_id,
-		types_container.ExecOptions{
+		client.ExecCreateOptions{
 			AttachStdin:  false,
 			AttachStdout: true,
 			AttachStderr: true,
-			Tty:          false,
+			TTY:          false,
 			Cmd:          []string{"bash", "--version"},
 			// Cmd:       []string{"sh", "-c", "bash --version"},
 		},
 	)
 	util.Raise(err)
 
-	var hijacked_response types.HijackedResponse
-	hijacked_response, err = docker_client.ContainerExecAttach(
+	log.Println("ContainerExecAttach......")
+	var exec_attach_result client.ExecAttachResult
+	exec_attach_result, err = docker_client.ExecAttach(
 		context.Background(),
-		exec_create_response.ID,
-		types_container.ExecAttachOptions{
-			Tty: false,
+		exec_create_result.ID,
+		client.ExecAttachOptions{
+			TTY: true,
 		},
 	)
 	util.Raise(err)
+
+	var hijacked_response client.HijackedResponse
+	hijacked_response = exec_attach_result.HijackedResponse
 	defer func() {
 		log.Println("hijacked_response closed......")
 		hijacked_response.Close()

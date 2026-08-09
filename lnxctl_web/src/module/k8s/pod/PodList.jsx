@@ -153,7 +153,7 @@ function PodList() {
       cancelText: 'No',
       icon: (<QuestionCircleOutlined style={{color: 'red'}} />),
       styles: {mask: {opacity: '0.1', animation: 'none'}},
-      maskClosable: true,
+      mask: {closable: false},
       onOk() {
         deletePod2(pod);
       },

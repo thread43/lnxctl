@@ -6,8 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	types_container "github.com/docker/docker/api/types/container"
-	"github.com/docker/docker/client"
+	"github.com/moby/moby/client"
 
 	docker_common "lnxctl/module/docker/common"
 	"lnxctl/util"
@@ -40,7 +39,7 @@ func RestartContainer(response http.ResponseWriter, request *http.Request) {
 	util.Raise(err)
 
 	var docker_client *client.Client
-	docker_client, err = client.NewClientWithOpts(client.WithHost(host), client.WithAPIVersionNegotiation())
+	docker_client, err = client.New(client.WithHost(host))
 	util.Raise(err)
 	defer func() {
 		_ = docker_client.Close()
@@ -49,10 +48,11 @@ func RestartContainer(response http.ResponseWriter, request *http.Request) {
 	var timeout int
 	timeout = 10
 
-	err = docker_client.ContainerRestart(
+	// var container_restart_result client.ContainerRestartResult
+	_, err = docker_client.ContainerRestart(
 		context.Background(),
 		container_id,
-		types_container.StopOptions{Timeout: &timeout},
+		client.ContainerRestartOptions{Timeout: &timeout},
 	)
 	util.Raise(err)
 

@@ -194,7 +194,7 @@ def get_disk():
         for line in file.readlines():
             # /dev/loop0, /dev/loop1
             # /dev/sr0, /dev/sr1
-            # kubernetes: /var/lib/kubelet/pords/xxx
+            # kubernetes: /var/lib/kubelet/pods/xxx
             # ubuntu: /var/snap/firefox/xxx
             if (line.startswith('/dev') and
                 '/dev/loop' not in line and

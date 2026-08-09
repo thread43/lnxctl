@@ -7,8 +7,8 @@ import (
 	"strconv"
 	"strings"
 
-	types_image "github.com/docker/docker/api/types/image"
-	"github.com/docker/docker/client"
+	types_image "github.com/moby/moby/api/types/image"
+	"github.com/moby/moby/client"
 
 	docker_common "lnxctl/module/docker/common"
 	"lnxctl/util"
@@ -41,16 +41,19 @@ func InspectImage(response http.ResponseWriter, request *http.Request) {
 	util.Raise(err)
 
 	var docker_client *client.Client
-	docker_client, err = client.NewClientWithOpts(client.WithHost(host), client.WithAPIVersionNegotiation())
+	docker_client, err = client.New(client.WithHost(host))
 	util.Raise(err)
 	defer func() {
 		_ = docker_client.Close()
 	}()
 
-	var image types_image.InspectResponse
-	// image, _, err = docker_client.ImageInspectWithRaw(context.Background(), image_id)
-	image, err = docker_client.ImageInspect(context.Background(), image_id)
+	var image_inspect_result client.ImageInspectResult
+	// image_inspect_result, _, err = docker_client.ImageInspectWithRaw(context.Background(), image_id)
+	image_inspect_result, err = docker_client.ImageInspect(context.Background(), image_id)
 	util.Raise(err)
+
+	var image types_image.InspectResponse
+	image = image_inspect_result.InspectResponse
 
 	var image2 []byte
 	image2, err = json.Marshal(image)

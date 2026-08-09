@@ -7,9 +7,8 @@ import (
 	"strconv"
 	"strings"
 
-	types_container "github.com/docker/docker/api/types/container"
-	"github.com/docker/docker/client"
-	"github.com/docker/docker/pkg/stdcopy"
+	"github.com/moby/moby/api/pkg/stdcopy"
+	"github.com/moby/moby/client"
 
 	docker_common "lnxctl/module/docker/common"
 	"lnxctl/util"
@@ -42,7 +41,7 @@ func DownloadContainerLog(response http.ResponseWriter, request *http.Request) {
 	util.Raise(err)
 
 	var docker_client *client.Client
-	docker_client, err = client.NewClientWithOpts(client.WithHost(host), client.WithAPIVersionNegotiation())
+	docker_client, err = client.New(client.WithHost(host))
 	util.Raise(err)
 	defer func() {
 		_ = docker_client.Close()
@@ -52,7 +51,7 @@ func DownloadContainerLog(response http.ResponseWriter, request *http.Request) {
 	container_logs, err = docker_client.ContainerLogs(
 		context.Background(),
 		container_id,
-		types_container.LogsOptions{
+		client.ContainerLogsOptions{
 			ShowStdout: true,
 			ShowStderr: true,
 			Tail:       "100000",

@@ -10,10 +10,10 @@ import (
 	"strings"
 	"time"
 
-	types_container "github.com/docker/docker/api/types/container"
-	types_mount "github.com/docker/docker/api/types/mount"
-	types_network "github.com/docker/docker/api/types/network"
-	"github.com/docker/docker/client"
+	types_container "github.com/moby/moby/api/types/container"
+	types_mount "github.com/moby/moby/api/types/mount"
+	types_network "github.com/moby/moby/api/types/network"
+	"github.com/moby/moby/client"
 
 	docker_common "lnxctl/module/docker/common"
 	"lnxctl/util"
@@ -51,16 +51,16 @@ func GetContainers(response http.ResponseWriter, request *http.Request) {
 	// DOCKER_HOST="tcp://0.0.0.0:2375"
 	// DOCKER_HOST="tcp://127.0.0.1:2375"
 	var docker_client *client.Client
-	// docker_client, err = client.NewClientWithOpts(client.FromEnv, client.WithAPIVersionNegotiation())
-	docker_client, err = client.NewClientWithOpts(client.WithHost(host), client.WithAPIVersionNegotiation())
+	// docker_client, err = client.New(client.FromEnv)
+	docker_client, err = client.New(client.WithHost(host))
 	util.Raise(err)
 	defer func() {
 		_ = docker_client.Close()
 	}()
 
-	var container_list []types_container.Summary
-	// container_list, err = docker_client.ContainerList(context.Background(), types_container.ListOptions{})
-	container_list, err = docker_client.ContainerList(context.Background(), types_container.ListOptions{All: true})
+	var container_list_result client.ContainerListResult
+	// container_list_result, err = docker_client.ContainerList(context.Background(), client.ContainerListOptions{})
+	container_list_result, err = docker_client.ContainerList(context.Background(), client.ContainerListOptions{All: true})
 	if err != nil {
 		log.Println(err)
 		// Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
@@ -70,6 +70,9 @@ func GetContainers(response http.ResponseWriter, request *http.Request) {
 		}
 	}
 	util.Raise(err)
+
+	var container_list []types_container.Summary
+	container_list = container_list_result.Items
 
 	var containers []map[string]any
 	containers = make([]map[string]any, 0)
@@ -88,7 +91,7 @@ func GetContainers(response http.ResponseWriter, request *http.Request) {
 		var created_raw int64
 		var created time.Time
 		var status string
-		var state string
+		var state types_container.ContainerState
 
 		id = container.ID
 		container_id_raw = container.ID
@@ -128,11 +131,11 @@ func GetContainers(response http.ResponseWriter, request *http.Request) {
 
 			var key string
 			for key = range networks {
-				ip_address = networks[key].IPAddress
+				ip_address = networks[key].IPAddress.String()
 			}
 		}
 
-		var ports []types_container.Port
+		var ports []types_container.PortSummary
 		ports = container.Ports
 
 		var ports2 []map[string]any
@@ -143,14 +146,14 @@ func GetContainers(response http.ResponseWriter, request *http.Request) {
 
 		{
 
-			var port types_container.Port
+			var port types_container.PortSummary
 			for _, port = range ports {
 				var ip string
 				var private_port uint16
 				var public_port uint16
 				var type2 string
 
-				ip = port.IP
+				ip = port.IP.String()
 				private_port = port.PrivatePort
 				public_port = port.PublicPort
 				type2 = port.Type

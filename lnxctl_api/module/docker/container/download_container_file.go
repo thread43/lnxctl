@@ -11,10 +11,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/docker/docker/api/types"
-	types_container "github.com/docker/docker/api/types/container"
-	"github.com/docker/docker/client"
-	"github.com/docker/docker/pkg/stdcopy"
+	"github.com/moby/moby/api/pkg/stdcopy"
+	"github.com/moby/moby/client"
 
 	docker_common "lnxctl/module/docker/common"
 	"lnxctl/util"
@@ -50,7 +48,7 @@ func DownloadContainerFile(response http.ResponseWriter, request *http.Request) 
 	util.Raise(err)
 
 	var docker_client *client.Client
-	docker_client, err = client.NewClientWithOpts(client.WithHost(host), client.WithAPIVersionNegotiation())
+	docker_client, err = client.New(client.WithHost(host))
 	util.Raise(err)
 	defer func() {
 		_ = docker_client.Close()
@@ -60,29 +58,32 @@ func DownloadContainerFile(response http.ResponseWriter, request *http.Request) 
 	command = []string{"cat", file}
 	log.Println(command)
 
-	var exec_create_response types_container.ExecCreateResponse
-	exec_create_response, err = docker_client.ContainerExecCreate(
+	var exec_create_result client.ExecCreateResult
+	exec_create_result, err = docker_client.ExecCreate(
 		context.Background(),
 		container_id,
-		types_container.ExecOptions{
+		client.ExecCreateOptions{
 			AttachStdin:  false,
 			AttachStdout: true,
 			AttachStderr: true,
-			Tty:          false,
+			TTY:          false,
 			Cmd:          command,
 		},
 	)
 	util.Raise(err)
 
-	var hijacked_response types.HijackedResponse
-	hijacked_response, err = docker_client.ContainerExecAttach(
+	var exec_attach_result client.ExecAttachResult
+	exec_attach_result, err = docker_client.ExecAttach(
 		context.Background(),
-		exec_create_response.ID,
-		types_container.ExecAttachOptions{
-			Tty: false,
+		exec_create_result.ID,
+		client.ExecAttachOptions{
+			TTY: false,
 		},
 	)
 	util.Raise(err)
+
+	var hijacked_response client.HijackedResponse
+	hijacked_response = exec_attach_result.HijackedResponse
 	defer func() {
 		log.Println("hijacked_response closed......")
 		hijacked_response.Close()

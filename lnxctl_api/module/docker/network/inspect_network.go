@@ -7,8 +7,8 @@ import (
 	"strconv"
 	"strings"
 
-	types_network "github.com/docker/docker/api/types/network"
-	"github.com/docker/docker/client"
+	types_network "github.com/moby/moby/api/types/network"
+	"github.com/moby/moby/client"
 
 	docker_common "lnxctl/module/docker/common"
 	"lnxctl/util"
@@ -41,16 +41,19 @@ func InspectNetwork(response http.ResponseWriter, request *http.Request) {
 	util.Raise(err)
 
 	var docker_client *client.Client
-	docker_client, err = client.NewClientWithOpts(client.WithHost(host), client.WithAPIVersionNegotiation())
+	docker_client, err = client.New(client.WithHost(host))
 	util.Raise(err)
 	defer func() {
 		_ = docker_client.Close()
 	}()
 
-	var network types_network.Inspect
-	// network, _, err = docker_client.NetworkInspectWithRaw(context.Background(), network_id, types_network.InspectOptions{})
-	network, err = docker_client.NetworkInspect(context.Background(), network_id, types_network.InspectOptions{})
+	var network_inspect_result client.NetworkInspectResult
+	// network_inspect_result, _, err = docker_client.NetworkInspectWithRaw(context.Background(), network_id, client.NetworkInspectOptions{})
+	network_inspect_result, err = docker_client.NetworkInspect(context.Background(), network_id, client.NetworkInspectOptions{})
 	util.Raise(err)
+
+	var network types_network.Inspect
+	network = network_inspect_result.Network
 
 	var network2 []byte
 	network2, err = json.Marshal(network)

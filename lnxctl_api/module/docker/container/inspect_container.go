@@ -7,8 +7,8 @@ import (
 	"strconv"
 	"strings"
 
-	types_container "github.com/docker/docker/api/types/container"
-	"github.com/docker/docker/client"
+	types_container "github.com/moby/moby/api/types/container"
+	"github.com/moby/moby/client"
 
 	docker_common "lnxctl/module/docker/common"
 	"lnxctl/util"
@@ -41,15 +41,18 @@ func InspectContainer(response http.ResponseWriter, request *http.Request) {
 	util.Raise(err)
 
 	var docker_client *client.Client
-	docker_client, err = client.NewClientWithOpts(client.WithHost(host), client.WithAPIVersionNegotiation())
+	docker_client, err = client.New(client.WithHost(host))
 	util.Raise(err)
 	defer func() {
 		_ = docker_client.Close()
 	}()
 
-	var container types_container.InspectResponse
-	container, err = docker_client.ContainerInspect(context.Background(), container_id)
+	var container_inspect_result client.ContainerInspectResult
+	container_inspect_result, err = docker_client.ContainerInspect(context.Background(), container_id, client.ContainerInspectOptions{})
 	util.Raise(err)
+
+	var container types_container.InspectResponse
+	container = container_inspect_result.Container
 
 	var container2 []byte
 	container2, err = json.Marshal(container)

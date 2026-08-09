@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	types_network "github.com/docker/docker/api/types/network"
-	"github.com/docker/docker/client"
+	types_network "github.com/moby/moby/api/types/network"
+	"github.com/moby/moby/client"
 
 	docker_common "lnxctl/module/docker/common"
 	"lnxctl/util"
@@ -40,15 +40,15 @@ func GetNetworks(response http.ResponseWriter, request *http.Request) {
 	util.Raise(err)
 
 	var docker_client *client.Client
-	// docker_client, err = client.NewClientWithOpts(client.FromEnv, client.WithAPIVersionNegotiation())
-	docker_client, err = client.NewClientWithOpts(client.WithHost(host), client.WithAPIVersionNegotiation())
+	// docker_client, err = client.New(client.FromEnv)
+	docker_client, err = client.New(client.WithHost(host))
 	util.Raise(err)
 	defer func() {
 		_ = docker_client.Close()
 	}()
 
-	var network_list []types_network.Summary
-	network_list, err = docker_client.NetworkList(context.Background(), types_network.ListOptions{})
+	var network_list_result client.NetworkListResult
+	network_list_result, err = docker_client.NetworkList(context.Background(), client.NetworkListOptions{})
 	if err != nil {
 		log.Println(err)
 		// Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
@@ -58,6 +58,9 @@ func GetNetworks(response http.ResponseWriter, request *http.Request) {
 		}
 	}
 	util.Raise(err)
+
+	var network_list []types_network.Summary
+	network_list = network_list_result.Items
 
 	var networks []map[string]any
 	networks = make([]map[string]any, 0)

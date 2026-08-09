@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	types_image "github.com/docker/docker/api/types/image"
-	"github.com/docker/docker/client"
+	types_image "github.com/moby/moby/api/types/image"
+	"github.com/moby/moby/client"
 
 	docker_common "lnxctl/module/docker/common"
 	"lnxctl/util"
@@ -18,7 +18,7 @@ import (
 
 // DOCKER_HOST="unix:///var/run/docker.sock" ./lnxctl
 // DOCKER_HOST="tcp://127.0.0.1:2375" ./lnxctl
-// docker_client, err = client.NewClientWithOpts(client.FromEnv, client.WithAPIVersionNegotiation())
+// docker_client, err = client.New(client.FromEnv)
 func GetImages(response http.ResponseWriter, request *http.Request) {
 	var err error
 
@@ -43,15 +43,15 @@ func GetImages(response http.ResponseWriter, request *http.Request) {
 	util.Raise(err)
 
 	var docker_client *client.Client
-	// docker_client, err = client.NewClientWithOpts(client.FromEnv, client.WithAPIVersionNegotiation())
-	docker_client, err = client.NewClientWithOpts(client.WithHost(host), client.WithAPIVersionNegotiation())
+	// docker_client, err = client.New(client.FromEnv)
+	docker_client, err = client.New(client.WithHost(host))
 	util.Raise(err)
 	defer func() {
 		_ = docker_client.Close()
 	}()
 
-	var image_list []types_image.Summary
-	image_list, err = docker_client.ImageList(context.Background(), types_image.ListOptions{})
+	var image_list_result client.ImageListResult
+	image_list_result, err = docker_client.ImageList(context.Background(), client.ImageListOptions{})
 	if err != nil {
 		log.Println(err)
 		// Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
@@ -61,6 +61,9 @@ func GetImages(response http.ResponseWriter, request *http.Request) {
 		}
 	}
 	util.Raise(err)
+
+	var image_list []types_image.Summary
+	image_list = image_list_result.Items
 
 	// // docker 28.x
 	// REPOSITORY   TAG       IMAGE ID       CREATED         SIZE

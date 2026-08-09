@@ -1,11 +1,11 @@
 upstream
-- client-go v0.36.1 (2026-05-12), https://github.com/kubernetes/client-go
-- docker v28.5.2+incompatible (2025-11-05), https://github.com/docker/docker
-- go v1.25.7 (2026-02-04), https://github.com/golang/go
-- go-sqlite3 v1.14.44 (2026-04-29), http://github.com/mattn/go-sqlite3
+- client-go v0.36.3 (2026-07-23), https://github.com/kubernetes/client-go
+- go v1.26.5 (2026-07-08), https://github.com/golang/go
+- go-sqlite3 v1.14.49 (2026-04-29), http://github.com/mattn/go-sqlite3
+- moby v1.55.0 (2026-06-12), https://github.com/moby/moby
 - mysql v1.10.0 (2026-04-29), https://github.com/go-sql-driver/mysql
 - pq v1.12.3 (2026-04-03), https://github.com/lib/pq
 - pty v1.1.24 (2024-11-01), https://github.com/creack/pty
 - sessions v1.4.0 (2024-08-20), https://github.com/gorilla/sessions
-- sftp v1.13.10 (2025-10-23), https://github.com/pkg/sftp
+- sftp v1.13.11 (2026-07-12), https://github.com/pkg/sftp
 - websocket v1.5.4-0.20250319132907-e064f32e3674 (2025-03-19), https://github.com/gorilla/websocket

@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"time"
 
-	types_container "github.com/docker/docker/api/types/container"
-	"github.com/docker/docker/client"
+	types_container "github.com/moby/moby/api/types/container"
+	"github.com/moby/moby/client"
 
 	core_v1 "k8s.io/api/core/v1"
 	meta_v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -171,7 +171,7 @@ func GetDockers() []map[string]any {
 		util.Raise(err)
 
 		var docker_client *client.Client
-		docker_client, err = client.NewClientWithOpts(client.WithHost(host), client.WithAPIVersionNegotiation())
+		docker_client, err = client.New(client.WithHost(host))
 		if err != nil {
 			log.Println(err)
 			containers = append(containers, container)
@@ -181,20 +181,23 @@ func GetDockers() []map[string]any {
 			_ = docker_client.Close()
 		}()
 
-		var container_list []types_container.Summary
-		container_list, err = docker_client.ContainerList(context.Background(), types_container.ListOptions{All: true})
+		var container_list_result client.ContainerListResult
+		container_list_result, err = docker_client.ContainerList(context.Background(), client.ContainerListOptions{All: true})
 		if err != nil {
 			log.Println(err)
 			containers = append(containers, container)
 			continue
 		}
 
+		var container_list []types_container.Summary
+		container_list = container_list_result.Items
+
 		container_total = len(container_list)
 		container_running = 0
 
 		var container_summary types_container.Summary
 		for _, container_summary = range container_list {
-			var state string
+			var state types_container.ContainerState
 			state = container_summary.State
 			if state == "running" {
 				container_running += 1

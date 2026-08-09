@@ -12,8 +12,7 @@ import (
 	"strconv"
 	"strings"
 
-	types_container "github.com/docker/docker/api/types/container"
-	"github.com/docker/docker/client"
+	"github.com/moby/moby/client"
 
 	docker_common "lnxctl/module/docker/common"
 	"lnxctl/util"
@@ -67,7 +66,7 @@ func UploadContainerFile(response http.ResponseWriter, request *http.Request) {
 	log.Println("uploaded file header:", file_header.Header)
 
 	var docker_client *client.Client
-	docker_client, err = client.NewClientWithOpts(client.WithHost(host), client.WithAPIVersionNegotiation())
+	docker_client, err = client.New(client.WithHost(host))
 	util.Raise(err)
 	defer func() {
 		_ = docker_client.Close()
@@ -108,12 +107,14 @@ func UploadContainerFile(response http.ResponseWriter, request *http.Request) {
 		util.Raise(err)
 	}
 
-	err = docker_client.CopyToContainer(
+	// var copy_to_container_result client.CopyToContainerResult
+	_, err = docker_client.CopyToContainer(
 		context.Background(),
 		container_id,
-		dir,
-		&buf2,
-		types_container.CopyToContainerOptions{},
+		client.CopyToContainerOptions{
+			DestinationPath: dir,
+			Content:         &buf2,
+		},
 	)
 	util.Raise(err)
 
