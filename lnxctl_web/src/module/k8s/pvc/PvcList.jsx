@@ -309,7 +309,7 @@ function PvcList() {
 
       <div className="MyContentBlock">
         <div className="MyContentHeader">
-          <span className="MyContentHeaderTitle">Pvc List</span>
+          <span className="MyContentHeaderTitle">PVC List</span>
           <Space wrap>
             <Button
               type="primary"

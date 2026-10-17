@@ -3,8 +3,8 @@ lnxctl - linux/docker/kubernetes dashboard
 
 
 -- download
-wget "https://thread43.github.io/pkg/lnxctl_v20260809.tar.gz"
-tar xzvf lnxctl_v20260809.tar.gz
+wget "https://thread43.github.io/pkg/lnxctl_v20261018.tar.gz"
+tar xzvf lnxctl_v20261018.tar.gz
 cd lnxctl
 ./lnxctl
 
