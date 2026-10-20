@@ -228,7 +228,7 @@ function DaemonsetList() {
       dataIndex: 'node_selector',
       render: (text) => (
         <>
-          {Object.entries(text).map(([key, value]) => (
+          {text !== null && Object.entries(text).map(([key, value]) => (
             <span key={key}>
               {key}={value}
             </span>
